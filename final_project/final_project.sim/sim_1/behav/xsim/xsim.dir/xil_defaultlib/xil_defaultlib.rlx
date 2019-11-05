@@ -1,0 +1,7 @@
+0.6
+2019.1
+May 24 2019
+15:06:07
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.sim/sim_1/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.srcs/sim_1/new/spi_tb.sv,1572922408,systemVerilog,,,,spi_tb,,,../../../../final_project.srcs/sources_1/ip/clk_wiz_0,,,,,
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.srcs/sources_1/new/screen_interfacer.sv,1572922730,systemVerilog,,D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.srcs/sim_1/new/spi_tb.sv,,screen_interfacer;spi_send,,,../../../../final_project.srcs/sources_1/ip/clk_wiz_0,,,,,
