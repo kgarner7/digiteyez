@@ -22,14 +22,46 @@ module screen_interfacer(
     input clk_100mhz,
     input clk_spi,
     input rst,
-    output mosi
+    output mosi,
+    output ss, //this is slave select and should always be high
+    output command //this is high on instruction, low on data
     );
-    spi_send();
+    logic [5:0] state; //probably won't need all 64 states but who knows
+    //logic [7:0] mosi; //data to be transmitted 
+    spi_send(.clk_100mhz(clk_100mhz), .clk_spi(clk_spi), .rst(rst), .cmd(cmd), .to_send(to_send), .send_now(send_now), .ready_to_send(ready_to_send),.mosi(mosi));
     always_ff @(posedge clk_100mhz) begin
         if(rst) begin
-        
-        end else begin 
-        //normal operation
+            state <= 6'b0; //reset the state
+        end else begin
+            case (state)
+                6'd0: begin //reset to factory settings
+                    
+                end
+                6'd1: begin
+                
+                end
+                6'd2: begin
+                
+                end
+                6'd3: begin
+                
+                end
+                6'd4: begin
+                
+                end
+                6'd5: begin
+                
+                end
+                6'd6: begin
+                
+                end
+                6'd7: begin
+                
+                end
+                default: begin
+                
+                end
+            endcase  
         end
    end
 endmodule
@@ -51,8 +83,8 @@ module spi_send(
     assign ready_to_send = ready_to_send_out;
     always_ff @(posedge clk_100mhz) begin
         if(rst) begin
-        bitcount <= 3'd7;
-        ready_to_send_out <= 1'b1; //by default ready to go
+            bitcount <= 3'd7;
+            ready_to_send_out <= 1'b1; //by default ready to go
         end else begin 
         //normal operation
         if(send_now && ready_to_send_out)begin //kick off the send 
