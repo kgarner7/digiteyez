@@ -15,8 +15,8 @@ MAX_LONGITUDE = 360
 MAX_X = len(base_img[0])
 MAX_Y = len(base_img)
 
-REDUCED_WIDTH = 200
-REDUCED_HEIGHT = 100
+REDUCED_WIDTH = 320
+REDUCED_HEIGHT = 240
 
 latitude = 90
 longitude = 170
