@@ -25,28 +25,22 @@ module spi_tb(
     );
     //logics for all the inputs and outputs
     logic clk_100mhz;
-    logic clk_spi;
     logic rst;
     logic cmd; //whether or not the spi should be in command mode
     logic [7:0] to_send;
     logic send_now; //sends when high
     logic ready_to_send; //high when we can accept another value
-    logic mosi; //MOSI
+    logic [3:0] spi_out; //MOSI
     //module under test
-    spi_send spi_test(.clk_100mhz(clk_100mhz), .clk_spi(clk_spi), .rst(rst), .cmd(cmd), .to_send(to_send), .send_now(send_now), .ready_to_send(ready_to_send), .mosi(mosi));
+    spi_send spi_test(.clk_100mhz(clk_100mhz), .rst(rst), .isdata(cmd), .to_send(to_send), .send_now(send_now), .ready_to_send(ready_to_send), .spi_out(spi_out));
     always begin
         #5;  //every 5 ns switch...so period of clock is 10 ns...100 MHz clock
         clk_100mhz = !clk_100mhz;
-    end
-    always begin
-        #30;  //every 30 ns switch...so period of clock is 10 ns...100 MHz clock
-        clk_spi = !clk_spi;
     end
     
     initial begin
     $display("Starting Sim"); 
     clk_100mhz = 0;
-    clk_spi = 0;
     rst = 0;
     cmd = 0;
     to_send = 8'b11011010;
