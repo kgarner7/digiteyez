@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`default_nettype none
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -19,16 +20,27 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 module screen_interfacer(
-    input clk_100mhz,
-    input rst,
-    output [3:0] spi_out //four bits wide, connected to jd, 
-    );
+    input wire clk_100mhz,
+    input wire rst,
+    output logic [3:0] spi_out //four bits wide, connected to jd, 
+);
+    
     logic [26:0] timer; //has to count to 100,000,000 for the second long invert delay thing
     logic [5:0] state; //probably won't need all 64 states but who knows
-    logic to_send_out;
+    
+    logic to_send, to_send_out;
     logic isdata_out;
     logic send_now;
-    spi_send my_spi(.clk_100mhz(clk_100mhz), .rst(rst), .isdata(isdata_out), .to_send(to_send), .send_now(send_now), .ready_to_send(ready_to_send),.spi_out(spi_out));
+    
+    logic ready_to_send;
+    
+    spi_send my_spi(
+        .clk_100mhz(clk_100mhz), .rst(rst), 
+        .isdata(isdata_out), .to_send(to_send), 
+        .send_now(send_now), .ready_to_send(ready_to_send),
+        .spi_out(spi_out)
+    );
+    
     assign to_send = to_send_out;
     
     //logic [7:0] mosi; //data to be transmitted 
@@ -254,17 +266,17 @@ endmodule
 module spi_send
     #( parameter SPI_CLOCK_WAIT = 6) // gives us about 6 mhz, can maybe drop later for faster spi but remains to be seen 
     (
-        input clk_100mhz,
-        input rst, 
-        input isdata, //whether or not the spi should be in command mode
-        input [7:0] to_send,
-        input send_now, //sends when high
-        output ready_to_send, //high when we can accept another value
-        output [3:0] spi_out //sck, MOSI, cs, d/c
+        input wire clk_100mhz,
+        input wire rst, 
+        input wire isdata, //whether or not the spi should be in command mode
+        input wire [7:0] to_send,
+        input wire send_now, //sends when high
+        output logic ready_to_send, //high when we can accept another value
+        output logic [3:0] spi_out //sck, MOSI, cs, d/c
     );
+    
     logic mosi;
-    logic [2:0] bitcount;
-    logic [2:0] clk_count;
+    logic [2:0] bitcount, clk_count;
     logic spi_clk_out;
     logic ready_to_send_out;
     assign spi_out = {spi_clk_out, mosi,1'b1,isdata}; //always selecting the chip

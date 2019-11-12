@@ -40,21 +40,21 @@ while True:
   key = input("next: ")
   if key =='\x1b[A':
     if latitude <= Y_STEP:
-      latitude = MAX_LATITUDE - Y_STEP
+      latitude = MAX_LATITUDE - REDUCED_HEIGHT / 10
     else:
       latitude -= Y_STEP
   elif key =='\x1b[B':
-    if latitude >= MAX_LATITUDE - Y_STEP:
+    if latitude >= MAX_LATITUDE - REDUCED_HEIGHT / 10 - Y_STEP:
       latitude = 0
     else:
       latitude += Y_STEP
   elif key =='\x1b[C':
-    if longitude >= MAX_LONGITUDE - 2 * X_STEP:
+    if longitude >= MAX_LONGITUDE - REDUCED_WIDTH / 10 - X_STEP:
       longitude = 0
     else:
       longitude += X_STEP
   elif key =='\x1b[D':
     if longitude <= X_STEP:
-      longitude = MAX_LONGITUDE - X_STEP
+      longitude = MAX_LONGITUDE - REDUCED_WIDTH / 10
     else:
       longitude -= X_STEP
