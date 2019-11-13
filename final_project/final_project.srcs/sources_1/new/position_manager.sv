@@ -25,7 +25,7 @@ module position_manager(
     input wire clock, reset,
     input wire left_button, right_button,
     input wire uart_in,
-    output logic [7:0] vert_angle,
+    output logic [15:0] vert_angle,
     output logic [8:0] horiz_angle
 );
 
@@ -58,30 +58,38 @@ module position_manager(
     );
     
     logic button_enabled;
-    reg [8:0] current_horz = 180, next_horz; 
+    reg [8:0] current_horz = 180;
+    logic [8:0] next_horz; 
     
     always_comb begin
         if (left_clean ^ right_clean) begin
             if (left_clean) begin
-                next_horz <= current_horz == 0 ? 359 : current_horz - 1;
+                next_horz = current_horz == 0 ? 359 : current_horz - 1;
             end else begin
-                next_horz <= current_horz == 0 ? 359 : current_horz + 1;
+                next_horz = current_horz == 360 ? 0 : current_horz + 1;
             end
+        end else begin
+            next_horz = current_horz;
         end
     end
     
-    clock_divider #(.TARGET_FREQUENCY(1000)) button_divider(
+    clock_divider #(.TARGET_FREQUENCY(10)) button_divider(
         .clock(clock), .reset(reset),
         .divided_clock(button_enabled)
     );
     
     always_ff @(posedge clock) begin
-        if (button_enabled) begin
-            current_horz    <= next_horz;
-            horiz_angle     <= next_horz;
+        if (reset) begin
+            current_horz    <= 180;
+            horiz_angle     <= 180;
+        end else begin
+            if (button_enabled) begin
+                horiz_angle     <= next_horz;
+                current_horz    <= next_horz;
+            end
+            
+            // TODO(kgarner): calculate this from uart_data
+            vert_angle <= uart_data[31:16];
         end
-        
-        // TODO(kgarner): calculate this from uart_data
-        vert_angle <= 90;
     end
 endmodule

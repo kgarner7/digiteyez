@@ -65,18 +65,18 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
+  set_param xicom.use_bs_reader 1
   set_param chipscope.maxJobs 2
   create_project -in_memory -part xc7a100tcsg324-1
-  set_property board_part_repo_paths {C:/Users/user/AppData/Roaming/Xilinx/Vivado/2019.1/xhub/board_store} [current_project]
   set_property board_part digilentinc.com:nexys4_ddr:part0:1.1 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.cache/wt [current_project]
-  set_property parent.project_path D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.xpr [current_project]
-  set_property ip_output_repo D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.cache/ip [current_project]
+  set_property webtalk.parent_dir /afs/athena.mit.edu/user/k/g/kgarner/Private/6.111/digiteyez/final_project/final_project.cache/wt [current_project]
+  set_property parent.project_path /afs/athena.mit.edu/user/k/g/kgarner/Private/6.111/digiteyez/final_project/final_project.xpr [current_project]
+  set_property ip_output_repo /afs/athena.mit.edu/user/k/g/kgarner/Private/6.111/digiteyez/final_project/final_project.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-  add_files -quiet D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.runs/synth_1/main.dcp
-  read_xdc D:/_Senior/Semester_1/6.111/nexys4_ddr_default.xdc
+  add_files -quiet /afs/athena.mit.edu/user/k/g/kgarner/Private/6.111/digiteyez/final_project/final_project.runs/synth_1/main.dcp
+  read_xdc /afs/athena.mit.edu/user/k/g/kgarner/Private/6.111/digiteyez/final_project/final_project.srcs/constrs_1/imports/6.111/nexys4_ddr_default.xdc
   link_design -top main -part xc7a100tcsg324-1
   close_msg_db -file init_design.pb
 } RESULT]
