@@ -11,6 +11,7 @@ module main(
     input wire btnc,        //  to be the reset button
     input wire btnl, btnr,  //  control horizontal scrolling
     input wire jb,          //  uart input
+    input wire [3:0] filt,
     output logic ca, cb, cc, cd, ce, cf, cg, dp,  // segments a-g, dp
     output logic [3:0]  jd,    // sck, mosi,cs, d/c in that order
     output logic [7:0]  an    // Display location 0-7
@@ -39,7 +40,7 @@ module main(
     position_manager(
         .clock(clk_65mhz), .reset(reset),
         .left_button(btnl), .right_button(btnr),
-        .uart_in(jb),
+        .uart_in(jb), .filter(filt),
         .vert_angle(vert_angle),
         .horiz_angle(horiz_angle)
     );

@@ -25,6 +25,7 @@ module position_manager(
     input wire clock, reset,
     input wire left_button, right_button,
     input wire uart_in,
+    input wire [3:0] filter,
     output logic [15:0] vert_angle,
     output logic [8:0] horiz_angle
 );
@@ -45,6 +46,13 @@ module position_manager(
         .output_data(uart_data)
     );
     
+    logic [15:0] y_accel_filtered;
+    filter y_filter(
+        .clock(clock), .reset(reset),
+        .filter(filter), .data(uart_data[31:16]),
+        .filtered_data(y_accel_filtered)
+    );
+    
     logic left_clean, right_clean;
     
     debounce left_button_debounce(
@@ -60,7 +68,8 @@ module position_manager(
     logic button_enabled;
     reg [8:0] current_horz = 180;
     logic [8:0] next_horz; 
-    
+    logic [15:0] y_shifted, y_unsigned, next_vert;
+        
     always_comb begin
         if (left_clean ^ right_clean) begin
             if (left_clean) begin
@@ -70,6 +79,19 @@ module position_manager(
             end
         end else begin
             next_horz = current_horz;
+        end
+        
+        y_unsigned  = y_accel_filtered[15] ? ~y_accel_filtered + 1 : y_accel_filtered;
+        y_shifted   = (y_unsigned[15:8] * 3) >> 1;
+       
+        if (y_shifted >= 90) begin
+            y_shifted = 90;
+        end
+        
+        if (y_accel_filtered[15]) begin
+            next_vert = 90 + y_shifted;
+        end else begin
+            next_vert = 90 - y_shifted;
         end
     end
     
@@ -89,7 +111,7 @@ module position_manager(
             end
             
             // TODO(kgarner): calculate this from uart_data
-            vert_angle <= uart_data[31:16];
+            vert_angle <= next_vert;
         end
     end
 endmodule
