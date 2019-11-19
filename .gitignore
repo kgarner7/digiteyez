@@ -1,1 +1,4 @@
 .vscode
+vivado.jou
+vivado.log
+vivado_pid*.str

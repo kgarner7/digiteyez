@@ -2,5 +2,5 @@
 final_project.cache/*
 final_project.runs/*
 final_project.sim/*
-
+final_project.ip_user_files/ipstatic/*
 !.gitkeep
