@@ -1,6 +1,8 @@
 .Xil/*
 final_project.cache/*
+final_project.hw/*
 final_project.runs/*
 final_project.sim/*
-final_project.ip_user_files/ipstatic/*
+final_project.ip_user_files/*
+
 !.gitkeep
