@@ -26,7 +26,7 @@ module position_manager(
     input wire left_button, right_button,
     input wire uart_in,
     input wire [3:0] filter,
-    output logic [15:0] vert_angle,
+    output logic [7:0] vert_angle,
     output logic [8:0] horiz_angle
 );
 
@@ -111,7 +111,7 @@ module position_manager(
             end
             
             // TODO(kgarner): calculate this from uart_data
-            vert_angle <= next_vert;
+            vert_angle <= next_vert[7:0];
         end
     end
 endmodule

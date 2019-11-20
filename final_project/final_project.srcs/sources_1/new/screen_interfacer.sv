@@ -19,26 +19,6 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 11/04/2019 05:25:28 PM
-// Design Name: 
-// Module Name: screen_interfacer
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 module screen_interfacer#(
     parameter ms10 = 26'd1000000, 
     parameter img_width = 640, 
@@ -48,8 +28,11 @@ module screen_interfacer#(
 (
     input wire clk_100mhz,
     input wire rst,
+    input wire image_done,
+    input wire [7:0] pixel_in,
     output logic [3:0] spi_out, //four bits wide, connected to jd, 
     output logic [5:0] state_out, //for debugging
+    output logic read_ready,
     output wire led
 );
 
@@ -59,8 +42,13 @@ module screen_interfacer#(
         SET_COLOR_MODE, SEND_COL_MODE_DATA,
         MEMORY_ACCESS_CONTROL, WRITE_MEMORY_ACCESS_CONTROL,
         CASET_COMMAND, CASET_ZEROS_1, CASET_ZEROS_2, CASET_DATA_1, CASET_DATA_2,
-        RASET_COMMAND, RASET_ZEROS_1, RASET_ZEROS_2, RASET_DATA_1, RASET_DATA_2
-    } state; //probably won't need all 64 states but who knows
+        RASET_COMMAND, RASET_ZEROS_1, RASET_ZEROS_2, RASET_DATA_1, RASET_DATA_2,
+        INVERT_ON,
+        NORMAL_DISPLAY_ON, DISPLAY_ON,
+        DATA_ANNOUNCE, COLOR_SEND, IMAGE_SEND,
+        INVERT_LOOP_OFF, INVERT_LOOP_ON
+    } state; 
+    
     logic [7:0] to_send_out;
     logic isdata_out;
     logic [20:0] i;
@@ -73,15 +61,13 @@ module screen_interfacer#(
     logic [1:0] gray_count;
     logic [8:0] col_count; //could be 7:0, using 8:0 for consistency in case we switch screens
     logic [8:0] row_count;
+    logic initialized;
+    
     assign led = led_ind;
-    
+        
     spi_send my_spi(.cs(cs), .clk_100mhz(clk_100mhz), .rst(rst), .isdata(isdata_out), .to_send(to_send_out), .send_now(send_now), .ready_to_send(ready_to_send),.spi_out(spi_out));
-    simple_pano_rom pano_rom(.clka(clk_100mhz),
-        .addra(addra), // Bus [15 : 0] 
-        .douta(douta) // Bus [7 : 0] );
-	);
+	
     assign state_out = state;
-    
     //logic [7:0] mosi; //data to be transmitted 
     
     always_ff @(posedge clk_100mhz) begin
@@ -97,6 +83,7 @@ module screen_interfacer#(
             gray_count <= 0;
             col_count <= 0;
             row_count <= 0;
+            initialized <= 0;
         end else begin
             case (state)
                 RESET: begin //reset to factory settings
@@ -106,14 +93,16 @@ module screen_interfacer#(
                         to_send_out <= 8'h01; 
                         send_now <= 1'b1;
                         state <= WAKE_FROM_SLEEP; //
-                    end else
+                    end else begin
                         send_now <= 1'b0;
+                    end
                 end
                 WAKE_FROM_SLEEP: begin //wake up from sleep mode
                     //add a delay 10 ms
                     if(ready_to_send) begin
                         cs <= 1'b1;
                     end
+                    
                     if(ready_to_send && (timer > ms10)) begin
                         isdata_out <= 1'b0; //is a command
                         to_send_out <= 8'h11; 
@@ -122,8 +111,8 @@ module screen_interfacer#(
                         timer <= 0;
                         state <= SET_COLOR_MODE; //
                     end else begin
-                        timer <= timer + 1;
-                        send_now <= 1'b0;
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                     end
                 end
                 SET_COLOR_MODE: begin //set a color mode
@@ -135,8 +124,8 @@ module screen_interfacer#(
                         state <= SEND_COL_MODE_DATA; //
                         timer <= 0;
                     end else begin
-                        timer <= timer + 1;
-                        send_now <= 1'b0;
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                     end
                 end
                 SEND_COL_MODE_DATA: begin //send the colmode data
@@ -147,8 +136,8 @@ module screen_interfacer#(
                         state <= MEMORY_ACCESS_CONTROL; //
                         timer <= 0;
                     end else begin
-                        timer <= timer + 1;
-                        send_now <= 1'b0;
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                     end
                 end
                 MEMORY_ACCESS_CONTROL: begin //memory access control (set a direction)
@@ -159,8 +148,8 @@ module screen_interfacer#(
                         state <= WRITE_MEMORY_ACCESS_CONTROL; //
                         timer <= 0;
                     end else begin
-                        timer <= timer +1;
-                        send_now <= 1'b0;
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                     end
                 end
                 WRITE_MEMORY_ACCESS_CONTROL: begin //write data to the mem access control 
@@ -171,8 +160,8 @@ module screen_interfacer#(
                         state <= CASET_COMMAND; //
                         timer <= 0;
                     end else begin
-                        send_now <= 1'b0;
-                        timer <= timer +1;
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                     end
                 end
                 CASET_COMMAND: begin //caset to 0
@@ -183,9 +172,8 @@ module screen_interfacer#(
                         state <= CASET_ZEROS_1; //
                         timer <= 0;
                     end else begin
-                        timer <= timer +1;
-                        send_now <= 1'b0;
-                        
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                      end
                 end
                 CASET_ZEROS_1: begin //
@@ -196,9 +184,8 @@ module screen_interfacer#(
                         state <= CASET_ZEROS_2; //
                         timer <= 0;
                     end else begin
-                        send_now <= 1'b0;
-                        timer <= timer +1;
-                        
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                      end
                 end
                 CASET_ZEROS_2: begin
@@ -209,8 +196,8 @@ module screen_interfacer#(
                         state <= CASET_DATA_1; //
                         timer <= 0;
                     end else begin
-                        send_now <= 1'b0;
-                        timer <= timer +1;
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                     end
                 end
                 CASET_DATA_1: begin
@@ -221,9 +208,9 @@ module screen_interfacer#(
                         state <= CASET_DATA_2; //
                         timer <= 0;
                     end else begin
-                        send_now <= 1'b0;
-                        timer <= timer +1;
-                        end
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
+                    end
                 end
                 CASET_DATA_2: begin
                     if(ready_to_send && timer > 3) begin
@@ -233,21 +220,21 @@ module screen_interfacer#(
                         state <= RASET_COMMAND; //
                         timer <= 0;
                     end else begin
-                        send_now <= 1'b0;
-                        timer <= timer +1;
-                        end
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
+                    end
                 end
                 RASET_COMMAND: begin //raset
                     if(ready_to_send && (timer > 3)) begin
-                            isdata_out <= 1'b0; //is command
-                            to_send_out <= 8'h2B; 
-                            send_now <= 1'b1;
-                            state <= RASET_ZEROS_1; //
-                            timer <= 0;
-                        end else begin
-                            send_now <= 1'b0;
-                            timer <= timer +1;
-                        end
+                        isdata_out <= 1'b0; //is command
+                        to_send_out <= 8'h2B; 
+                        send_now <= 1'b1;
+                        state <= RASET_ZEROS_1; //
+                        timer <= 0;
+                    end else begin
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
+                    end
                 end
                 RASET_ZEROS_1: begin
                     if(ready_to_send && (timer > 5)) begin
@@ -257,9 +244,9 @@ module screen_interfacer#(
                         state <= RASET_ZEROS_2; //
                         timer <= 0;
                     end else begin
-                        send_now <= 1'b0;
-                        timer <= timer +1;
-                        end
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
+                    end
                 end
                 RASET_ZEROS_2: begin
                     if(ready_to_send && (timer > 5)) begin
@@ -269,8 +256,8 @@ module screen_interfacer#(
                         state <= RASET_DATA_1; //
                         timer <= 0;
                     end else begin
-                        send_now <= 1'b0;    
-                        timer <= timer +1;
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                     end           
                 end
                 RASET_DATA_1: begin
@@ -281,8 +268,8 @@ module screen_interfacer#(
                         state <= RASET_DATA_2; //
                         timer <= 0;
                     end else begin 
-                        send_now <= 1'b0;   
-                        timer <= timer +1;
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                     end                        
                 end 
                 RASET_DATA_2: begin
@@ -290,11 +277,11 @@ module screen_interfacer#(
                         isdata_out <= 1'b1; //is data
                         to_send_out <= 8'b01000000; 
                         send_now <= 1'b1;
-                        state <= 6'd16; //
+                        state <= INVERT_ON; //
                         timer <= 0;
                     end else begin
-                        send_now <= 1'b0;
-                        timer <= timer +1;
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                     end       
                 end
 //                6'd63: begin
@@ -309,55 +296,57 @@ module screen_interfacer#(
 //                        timer <= timer +1;
 //                    end                     
 //                end  
-                6'd16: begin //invert the colors becasue that's how it is
+                INVERT_ON: begin //invert the colors becasue that's how it is
                    if(ready_to_send && timer > 5) begin
                         isdata_out <= 1'b0; //is command
                         to_send_out <= 8'h21; 
                         send_now <= 1'b1;
-                        state <= 6'd17; //
+                        state <= NORMAL_DISPLAY_ON; //
                         timer <= 0;
                     end else begin
-                        send_now <= 1'b0; 
-                        timer <= timer +1;
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
                     end       
                 end
-                6'd17: begin //normal display on
+                NORMAL_DISPLAY_ON: begin //normal display on
                     if(ready_to_send&& timer > ms10) begin
                         isdata_out <= 1'b0; //is command
                         to_send_out <= 8'h13; 
                         send_now <= 1'b1;
-                        state <= 6'd18; //
+                        state <= DISPLAY_ON; //
                         timer <= 0;
                     end else begin
-                        timer=timer + 1;
-                        send_now <= 1'b0; 
-                        end
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
+                    end
                 end
-                6'd18: begin //display on
+                DISPLAY_ON: begin //display on
                     if(ready_to_send && timer > ms10) begin
-                        isdata_out <= 1'b0; //is command
-                        to_send_out <= 8'h29; 
-                        send_now <= 1'b1;
-                        state <= 6'd61; //
-                        timer <= 0;
+                        isdata_out      <= 1'b0; //is command
+                        to_send_out     <= 8'h29; 
+                        send_now        <= 1'b1;
+                        state           <= DATA_ANNOUNCE; //
+                        initialized     <= 1;
+                        timer           <= 0;
                     end else begin
-                        send_now <= 1'b0; 
-                        timer <= timer +1;
-                        end
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
+                    end
                 end
-                6'd61: begin //announce that we're going to be sending vals, RAMWR
+                DATA_ANNOUNCE: begin //announce that we're going to be sending vals, RAMWR
                     if(ready_to_send && timer > 5) begin
                         isdata_out <= 1'b0; //is command
                         to_send_out <= 8'h2C; 
                         send_now <= 1'b1;
-                        state <= 6'd60; //
+                        state <= IMAGE_SEND;
                         timer <= 0;
+                        read_ready <= 1;
                     end else begin
-                        send_now <= 1'b0; 
-                        timer <= timer +1;
-                        end
+                        send_now    <= 1'b0; 
+                        timer       <= timer + 1;
+                    end
                 end
-                6'd62: begin //send a bunch of the same vals
+                COLOR_SEND: begin //send a bunch of the same vals
                    if ((i <230400) && (ready_to_send) && (timer > 2)) begin
                         isdata_out <= 1'b1;
                         timer <= 0;
@@ -367,75 +356,58 @@ module screen_interfacer#(
                    end else if(i < 230400) begin
                         timer <= timer + 1;
                    end else begin
-                        state <= 6'd19;
-                        led_ind <= 1;
+                        state <= DATA_ANNOUNCE;
                    end
                 end
-                6'd60: begin //send an image hopefully
-                    if ((row_count < screen_height) && (ready_to_send) && (timer > 2)) begin
-                        isdata_out <= 1'b1;
-                        timer <= 0;         
-                        if (col_count == (screen_width-1)) begin //begin a new row    
-                            if (gray_count < 2'd2) begin //repeat to make colors gray
-                                gray_count <= gray_count + 1;
-                            end else begin
-                                gray_count <= 0;
-                                col_count <= 0;  
-                                addra <= ((row_count*img_width) + img_width);
-                                row_count <= row_count + 1'b1;
-                           end
-                        end else begin //move to the next col or repeat so things are gray
-                           if (gray_count < 2'd2) begin
-                                gray_count <= gray_count + 1;
-                           end else begin
-                                col_count <= col_count + 1'b1;
-                                gray_count <= 0;
-                                addra <= (row_count*img_width) + col_count;
-                           end
+                IMAGE_SEND: begin //send an image hopefully
+                    if (ready_to_send && timer > 2) begin
+                        timer <= 0;
+                        
+                        if (gray_count < 2) begin
+                            gray_count <= gray_count + 1;
+                        end else begin
+                            read_ready <= 1;
                         end
-                        to_send_out <= douta;  //some color
-                        send_now <= 1'b1;
-                   end else if(row_count < screen_height) begin
-                        timer <= timer + 1;
-                   end else begin
-                        state <= 6'd19;
-                   end
+                        
+                        to_send_out <= pixel_in;
+                        send_now    <= 1;
+                    end else if (!image_done) begin
+                        read_ready  <= 0;
+                        timer       <= timer + 1;
+                    end else begin
+                        read_ready <= 0;
+                        state <= INVERT_LOOP_OFF;
+                    end
                 end
-                6'd19: begin //invoff, loop back and forth 
+                INVERT_LOOP_OFF: begin //invoff, loop back and forth 
                     led_ind <= 1;
                     if(ready_to_send && (timer >( ms10*100))) begin //100 for irl
                         timer <= 0;
                         isdata_out <= 1'b0; //is command
                         to_send_out <= 8'h20; 
                         send_now <= 1'b1;
-                        state <= 6'd20; //
+                        state <= INVERT_LOOP_ON; //
                         
                     end else begin
                         timer <= timer + 1;
                         send_now <= 1'b0; 
                     end
                 end   
-                6'd20: begin //invon, loop back and forth
+                INVERT_LOOP_ON: begin //invon, loop back and forth
                     led_ind <= 0;
                     if(ready_to_send && (timer > (ms10*100))) begin//100 for irl
                         timer <= 0;
                         isdata_out <= 1'b0; //is command
                         to_send_out <= 8'h21; 
                         send_now <= 1'b1;
-                        state <= 6'd19; //                   
+                        state <= INVERT_LOOP_OFF; //                   
                         
                     end else begin
                         send_now <= 1'b0; 
                         timer <= timer +1;
                         
                         end
-                end   
-                6'd21: begin
-                
-                end   
-                6'd22: begin
-                
-                end                                  
+                end                         
                 default: begin
                     send_now <= 1'b0;
                 end
@@ -444,66 +416,3 @@ module screen_interfacer#(
    end
 endmodule
 
-module spi_send
-    #( parameter SPI_CLOCK_WAIT = 5 )// gives us about 6 mhz, can maybe drop later for faster spi but remains to be seen  
-    (
-        input wire clk_100mhz,
-        input wire rst, 
-        input wire isdata, //whether or not the spi should be in command mode
-        input wire [7:0] to_send,
-        input wire cs,
-        input wire send_now, //sends when high
-        output logic ready_to_send, //high when we can accept another value
-        output logic [3:0] spi_out //sck, MOSI, cs, d/c
-    );
-    logic mosi;
-    logic [3:0] bitcount;
-    logic [10:0] clk_count;
-    logic spi_clk_out;
-    logic ready_to_send_out;
-    logic sending; //high if a send is in process
-    assign spi_out = {spi_clk_out, mosi,cs,isdata}; //always selecting the chip
-    assign ready_to_send = ready_to_send_out;
-    always_ff @(posedge clk_100mhz) begin
-        if(rst) begin
-            spi_clk_out <= 0;
-            mosi <= 1'b0;
-            bitcount <= 4'd0;
-            clk_count <= 1'b0;
-            ready_to_send_out <= 1'b1; //by default ready to go
-            sending <= 1'b0;
-        end else begin 
-        //normal operation
-            if(ready_to_send_out && send_now)begin //kick off the send 
-                bitcount <=3'd0;
-                spi_clk_out <= 1'b0; //spi clock starts low
-                ready_to_send_out <= 1'b0; //so this block doesn't run again
-                clk_count = 0;//give a full spi low to figure things out 
-                sending <= 1'b1;
-                mosi <= to_send[7];
-                //mosi <= to_send[7]; //load the first value
-            end
-            
-            //only runs whenever the spi is supposed to be changing
-            if ((clk_count == SPI_CLOCK_WAIT) && sending) begin
-                spi_clk_out <= !spi_clk_out;
-                if(spi_clk_out == 1) begin //means this is the falling edge, and we're clear to change states so the correct state will be read on the rising edge
-                    if(bitcount != 3'd7) begin
-                        mosi <= to_send[6-bitcount];
-                        bitcount <= bitcount + 1;
-                    end else begin
-                        //we've finished are are awaiting more data
-                        mosi <= to_send[0];
-                        ready_to_send_out <= 1'b1;
-                        sending <= 1'b0;
-                    end
-                    
-                end
-                clk_count <= 0;
-            end else begin
-                clk_count <= clk_count +1;
-            end
-        end
-        
-   end
-endmodule

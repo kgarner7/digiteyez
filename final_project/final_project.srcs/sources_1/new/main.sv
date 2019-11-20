@@ -5,7 +5,6 @@
 // controls everything
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module main(
     input wire clk_100mhz,
     input wire btnc,        //  to be the reset button
@@ -17,9 +16,11 @@ module main(
     output logic [7:0]  an    // Display location 0-7
 );
     
-
-    screen_interfacer(
-        .clk_100mhz(clk_100mhz), .rst(reset), .spi_out(jd)
+    logic [7:0] pixel;
+    
+    test_image_feeder(
+        .clk_100mhz(clk_100mhz), .rst(reset), 
+        .spi_out(jd), .pixel_out(pixel)
     );
     
     wire clk_65mhz; 
@@ -33,7 +34,6 @@ module main(
         .bounce(btnc), .clean(reset)
     );
 
-    
     logic [15:0] vert_angle;
     logic [8:0] horiz_angle;
     
@@ -49,7 +49,7 @@ module main(
     wire [6:0] segments;
     
     assign  dp = 1'b1;  // turn off the period
-    assign data = { 3'b0, horiz_angle, vert_angle };
+    assign data = { pixel, 3'b0, horiz_angle, vert_angle };
     assign {cg, cf, ce, cd, cc, cb, ca} = segments[6:0];
     
     display_8hex display(
