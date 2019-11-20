@@ -32,12 +32,13 @@ module screen_interfacer#(
     input wire [7:0] pixel_in,
     output logic [3:0] spi_out, //four bits wide, connected to jd, 
     output logic [5:0] state_out, //for debugging
-    output logic read_ready,
+    output logic read_ready, // whether should start read for next chunk
+    output logic image_ready,
     output wire led
 );
 
     logic [30:0] timer; //has to count to 100,000,000 for the second long invert delay thing
-    enum logic[5:0] {
+    enum reg[5:0] {
         RESET, WAKE_FROM_SLEEP, 
         SET_COLOR_MODE, SEND_COL_MODE_DATA,
         MEMORY_ACCESS_CONTROL, WRITE_MEMORY_ACCESS_CONTROL,
@@ -47,25 +48,23 @@ module screen_interfacer#(
         NORMAL_DISPLAY_ON, DISPLAY_ON,
         DATA_ANNOUNCE, COLOR_SEND, IMAGE_SEND,
         INVERT_LOOP_OFF, INVERT_LOOP_ON
-    } state; 
+    } state = RESET; 
     
     logic [7:0] to_send_out;
     logic isdata_out;
-    logic [20:0] i;
     logic send_now;
     logic ready_to_send;
     logic cs; //chip select
     logic led_ind;
-    logic  [7:0] douta;
-    logic [17:0] addra;
     logic [1:0] gray_count;
-    logic [8:0] col_count; //could be 7:0, using 8:0 for consistency in case we switch screens
-    logic [8:0] row_count;
-    logic initialized;
     
     assign led = led_ind;
         
-    spi_send my_spi(.cs(cs), .clk_100mhz(clk_100mhz), .rst(rst), .isdata(isdata_out), .to_send(to_send_out), .send_now(send_now), .ready_to_send(ready_to_send),.spi_out(spi_out));
+    spi_send my_spi(
+        .cs(cs), .clk_100mhz(clk_100mhz), .rst(rst), 
+        .isdata(isdata_out), .to_send(to_send_out), .send_now(send_now), 
+        .ready_to_send(ready_to_send),.spi_out(spi_out)
+    );
 	
     assign state_out = state;
     //logic [7:0] mosi; //data to be transmitted 
@@ -77,13 +76,9 @@ module screen_interfacer#(
             isdata_out <=1'b0; //is a command by default
             timer <= 1'b0;
             cs <= 1'b1;
-            i <=0; //counter for pixel
             led_ind <= 0;
-            addra <= 0;
             gray_count <= 0;
-            col_count <= 0;
-            row_count <= 0;
-            initialized <= 0;
+            image_ready <= 0;
         end else begin
             case (state)
                 RESET: begin //reset to factory settings
@@ -326,7 +321,6 @@ module screen_interfacer#(
                         to_send_out     <= 8'h29; 
                         send_now        <= 1'b1;
                         state           <= DATA_ANNOUNCE; //
-                        initialized     <= 1;
                         timer           <= 0;
                     end else begin
                         send_now    <= 1'b0; 
@@ -340,40 +334,41 @@ module screen_interfacer#(
                         send_now <= 1'b1;
                         state <= IMAGE_SEND;
                         timer <= 0;
+                        image_ready <= 1;
                         read_ready <= 1;
                     end else begin
                         send_now    <= 1'b0; 
                         timer       <= timer + 1;
                     end
                 end
-                COLOR_SEND: begin //send a bunch of the same vals
-                   if ((i <230400) && (ready_to_send) && (timer > 2)) begin
-                        isdata_out <= 1'b1;
-                        timer <= 0;
-                        i <= i + 1;
-                        to_send_out <= 8'h55;  //some color
-                        send_now <= 1'b1;
-                   end else if(i < 230400) begin
-                        timer <= timer + 1;
-                   end else begin
-                        state <= DATA_ANNOUNCE;
-                   end
-                end
+//                COLOR_SEND: begin //send a bunch of the same vals
+//                   if ((i <230400) && (ready_to_send) && (timer > 2)) begin
+//                        isdata_out <= 1'b1;
+//                        timer <= 0;
+//                        i <= i + 1;
+//                        to_send_out <= 8'h55;  //some color
+//                        send_now <= 1'b1;
+//                        read_ready <= 1;
+//                   end else if(i < 230400) begin
+//                        timer <= timer + 1;
+//                   end else begin
+//                        state <= DATA_ANNOUNCE;
+//                   end
+//                end
                 IMAGE_SEND: begin //send an image hopefully
+                    image_ready <= 0;
+                    
                     if (ready_to_send && timer > 2) begin
-                        timer <= 0;
+                        isdata_out <= 1'b1;
                         
-                        if (gray_count < 2) begin
-                            gray_count <= gray_count + 1;
-                        end else begin
-                            read_ready <= 1;
-                        end
+                        read_ready <= gray_count == 0;
+                        gray_count <= gray_count == 2 ? 0 : gray_count + 1;
                         
                         to_send_out <= pixel_in;
-                        send_now    <= 1;
-                    end else if (!image_done) begin
-                        read_ready  <= 0;
-                        timer       <= timer + 1;
+                        send_now <= 1'b1;
+                    end else if(!image_done) begin
+                        read_ready <= 0;
+                        timer <= timer + 1;
                     end else begin
                         read_ready <= 0;
                         state <= INVERT_LOOP_OFF;

@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module spi_send#(
-    parameter SPI_CLOCK_WAIT = 2 )// gives us about 6 mhz, can maybe drop later for faster spi but remains to be seen  
+    parameter SPI_CLOCK_WAIT = 1 )// gives us about 6 mhz, can maybe drop later for faster spi but remains to be seen  
 (
     input wire clk_100mhz,
     input wire rst, 
@@ -39,6 +39,7 @@ module spi_send#(
     logic spi_clk_out;
     logic ready_to_send_out;
     logic sending; //high if a send is in process
+    
     assign spi_out = {spi_clk_out, mosi,cs,isdata}; //always selecting the chip
     assign ready_to_send = ready_to_send_out;
     

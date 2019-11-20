@@ -34,11 +34,9 @@ module test_image_feeder#(
     
     reg image_done = 0;
     logic [7:0] pixel_in;
-    logic read_ready;
-    logic [8:0] col_count; //could be 7:0, using 8:0 for consistency in case we switch screens
-    logic [8:0] row_count;
-
-
+    logic read_ready, image_ready;
+    logic [$clog2(screen_width) - 1:0] col_count; //could be 7:0, using 8:0 for consistency in case we switch screens
+    logic [$clog2(screen_height) - 1:0] row_count;
     logic [17:0] addra;
 
     image_map_coe pano_rom(
@@ -60,8 +58,11 @@ module test_image_feeder#(
             col_count   <= 0;
             image_done  <= 0;
             row_count   <= 0;
+        end else if (image_ready) begin
+            addra       <= 0;
+            col_count   <= 1;
+            row_count   <= 0;
         end else if (read_ready && row_count < screen_height) begin
-            pixel_out <= row_count[7:0];
             
             if (col_count == (screen_width-1)) begin //begin a new row    
                 addra       <= ((row_count * img_width) + img_width);
@@ -74,5 +75,7 @@ module test_image_feeder#(
         end else if (row_count == screen_height) begin
             image_done <= 1;
         end
+        
+        pixel_out <= row_count[7:0];
     end
 endmodule

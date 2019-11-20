@@ -21,15 +21,28 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module position_manager(
+module position_manager#(
+    parameter img_width = 640, 
+    parameter img_height = 320
+)(
     input wire clock, reset,
     input wire left_button, right_button,
     input wire uart_in,
     input wire [3:0] filter,
     output logic [7:0] vert_angle,
-    output logic [8:0] horiz_angle
+    output logic [$clog2(img_width):0] horiz_position
 );
 
+    logic [13:0] width_scaling;
+
+    // divide image width by 360, get 4-bit fraction
+    div_gen_0 divider(
+        .s_axis_dividend_tdata(img_width),
+        .s_axis_divisor_tdata(360),
+        .m_axis_dout_tdata(width_scaling),
+        .aclk(clock)
+    );
+    
     logic uart_sync;
     logic [47:0] uart_data;
 
@@ -68,8 +81,9 @@ module position_manager(
     logic button_enabled;
     reg [8:0] current_horz = 180;
     logic [8:0] next_horz; 
+    logic [13:0] next_horiz_position;
     logic [15:0] y_shifted, y_unsigned, next_vert;
-        
+    
     always_comb begin
         if (left_clean ^ right_clean) begin
             if (left_clean) begin
@@ -81,18 +95,8 @@ module position_manager(
             next_horz = current_horz;
         end
         
-        y_unsigned  = y_accel_filtered[15] ? ~y_accel_filtered + 1 : y_accel_filtered;
-        y_shifted   = (y_unsigned[15:8] * 3) >> 1;
-       
-        if (y_shifted >= 90) begin
-            y_shifted = 90;
-        end
-        
-        if (y_accel_filtered[15]) begin
-            next_vert = 90 + y_shifted;
-        end else begin
-            next_vert = 90 - y_shifted;
-        end
+        // attempt to scale; does not quite work
+        next_horiz_position = { next_horz, 4'b0 } * width_scaling;
     end
     
     clock_divider #(.TARGET_FREQUENCY(10)) button_divider(
@@ -103,14 +107,13 @@ module position_manager(
     always_ff @(posedge clock) begin
         if (reset) begin
             current_horz    <= 180;
-            horiz_angle     <= 180;
+            horiz_position  <= img_width / 2;
         end else begin
             if (button_enabled) begin
-                horiz_angle     <= next_horz;
+                horiz_position  <= next_horiz_position[13:4];
                 current_horz    <= next_horz;
             end
             
-            // TODO(kgarner): calculate this from uart_data
             vert_angle <= next_vert[7:0];
         end
     end
