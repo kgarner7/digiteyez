@@ -33,7 +33,7 @@ module position_manager#(
     output logic [$clog2(img_width):0] horiz_position
 );
 
-    logic [13:0] width_scaling;
+    logic [17:0] width_scaling;
 
     // divide image width by 360, get 4-bit fraction
     div_gen_0 divider(
@@ -81,7 +81,7 @@ module position_manager#(
     logic button_enabled;
     reg [8:0] current_horz = 180;
     logic [8:0] next_horz; 
-    logic [13:0] next_horiz_position;
+    logic [17:0] next_horiz_position;
     logic [15:0] y_shifted, y_unsigned, next_vert;
     
     always_comb begin
@@ -96,10 +96,10 @@ module position_manager#(
         end
         
         // attempt to scale; does not quite work
-        next_horiz_position = { next_horz, 4'b0 } * width_scaling;
+        next_horiz_position = { next_horz } * width_scaling;
     end
     
-    clock_divider #(.TARGET_FREQUENCY(10)) button_divider(
+    clock_divider #(.TARGET_FREQUENCY(30)) button_divider(
         .clock(clock), .reset(reset),
         .divided_clock(button_enabled)
     );
@@ -107,10 +107,9 @@ module position_manager#(
     always_ff @(posedge clock) begin
         if (reset) begin
             current_horz    <= 180;
-            horiz_position  <= img_width / 2;
         end else begin
             if (button_enabled) begin
-                horiz_position  <= next_horiz_position[13:4];
+                horiz_position  <= next_horiz_position[17:8];
                 current_horz    <= next_horz;
             end
             

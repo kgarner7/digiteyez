@@ -106,14 +106,14 @@ architecture tb of tb_div_gen_0 is
   signal dividend : std_logic_vector(9 downto 0) := (others => '0');
   signal divisor  : std_logic_vector(8 downto 0) := (others => '0');
   signal quotient : std_logic_vector(9 downto 0) := (others => '0');
-  signal fractional : std_logic_vector(3 downto 0) := (others => '0');
+  signal fractional : std_logic_vector(7 downto 0) := (others => '0');
   -----------------------------------------------------------------------
   -- DUT output signals
   -----------------------------------------------------------------------
 
   -- Master channel DOUT outputs
   signal m_axis_dout_tvalid : std_logic := '0';  -- TVALID for channel DOUT
-  signal m_axis_dout_tdata  : std_logic_vector(15 downto 0) := (others => '0');  -- TDATA for channel DOUT
+  signal m_axis_dout_tdata  : std_logic_vector(23 downto 0) := (others => '0');  -- TDATA for channel DOUT
 
   -----------------------------------------------------------------------
   -- Testbench signals
@@ -341,8 +341,8 @@ begin
 
   divisor  <= s_axis_divisor_tdata(8 downto 0);
   dividend <= s_axis_dividend_tdata(9 downto 0);
-  fractional <= m_axis_dout_tdata(3 downto 0);
-  quotient <= m_axis_dout_tdata(13 downto 4);
+  fractional <= m_axis_dout_tdata(7 downto 0);
+  quotient <= m_axis_dout_tdata(17 downto 8);
 
 end tb;
 
