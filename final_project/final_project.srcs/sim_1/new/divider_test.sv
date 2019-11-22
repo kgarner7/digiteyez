@@ -25,9 +25,11 @@ module divider_test;
     logic [17:0] out;
     logic [19:0] result;
     logic [19:0] shifted;
+    
+    logic [15:0] dividend;
 
     div_gen_0 divider(
-        .s_axis_dividend_tdata(640),
+        .s_axis_dividend_tdata(dividend),
         .s_axis_divisor_tdata(360),
         .m_axis_dout_tdata(out),
         .aclk(clock)
@@ -37,10 +39,15 @@ module divider_test;
     
     initial begin
         clock = 0;
+        dividend = 640;
         $display("Starting sim");
-        #(10 * 22);
+        
+        #100; dividend = 720;
+        
+        #(10 * 27);
         $display("640 / 360 = %d.%b", out[17:8], out[7:0]);
         result = 359 * out;
         shifted = result[19:8];
+        $finish();
     end
 endmodule

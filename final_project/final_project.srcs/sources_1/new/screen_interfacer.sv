@@ -32,9 +32,10 @@ module screen_interfacer#(
     input wire [7:0] pixel_in,
     output logic [3:0] spi_out, //four bits wide, connected to jd, 
     output logic [5:0] state_out, //for debugging
-    output logic read_ready, // whether should start read for next chunk
+    output logic pixel_ready, // whether should start read for next chunk
     output logic image_ready,
-    output wire led
+    output wire led,
+    output wire stalled
 );
 
     logic [30:0] timer; //has to count to 100,000,000 for the second long invert delay thing
@@ -50,6 +51,7 @@ module screen_interfacer#(
         INVERT_LOOP_OFF, INVERT_LOOP_ON
     } state = RESET; 
     
+    logic read_ready;
     logic [7:0] to_send_out;
     logic isdata_out;
     logic send_now;
@@ -57,8 +59,11 @@ module screen_interfacer#(
     logic cs; //chip select
     logic led_ind;
     logic [1:0] gray_count;
+    logic [7:0] pixel_buffer;
+    
     
     assign led = led_ind;
+    assign pixel_ready = read_ready && state == IMAGE_SEND && !ready_to_send && !image_done;
         
     spi_send my_spi(
         .cs(cs), .clk_100mhz(clk_100mhz), .rst(rst), 
@@ -361,15 +366,24 @@ module screen_interfacer#(
                     if (ready_to_send && timer > 2) begin
                         isdata_out <= 1'b1;
                         
+                        if (gray_count == 0) begin
+                            pixel_buffer <= pixel_in;
+                        end
+                        
                         read_ready <= gray_count == 0;
                         gray_count <= gray_count == 2 ? 0 : gray_count + 1;
                         
-                        to_send_out <= pixel_in;
+                        to_send_out <= gray_count == 0 ? pixel_in : pixel_buffer;
                         send_now <= 1'b1;
-                    end else if(!image_done) begin
-                        read_ready <= 0;
-                        timer <= timer + 1;
+                    end else if (!image_done) begin
+                        read_ready  <= 0;
+                        send_now    <= 0;
+                        
+                        if (timer <= 2) begin
+                            timer <= timer + 1;
+                        end
                     end else begin
+                        send_now    <= 0;
                         read_ready <= 0;
                         state <= INVERT_LOOP_OFF;
                     end

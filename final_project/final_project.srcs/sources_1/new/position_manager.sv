@@ -22,6 +22,7 @@
 
 
 module position_manager#(
+    parameter FREQUENCY = 65_000_000,
     parameter img_width = 640, 
     parameter img_height = 320
 )(
@@ -99,7 +100,7 @@ module position_manager#(
         next_horiz_position = { next_horz } * width_scaling;
     end
     
-    clock_divider #(.TARGET_FREQUENCY(30)) button_divider(
+    clock_divider #(.FREQUENCY(FREQUENCY), .TARGET_FREQUENCY(10)) button_divider(
         .clock(clock), .reset(reset),
         .divided_clock(button_enabled)
     );

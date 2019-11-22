@@ -30,7 +30,8 @@ module spi_send#(
     input wire cs,
     input wire send_now, //sends when high
     output logic ready_to_send, //high when we can accept another value
-    output logic [3:0] spi_out //sck, MOSI, cs, d/c
+    output logic [3:0] spi_out, //sck, MOSI, cs, d/c
+    output logic [7:0] currently_sending
 );
 
     logic mosi;
@@ -53,6 +54,7 @@ module spi_send#(
             sending <= 1'b0;
         end else begin //normal operation
             if(ready_to_send_out && send_now)begin //kick off the send 
+                currently_sending   <= to_send;
                 bitcount <=3'd0;
                 spi_clk_out <= 1'b0; //spi clock starts low
                 ready_to_send_out <= 1'b0; //so this block doesn't run again

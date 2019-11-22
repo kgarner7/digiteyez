@@ -27,7 +27,7 @@ module position_manager_test;
     logic [7:0] vert_angle;
     logic [9:0] horiz_pos;
     
-    position_manager manager(
+    position_manager #(.FREQUENCY(30)) manager(
         .clock(clock), .reset(reset),
         .left_button(left), .right_button(right),
         .filter(0),
@@ -45,9 +45,7 @@ module position_manager_test;
         
         #10 reset = 0;
         
-        #100;
-        
-        #200 left = 1;
-        #10 left = 0;
+        #500;
+        $finish();
     end
 endmodule

@@ -48,7 +48,7 @@ module test_image_feeder#(
     screen_interfacer screen_1(
         .clk_100mhz(clk_100mhz), .rst(rst),
         .pixel_in(pixel_in), .image_done(image_done),
-        .read_ready(read_ready),
+        .pixel_ready(read_ready),
         .spi_out(spi_out)
     );
     
