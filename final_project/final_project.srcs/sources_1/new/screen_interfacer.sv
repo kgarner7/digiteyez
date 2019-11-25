@@ -385,7 +385,7 @@ module screen_interfacer#(
                     end else begin
                         send_now    <= 0;
                         read_ready <= 0;
-                        state <= INVERT_LOOP_OFF;
+                        state <= DATA_ANNOUNCE;
                     end
                 end
                 INVERT_LOOP_OFF: begin //invoff, loop back and forth 

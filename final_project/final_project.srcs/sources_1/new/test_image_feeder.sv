@@ -28,6 +28,7 @@ module test_image_feeder#(
 )(
     input wire clk_100mhz,
     input wire rst,
+    input wire [$clog2(img_width):0] start_x,
     output logic [3:0] spi_out, //four bits wide, connected to jd,
     output logic [7:0] pixel_out
 );
@@ -52,6 +53,16 @@ module test_image_feeder#(
         .spi_out(spi_out)
     );
     
+    logic [$clog2(img_width):0] next_x; 
+    
+    always_comb begin
+        if (start_x + col_count >= img_width) begin
+            next_x = 0;
+        end else begin
+            next_x = col_count + start_x;
+        end
+    end
+    
     always_ff @(posedge clk_100mhz) begin
         if (rst) begin
             addra       <= 0;
@@ -63,13 +74,12 @@ module test_image_feeder#(
             col_count   <= 1;
             row_count   <= 0;
         end else if (read_ready && row_count < screen_height) begin
+            addra   <= (row_count * img_width) + next_x;
             
             if (col_count == (screen_width-1)) begin //begin a new row    
-                addra       <= ((row_count * img_width) + img_width);
                 col_count   <= 0;
                 row_count   <= row_count + 1;
             end else begin
-                addra       <= (row_count * img_width) + col_count;
                 col_count   <= col_count + 1;
             end
         end else if (row_count == screen_height) begin

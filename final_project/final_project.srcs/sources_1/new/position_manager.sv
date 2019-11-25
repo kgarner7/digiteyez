@@ -82,7 +82,7 @@ module position_manager#(
     logic button_enabled;
     reg [8:0] current_horz = 180;
     logic [8:0] next_horz; 
-    logic [17:0] next_horiz_position;
+    logic [17:0] next_horiz_position, next_vert_position;
     logic [15:0] y_shifted, y_unsigned, next_vert;
     
     always_comb begin
@@ -98,6 +98,22 @@ module position_manager#(
         
         // attempt to scale; does not quite work
         next_horiz_position = { next_horz } * width_scaling;
+    end
+    
+    
+    always_comb begin
+        y_unsigned = y_accel_filtered[15] ? ~y_accel_filtered + 1 : y_accel_filtered;
+        y_shifted = (y_accel_filtered[15:8] * 3 >> 1);
+        
+        if (y_shifted >= 90) begin
+            y_shifted = 90;
+        end
+        
+        if (y_accel_filtered[15]) begin
+            next_vert = 90 + y_shifted;
+        end else begin
+            next_vert = 90 - y_shifted;
+        end
     end
     
     clock_divider #(.FREQUENCY(FREQUENCY), .TARGET_FREQUENCY(10)) button_divider(

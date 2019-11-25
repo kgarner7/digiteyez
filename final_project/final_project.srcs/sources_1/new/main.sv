@@ -20,6 +20,7 @@ module main(
     
     test_image_feeder(
         .clk_100mhz(clk_100mhz), .rst(reset), 
+        .start_x(horiz_position),
         .spi_out(jd), .pixel_out(pixel)
     );
     

@@ -1,7 +1,7 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1.2 (lin64) Build 2615518 Fri Aug  9 15:53:29 MDT 2019
--- Date        : Wed Nov 20 13:19:02 2019
+-- Date        : Mon Nov 25 15:16:23 2019
 -- Host        : eecs-digital-18 running 64-bit Ubuntu 14.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /afs/athena.mit.edu/user/k/g/kgarner/Private/6.111/digiteyez/final_project/final_project.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0_sim_netlist.vhdl
