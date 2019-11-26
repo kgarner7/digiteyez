@@ -31,22 +31,30 @@ module test_image_feeder_tb();
         clk_100mhz = !clk_100mhz;
     end
     
-    test_image_feeder my_image_feeder(
+    test_image_feeder#(
+        .ms10(5),
+        .img_width(4),
+        .img_height(4),
+        .screen_width(2),
+        .screen_height(2)
+    ) my_image_feeder(
         .clk_100mhz(clk_100mhz),
         .rst(rst),
         .start_x(start_x),
         .spi_out(spi_out), //four bits wide, connected to jd,
         .pixel_out(pixel_out)
     );
+    
     initial begin
         $display("Starting Sim");
+        clk_100mhz = 0;
         rst = 0;
         start_x = 10;
-        #5
+        #20;
         rst = 1;
-        #20
+        #40;
         rst = 0;
-        #5
+        #20000
         $finish;
     end
         

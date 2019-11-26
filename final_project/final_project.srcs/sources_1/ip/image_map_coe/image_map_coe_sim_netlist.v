@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Mon Nov 25 18:41:45 2019
-// Host        : LAPTOP-CO0VMFOQ running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.srcs/sources_1/ip/image_map_coe/image_map_coe_sim_netlist.v
+// Tool Version: Vivado v.2019.1.2 (lin64) Build 2615518 Fri Aug  9 15:53:29 MDT 2019
+// Date        : Tue Nov 19 17:48:18 2019
+// Host        : eecs-digital-18 running 64-bit Ubuntu 14.04.6 LTS
+// Command     : write_verilog -force -mode funcsim -rename_top image_map_coe -prefix
+//               image_map_coe_ image_map_coe_sim_netlist.v
 // Design      : image_map_coe
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "image_map_coe,blk_mem_gen_v8_4_3,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "blk_mem_gen_v8_4_3,Vivado 2019.1" *) 
+(* CHECK_LICENSE_TYPE = "image_map_coe,blk_mem_gen_v8_4_3,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "blk_mem_gen_v8_4_3,Vivado 2019.1.2" *) 
 (* NotValidForBitStream *)
 module image_map_coe
    (clka,
@@ -188,7 +188,6 @@ module image_map_coe
         .web(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "bindec" *) 
 module image_map_coe_bindec
    (ena_array,
     addra);
@@ -670,7 +669,6 @@ module image_map_coe_bindec
         .O(ena_array[10]));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module image_map_coe_blk_mem_gen_generic_cstr
    (douta,
     clka,
@@ -942,7 +940,6 @@ module image_map_coe_blk_mem_gen_generic_cstr
         .ena_array(ena_array[9]));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_mux" *) 
 module image_map_coe_blk_mem_gen_mux
    (douta,
     douta_array,
@@ -2714,7 +2711,6 @@ module image_map_coe_blk_mem_gen_mux
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width
    (douta_array,
     clka,
@@ -3852,7 +3848,6 @@ module image_map_coe_blk_mem_gen_prim_width__parameterized9
         .ena_array(ena_array));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init
    (douta_array,
     clka,
@@ -15826,7 +15821,6 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized9
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module image_map_coe_blk_mem_gen_top
    (douta,
     clka,
@@ -15870,7 +15864,7 @@ endmodule
 (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) (* C_WRITE_DEPTH_A = "204800" *) 
 (* C_WRITE_DEPTH_B = "204800" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "8" *) (* C_WRITE_WIDTH_B = "8" *) (* C_XDEVICEFAMILY = "artix7" *) 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3" *) (* downgradeipidentifiedwarnings = "yes" *) 
+(* downgradeipidentifiedwarnings = "yes" *) 
 module image_map_coe_blk_mem_gen_v8_4_3
    (clka,
     rsta,
@@ -16088,7 +16082,6 @@ module image_map_coe_blk_mem_gen_v8_4_3
         .douta(douta));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3_synth" *) 
 module image_map_coe_blk_mem_gen_v8_4_3_synth
    (douta,
     clka,

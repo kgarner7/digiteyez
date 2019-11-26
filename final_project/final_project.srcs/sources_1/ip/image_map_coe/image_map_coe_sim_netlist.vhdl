@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Mon Nov 25 18:41:45 2019
--- Host        : LAPTOP-CO0VMFOQ running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.srcs/sources_1/ip/image_map_coe/image_map_coe_sim_netlist.vhdl
+-- Tool Version: Vivado v.2019.1.2 (lin64) Build 2615518 Fri Aug  9 15:53:29 MDT 2019
+-- Date        : Tue Nov 19 17:48:18 2019
+-- Host        : eecs-digital-18 running 64-bit Ubuntu 14.04.6 LTS
+-- Command     : write_vhdl -force -mode funcsim -rename_top image_map_coe -prefix
+--               image_map_coe_ image_map_coe_sim_netlist.vhdl
 -- Design      : image_map_coe
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -19,8 +19,6 @@ entity image_map_coe_bindec is
     ena_array : out STD_LOGIC_VECTOR ( 46 downto 0 );
     addra : in STD_LOGIC_VECTOR ( 5 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of image_map_coe_bindec : entity is "bindec";
 end image_map_coe_bindec;
 
 architecture STRUCTURE of image_map_coe_bindec is
@@ -648,8 +646,6 @@ entity image_map_coe_blk_mem_gen_mux is
     addra : in STD_LOGIC_VECTOR ( 5 downto 0 );
     clka : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of image_map_coe_blk_mem_gen_mux : entity is "blk_mem_gen_mux";
 end image_map_coe_blk_mem_gen_mux;
 
 architecture STRUCTURE of image_map_coe_blk_mem_gen_mux is
@@ -2936,8 +2932,6 @@ entity image_map_coe_blk_mem_gen_prim_wrapper_init is
     ena_array : in STD_LOGIC_VECTOR ( 0 to 0 );
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of image_map_coe_blk_mem_gen_prim_wrapper_init : entity is "blk_mem_gen_prim_wrapper_init";
 end image_map_coe_blk_mem_gen_prim_wrapper_init;
 
 architecture STRUCTURE of image_map_coe_blk_mem_gen_prim_wrapper_init is
@@ -15325,8 +15319,6 @@ entity image_map_coe_blk_mem_gen_prim_width is
     ena_array : in STD_LOGIC_VECTOR ( 0 to 0 );
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of image_map_coe_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end image_map_coe_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of image_map_coe_blk_mem_gen_prim_width is
@@ -16568,8 +16560,6 @@ entity image_map_coe_blk_mem_gen_generic_cstr is
     clka : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 17 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of image_map_coe_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end image_map_coe_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of image_map_coe_blk_mem_gen_generic_cstr is
@@ -16949,8 +16939,6 @@ entity image_map_coe_blk_mem_gen_top is
     clka : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 17 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of image_map_coe_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end image_map_coe_blk_mem_gen_top;
 
 architecture STRUCTURE of image_map_coe_blk_mem_gen_top is
@@ -16972,8 +16960,6 @@ entity image_map_coe_blk_mem_gen_v8_4_3_synth is
     clka : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 17 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of image_map_coe_blk_mem_gen_v8_4_3_synth : entity is "blk_mem_gen_v8_4_3_synth";
 end image_map_coe_blk_mem_gen_v8_4_3_synth;
 
 architecture STRUCTURE of image_map_coe_blk_mem_gen_v8_4_3_synth is
@@ -17205,8 +17191,6 @@ entity image_map_coe_blk_mem_gen_v8_4_3 is
   attribute C_WRITE_WIDTH_B of image_map_coe_blk_mem_gen_v8_4_3 : entity is 8;
   attribute C_XDEVICEFAMILY : string;
   attribute C_XDEVICEFAMILY of image_map_coe_blk_mem_gen_v8_4_3 : entity is "artix7";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of image_map_coe_blk_mem_gen_v8_4_3 : entity is "blk_mem_gen_v8_4_3";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of image_map_coe_blk_mem_gen_v8_4_3 : entity is "yes";
 end image_map_coe_blk_mem_gen_v8_4_3;
@@ -17318,7 +17302,7 @@ entity image_map_coe is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of image_map_coe : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of image_map_coe : entity is "blk_mem_gen_v8_4_3,Vivado 2019.1";
+  attribute x_core_info of image_map_coe : entity is "blk_mem_gen_v8_4_3,Vivado 2019.1.2";
 end image_map_coe;
 
 architecture STRUCTURE of image_map_coe is
