@@ -73,6 +73,7 @@ module test_image_feeder#(
             addra       <= 0;
             col_count   <= 1;
             row_count   <= 0;
+            image_done  <= 0;
         end else if (read_ready && row_count < screen_height) begin
             addra   <= (row_count * img_width) + next_x;
             

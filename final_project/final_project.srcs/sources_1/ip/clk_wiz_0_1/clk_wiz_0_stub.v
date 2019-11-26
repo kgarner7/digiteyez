@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1.2 (lin64) Build 2615518 Fri Aug  9 15:53:29 MDT 2019
-// Date        : Mon Nov 25 15:16:23 2019
-// Host        : eecs-digital-18 running 64-bit Ubuntu 14.04.6 LTS
+// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+// Date        : Mon Nov 25 18:38:49 2019
+// Host        : LAPTOP-CO0VMFOQ running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
-//               /afs/athena.mit.edu/user/k/g/kgarner/Private/6.111/digiteyez/final_project/final_project.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0_stub.v
+//               D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0_stub.v
 // Design      : clk_wiz_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

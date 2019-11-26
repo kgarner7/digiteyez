@@ -24,13 +24,16 @@ module screen_tb;
     logic clk_100mhz, rst;
     logic image_ready;
     logic [3:0] jd;
-    logic [3:0] spi_out;
-    logic [7:0] sending;
-    
-    screen_interfacer #(.ms10(1)) tester(
-        .clk_100mhz(clk_100mhz), .rst(rst), 
-        .spi_out(jd), .image_ready(image_ready),
-        .currently_sending(sending)
+    logic [7:0] pixel_in;
+    logic image_done;
+    screen_interfacer #(.ms10(1) ) tester(
+        .clk_100mhz(clk_100mhz), 
+        .rst(rst), 
+        .image_done(image_done),
+        .pixel_in(pixel_in),
+        .spi_out(jd),
+        .image_ready(image_ready),
+        .stalled()
     );
     
     always begin
@@ -39,13 +42,21 @@ module screen_tb;
     end
     initial begin
         $display("Starting Sim"); 
+        image_done = 0;
+        pixel_in = 8'b0010100;
         clk_100mhz = 0;
         rst = 0;
-        #20 //wating for some reason
+        #20 //waiting for some reason
         rst = 1;
         #20
         rst = 0;
-        
+        #8000
+        image_done = 1;
+        pixel_in = 8'b0011100;
+        #300
+        image_done = 0;
+        #8000
+        image_done = 1;
         if (image_ready) begin
             $finish;
         end
