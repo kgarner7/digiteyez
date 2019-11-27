@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1.2 (lin64) Build 2615518 Fri Aug  9 15:53:29 MDT 2019
-// Date        : Tue Nov 19 17:48:18 2019
+// Date        : Tue Nov 26 21:12:33 2019
 // Host        : eecs-digital-18 running 64-bit Ubuntu 14.04.6 LTS
-// Command     : write_verilog -force -mode funcsim -rename_top image_map_coe -prefix
-//               image_map_coe_ image_map_coe_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               /afs/athena.mit.edu/user/k/g/kgarner/Private/6.111/digiteyez/final_project/final_project.srcs/sources_1/ip/image_map_coe/image_map_coe_sim_netlist.v
 // Design      : image_map_coe
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -17,14 +17,23 @@
 module image_map_coe
    (clka,
     addra,
-    douta);
+    douta,
+    clkb,
+    addrb,
+    doutb);
   (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTA CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME BRAM_PORTA, MEM_SIZE 8192, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE OTHER, READ_LATENCY 1" *) input clka;
   (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTA ADDR" *) input [17:0]addra;
   (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTA DOUT" *) output [7:0]douta;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTB CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME BRAM_PORTB, MEM_SIZE 8192, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE OTHER, READ_LATENCY 1" *) input clkb;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTB ADDR" *) input [17:0]addrb;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTB DOUT" *) output [7:0]doutb;
 
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta;
+  wire [7:0]doutb;
   wire NLW_U0_dbiterr_UNCONNECTED;
   wire NLW_U0_rsta_busy_UNCONNECTED;
   wire NLW_U0_rstb_busy_UNCONNECTED;
@@ -37,7 +46,6 @@ module image_map_coe
   wire NLW_U0_s_axi_sbiterr_UNCONNECTED;
   wire NLW_U0_s_axi_wready_UNCONNECTED;
   wire NLW_U0_sbiterr_UNCONNECTED;
-  wire [7:0]NLW_U0_doutb_UNCONNECTED;
   wire [17:0]NLW_U0_rdaddrecc_UNCONNECTED;
   wire [3:0]NLW_U0_s_axi_bid_UNCONNECTED;
   wire [1:0]NLW_U0_s_axi_bresp_UNCONNECTED;
@@ -69,14 +77,14 @@ module image_map_coe
   (* C_EN_SAFETY_CKT = "0" *) 
   (* C_EN_SHUTDOWN_PIN = "0" *) 
   (* C_EN_SLEEP_PIN = "0" *) 
-  (* C_EST_POWER_SUMMARY = "Estimated Power for IP     :     2.326398 mW" *) 
+  (* C_EST_POWER_SUMMARY = "Estimated Power for IP     :     4.652797 mW" *) 
   (* C_FAMILY = "artix7" *) 
   (* C_HAS_AXI_ID = "0" *) 
   (* C_HAS_ENA = "0" *) 
   (* C_HAS_ENB = "0" *) 
   (* C_HAS_INJECTERR = "0" *) 
   (* C_HAS_MEM_OUTPUT_REGS_A = "1" *) 
-  (* C_HAS_MEM_OUTPUT_REGS_B = "0" *) 
+  (* C_HAS_MEM_OUTPUT_REGS_B = "1" *) 
   (* C_HAS_MUX_OUTPUT_REGS_A = "0" *) 
   (* C_HAS_MUX_OUTPUT_REGS_B = "0" *) 
   (* C_HAS_REGCEA = "0" *) 
@@ -91,7 +99,7 @@ module image_map_coe
   (* C_INIT_FILE_NAME = "image_map_coe.mif" *) 
   (* C_INTERFACE_TYPE = "0" *) 
   (* C_LOAD_INIT_FILE = "1" *) 
-  (* C_MEM_TYPE = "3" *) 
+  (* C_MEM_TYPE = "4" *) 
   (* C_MUX_PIPELINE_STAGES = "0" *) 
   (* C_PRIM_TYPE = "1" *) 
   (* C_READ_DEPTH_A = "204800" *) 
@@ -124,15 +132,15 @@ module image_map_coe
   (* downgradeipidentifiedwarnings = "yes" *) 
   image_map_coe_blk_mem_gen_v8_4_3 U0
        (.addra(addra),
-        .addrb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .addrb(addrb),
         .clka(clka),
-        .clkb(1'b0),
+        .clkb(clkb),
         .dbiterr(NLW_U0_dbiterr_UNCONNECTED),
         .deepsleep(1'b0),
         .dina({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .dinb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .douta(douta),
-        .doutb(NLW_U0_doutb_UNCONNECTED[7:0]),
+        .doutb(doutb),
         .eccpipece(1'b0),
         .ena(1'b0),
         .enb(1'b0),
@@ -188,6 +196,7 @@ module image_map_coe
         .web(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "bindec" *) 
 module image_map_coe_bindec
    (ena_array,
     addra);
@@ -669,277 +678,977 @@ module image_map_coe_bindec
         .O(ena_array[10]));
 endmodule
 
+(* ORIG_REF_NAME = "bindec" *) 
+module image_map_coe_bindec_0
+   (enb_array,
+    addrb);
+  output [46:0]enb_array;
+  input [5:0]addrb;
+
+  wire [5:0]addrb;
+  wire [46:0]enb_array;
+
+  LUT6 #(
+    .INIT(64'h0000000000000001)) 
+    ENOUT
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[0]));
+  LUT6 #(
+    .INIT(64'h0000000000000100)) 
+    ENOUT__0
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[1]));
+  LUT6 #(
+    .INIT(64'h0000000000000100)) 
+    ENOUT__1
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[0]),
+        .I3(addrb[1]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[2]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__10
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[2]),
+        .I5(addrb[3]),
+        .O(enb_array[11]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__11
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[3]),
+        .I3(addrb[2]),
+        .I4(addrb[1]),
+        .I5(addrb[0]),
+        .O(enb_array[12]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__12
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[2]),
+        .I3(addrb[0]),
+        .I4(addrb[1]),
+        .I5(addrb[3]),
+        .O(enb_array[13]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__13
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[2]),
+        .I4(addrb[0]),
+        .I5(addrb[3]),
+        .O(enb_array[14]));
+  LUT6 #(
+    .INIT(64'h0000000000000100)) 
+    ENOUT__14
+       (.I0(addrb[5]),
+        .I1(addrb[0]),
+        .I2(addrb[1]),
+        .I3(addrb[4]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[15]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__15
+       (.I0(addrb[5]),
+        .I1(addrb[1]),
+        .I2(addrb[4]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[16]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__16
+       (.I0(addrb[5]),
+        .I1(addrb[0]),
+        .I2(addrb[4]),
+        .I3(addrb[1]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[17]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__17
+       (.I0(addrb[5]),
+        .I1(addrb[2]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[4]),
+        .O(enb_array[18]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__18
+       (.I0(addrb[5]),
+        .I1(addrb[1]),
+        .I2(addrb[4]),
+        .I3(addrb[2]),
+        .I4(addrb[3]),
+        .I5(addrb[0]),
+        .O(enb_array[19]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__19
+       (.I0(addrb[5]),
+        .I1(addrb[1]),
+        .I2(addrb[2]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[4]),
+        .O(enb_array[20]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__2
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[3]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__20
+       (.I0(addrb[5]),
+        .I1(addrb[0]),
+        .I2(addrb[1]),
+        .I3(addrb[2]),
+        .I4(addrb[3]),
+        .I5(addrb[4]),
+        .O(enb_array[21]));
+  LUT6 #(
+    .INIT(64'h1000000000000000)) 
+    ENOUT__21
+       (.I0(addrb[5]),
+        .I1(addrb[3]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[4]),
+        .I5(addrb[2]),
+        .O(enb_array[22]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__22
+       (.I0(addrb[5]),
+        .I1(addrb[1]),
+        .I2(addrb[4]),
+        .I3(addrb[3]),
+        .I4(addrb[0]),
+        .I5(addrb[2]),
+        .O(enb_array[23]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__23
+       (.I0(addrb[5]),
+        .I1(addrb[2]),
+        .I2(addrb[3]),
+        .I3(addrb[0]),
+        .I4(addrb[1]),
+        .I5(addrb[4]),
+        .O(enb_array[24]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__24
+       (.I0(addrb[5]),
+        .I1(addrb[2]),
+        .I2(addrb[1]),
+        .I3(addrb[3]),
+        .I4(addrb[0]),
+        .I5(addrb[4]),
+        .O(enb_array[25]));
+  LUT6 #(
+    .INIT(64'h1000000000000000)) 
+    ENOUT__25
+       (.I0(addrb[5]),
+        .I1(addrb[2]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[4]),
+        .I5(addrb[3]),
+        .O(enb_array[26]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__26
+       (.I0(addrb[5]),
+        .I1(addrb[1]),
+        .I2(addrb[2]),
+        .I3(addrb[3]),
+        .I4(addrb[0]),
+        .I5(addrb[4]),
+        .O(enb_array[27]));
+  LUT6 #(
+    .INIT(64'h1000000000000000)) 
+    ENOUT__27
+       (.I0(addrb[5]),
+        .I1(addrb[1]),
+        .I2(addrb[3]),
+        .I3(addrb[0]),
+        .I4(addrb[4]),
+        .I5(addrb[2]),
+        .O(enb_array[28]));
+  LUT6 #(
+    .INIT(64'h1000000000000000)) 
+    ENOUT__28
+       (.I0(addrb[5]),
+        .I1(addrb[0]),
+        .I2(addrb[1]),
+        .I3(addrb[3]),
+        .I4(addrb[4]),
+        .I5(addrb[2]),
+        .O(enb_array[29]));
+  LUT6 #(
+    .INIT(64'h0000000000000100)) 
+    ENOUT__29
+       (.I0(addrb[0]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[5]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[30]));
+  LUT6 #(
+    .INIT(64'h0000000000000100)) 
+    ENOUT__3
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[2]),
+        .I4(addrb[3]),
+        .I5(addrb[0]),
+        .O(enb_array[4]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__30
+       (.I0(addrb[1]),
+        .I1(addrb[4]),
+        .I2(addrb[5]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[31]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__31
+       (.I0(addrb[0]),
+        .I1(addrb[4]),
+        .I2(addrb[5]),
+        .I3(addrb[1]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[32]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__32
+       (.I0(addrb[2]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[5]),
+        .O(enb_array[33]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__33
+       (.I0(addrb[1]),
+        .I1(addrb[4]),
+        .I2(addrb[5]),
+        .I3(addrb[2]),
+        .I4(addrb[3]),
+        .I5(addrb[0]),
+        .O(enb_array[34]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__34
+       (.I0(addrb[1]),
+        .I1(addrb[4]),
+        .I2(addrb[2]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[5]),
+        .O(enb_array[35]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__35
+       (.I0(addrb[0]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[2]),
+        .I4(addrb[3]),
+        .I5(addrb[5]),
+        .O(enb_array[36]));
+  LUT6 #(
+    .INIT(64'h1000000000000000)) 
+    ENOUT__36
+       (.I0(addrb[3]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[5]),
+        .I5(addrb[2]),
+        .O(enb_array[37]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__37
+       (.I0(addrb[1]),
+        .I1(addrb[4]),
+        .I2(addrb[5]),
+        .I3(addrb[3]),
+        .I4(addrb[0]),
+        .I5(addrb[2]),
+        .O(enb_array[38]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__38
+       (.I0(addrb[2]),
+        .I1(addrb[4]),
+        .I2(addrb[3]),
+        .I3(addrb[0]),
+        .I4(addrb[1]),
+        .I5(addrb[5]),
+        .O(enb_array[39]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__39
+       (.I0(addrb[2]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[3]),
+        .I4(addrb[0]),
+        .I5(addrb[5]),
+        .O(enb_array[40]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__4
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[2]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[1]),
+        .O(enb_array[5]));
+  LUT6 #(
+    .INIT(64'h1000000000000000)) 
+    ENOUT__40
+       (.I0(addrb[2]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[5]),
+        .I5(addrb[3]),
+        .O(enb_array[41]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__41
+       (.I0(addrb[1]),
+        .I1(addrb[4]),
+        .I2(addrb[2]),
+        .I3(addrb[3]),
+        .I4(addrb[0]),
+        .I5(addrb[5]),
+        .O(enb_array[42]));
+  LUT6 #(
+    .INIT(64'h1000000000000000)) 
+    ENOUT__42
+       (.I0(addrb[1]),
+        .I1(addrb[4]),
+        .I2(addrb[3]),
+        .I3(addrb[0]),
+        .I4(addrb[5]),
+        .I5(addrb[2]),
+        .O(enb_array[43]));
+  LUT6 #(
+    .INIT(64'h1000000000000000)) 
+    ENOUT__43
+       (.I0(addrb[0]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[3]),
+        .I4(addrb[5]),
+        .I5(addrb[2]),
+        .O(enb_array[44]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__44
+       (.I0(addrb[0]),
+        .I1(addrb[1]),
+        .I2(addrb[4]),
+        .I3(addrb[5]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[45]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__45
+       (.I0(addrb[1]),
+        .I1(addrb[2]),
+        .I2(addrb[5]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[4]),
+        .O(enb_array[46]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__5
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[2]),
+        .I3(addrb[1]),
+        .I4(addrb[3]),
+        .I5(addrb[0]),
+        .O(enb_array[6]));
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
+    ENOUT__6
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[0]),
+        .I4(addrb[3]),
+        .I5(addrb[2]),
+        .O(enb_array[7]));
+  LUT6 #(
+    .INIT(64'h0000000000000100)) 
+    ENOUT__7
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[1]),
+        .I3(addrb[3]),
+        .I4(addrb[0]),
+        .I5(addrb[2]),
+        .O(enb_array[8]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__8
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[3]),
+        .I3(addrb[0]),
+        .I4(addrb[1]),
+        .I5(addrb[2]),
+        .O(enb_array[9]));
+  LUT6 #(
+    .INIT(64'h0000000000001000)) 
+    ENOUT__9
+       (.I0(addrb[5]),
+        .I1(addrb[4]),
+        .I2(addrb[3]),
+        .I3(addrb[1]),
+        .I4(addrb[0]),
+        .I5(addrb[2]),
+        .O(enb_array[10]));
+endmodule
+
+(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module image_map_coe_blk_mem_gen_generic_cstr
    (douta,
+    doutb,
     clka,
-    addra);
+    clkb,
+    addra,
+    addrb);
   output [7:0]douta;
+  output [7:0]doutb;
   input clka;
+  input clkb;
   input [17:0]addra;
+  input [17:0]addrb;
 
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta;
   wire [399:0]douta_array;
+  wire [7:0]doutb;
+  wire [399:0]doutb_array;
   wire [49:0]ena_array;
+  wire [49:0]enb_array;
 
   image_map_coe_bindec \bindec_a.bindec_inst_a 
        (.addra(addra[17:12]),
         .ena_array({ena_array[49:48],ena_array[46:32],ena_array[30:16],ena_array[14:0]}));
+  image_map_coe_bindec_0 \bindec_b.bindec_inst_b 
+       (.addrb(addrb[17:12]),
+        .enb_array({enb_array[49:48],enb_array[46:32],enb_array[30:16],enb_array[14:0]}));
   image_map_coe_blk_mem_gen_mux \has_mux_a.A 
        (.addra(addra[17:12]),
         .clka(clka),
         .douta(douta),
         .douta_array(douta_array));
+  image_map_coe_blk_mem_gen_mux__parameterized0 \has_mux_b.B 
+       (.addrb(addrb[17:12]),
+        .clkb(clkb),
+        .doutb(doutb),
+        .doutb_array(doutb_array));
   image_map_coe_blk_mem_gen_prim_width \ramloop[0].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[7:0]),
-        .ena_array(ena_array[0]));
+        .doutb_array(doutb_array[7:0]),
+        .ena_array(ena_array[0]),
+        .enb_array(enb_array[0]));
   image_map_coe_blk_mem_gen_prim_width__parameterized9 \ramloop[10].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[87:80]),
-        .ena_array(ena_array[10]));
+        .doutb_array(doutb_array[87:80]),
+        .ena_array(ena_array[10]),
+        .enb_array(enb_array[10]));
   image_map_coe_blk_mem_gen_prim_width__parameterized10 \ramloop[11].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[95:88]),
-        .ena_array(ena_array[11]));
+        .doutb_array(doutb_array[95:88]),
+        .ena_array(ena_array[11]),
+        .enb_array(enb_array[11]));
   image_map_coe_blk_mem_gen_prim_width__parameterized11 \ramloop[12].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[103:96]),
-        .ena_array(ena_array[12]));
+        .doutb_array(doutb_array[103:96]),
+        .ena_array(ena_array[12]),
+        .enb_array(enb_array[12]));
   image_map_coe_blk_mem_gen_prim_width__parameterized12 \ramloop[13].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[111:104]),
-        .ena_array(ena_array[13]));
+        .doutb_array(doutb_array[111:104]),
+        .ena_array(ena_array[13]),
+        .enb_array(enb_array[13]));
   image_map_coe_blk_mem_gen_prim_width__parameterized13 \ramloop[14].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[119:112]),
-        .ena_array(ena_array[14]));
+        .doutb_array(doutb_array[119:112]),
+        .ena_array(ena_array[14]),
+        .enb_array(enb_array[14]));
   image_map_coe_blk_mem_gen_prim_width__parameterized14 \ramloop[15].ram.r 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
-        .douta_array(douta_array[127:120]));
+        .clkb(clkb),
+        .douta_array(douta_array[127:120]),
+        .doutb_array(doutb_array[127:120]));
   image_map_coe_blk_mem_gen_prim_width__parameterized15 \ramloop[16].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[135:128]),
-        .ena_array(ena_array[16]));
+        .doutb_array(doutb_array[135:128]),
+        .ena_array(ena_array[16]),
+        .enb_array(enb_array[16]));
   image_map_coe_blk_mem_gen_prim_width__parameterized16 \ramloop[17].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[143:136]),
-        .ena_array(ena_array[17]));
+        .doutb_array(doutb_array[143:136]),
+        .ena_array(ena_array[17]),
+        .enb_array(enb_array[17]));
   image_map_coe_blk_mem_gen_prim_width__parameterized17 \ramloop[18].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[151:144]),
-        .ena_array(ena_array[18]));
+        .doutb_array(doutb_array[151:144]),
+        .ena_array(ena_array[18]),
+        .enb_array(enb_array[18]));
   image_map_coe_blk_mem_gen_prim_width__parameterized18 \ramloop[19].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[159:152]),
-        .ena_array(ena_array[19]));
+        .doutb_array(doutb_array[159:152]),
+        .ena_array(ena_array[19]),
+        .enb_array(enb_array[19]));
   image_map_coe_blk_mem_gen_prim_width__parameterized0 \ramloop[1].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[15:8]),
-        .ena_array(ena_array[1]));
+        .doutb_array(doutb_array[15:8]),
+        .ena_array(ena_array[1]),
+        .enb_array(enb_array[1]));
   image_map_coe_blk_mem_gen_prim_width__parameterized19 \ramloop[20].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[167:160]),
-        .ena_array(ena_array[20]));
+        .doutb_array(doutb_array[167:160]),
+        .ena_array(ena_array[20]),
+        .enb_array(enb_array[20]));
   image_map_coe_blk_mem_gen_prim_width__parameterized20 \ramloop[21].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[175:168]),
-        .ena_array(ena_array[21]));
+        .doutb_array(doutb_array[175:168]),
+        .ena_array(ena_array[21]),
+        .enb_array(enb_array[21]));
   image_map_coe_blk_mem_gen_prim_width__parameterized21 \ramloop[22].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[183:176]),
-        .ena_array(ena_array[22]));
+        .doutb_array(doutb_array[183:176]),
+        .ena_array(ena_array[22]),
+        .enb_array(enb_array[22]));
   image_map_coe_blk_mem_gen_prim_width__parameterized22 \ramloop[23].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[191:184]),
-        .ena_array(ena_array[23]));
+        .doutb_array(doutb_array[191:184]),
+        .ena_array(ena_array[23]),
+        .enb_array(enb_array[23]));
   image_map_coe_blk_mem_gen_prim_width__parameterized23 \ramloop[24].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[199:192]),
-        .ena_array(ena_array[24]));
+        .doutb_array(doutb_array[199:192]),
+        .ena_array(ena_array[24]),
+        .enb_array(enb_array[24]));
   image_map_coe_blk_mem_gen_prim_width__parameterized24 \ramloop[25].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[207:200]),
-        .ena_array(ena_array[25]));
+        .doutb_array(doutb_array[207:200]),
+        .ena_array(ena_array[25]),
+        .enb_array(enb_array[25]));
   image_map_coe_blk_mem_gen_prim_width__parameterized25 \ramloop[26].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[215:208]),
-        .ena_array(ena_array[26]));
+        .doutb_array(doutb_array[215:208]),
+        .ena_array(ena_array[26]),
+        .enb_array(enb_array[26]));
   image_map_coe_blk_mem_gen_prim_width__parameterized26 \ramloop[27].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[223:216]),
-        .ena_array(ena_array[27]));
+        .doutb_array(doutb_array[223:216]),
+        .ena_array(ena_array[27]),
+        .enb_array(enb_array[27]));
   image_map_coe_blk_mem_gen_prim_width__parameterized27 \ramloop[28].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[231:224]),
-        .ena_array(ena_array[28]));
+        .doutb_array(doutb_array[231:224]),
+        .ena_array(ena_array[28]),
+        .enb_array(enb_array[28]));
   image_map_coe_blk_mem_gen_prim_width__parameterized28 \ramloop[29].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[239:232]),
-        .ena_array(ena_array[29]));
+        .doutb_array(doutb_array[239:232]),
+        .ena_array(ena_array[29]),
+        .enb_array(enb_array[29]));
   image_map_coe_blk_mem_gen_prim_width__parameterized1 \ramloop[2].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[23:16]),
-        .ena_array(ena_array[2]));
+        .doutb_array(doutb_array[23:16]),
+        .ena_array(ena_array[2]),
+        .enb_array(enb_array[2]));
   image_map_coe_blk_mem_gen_prim_width__parameterized29 \ramloop[30].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[247:240]),
-        .ena_array(ena_array[30]));
+        .doutb_array(doutb_array[247:240]),
+        .ena_array(ena_array[30]),
+        .enb_array(enb_array[30]));
   image_map_coe_blk_mem_gen_prim_width__parameterized30 \ramloop[31].ram.r 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
-        .douta_array(douta_array[255:248]));
+        .clkb(clkb),
+        .douta_array(douta_array[255:248]),
+        .doutb_array(doutb_array[255:248]));
   image_map_coe_blk_mem_gen_prim_width__parameterized31 \ramloop[32].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[263:256]),
-        .ena_array(ena_array[32]));
+        .doutb_array(doutb_array[263:256]),
+        .ena_array(ena_array[32]),
+        .enb_array(enb_array[32]));
   image_map_coe_blk_mem_gen_prim_width__parameterized32 \ramloop[33].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[271:264]),
-        .ena_array(ena_array[33]));
+        .doutb_array(doutb_array[271:264]),
+        .ena_array(ena_array[33]),
+        .enb_array(enb_array[33]));
   image_map_coe_blk_mem_gen_prim_width__parameterized33 \ramloop[34].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[279:272]),
-        .ena_array(ena_array[34]));
+        .doutb_array(doutb_array[279:272]),
+        .ena_array(ena_array[34]),
+        .enb_array(enb_array[34]));
   image_map_coe_blk_mem_gen_prim_width__parameterized34 \ramloop[35].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[287:280]),
-        .ena_array(ena_array[35]));
+        .doutb_array(doutb_array[287:280]),
+        .ena_array(ena_array[35]),
+        .enb_array(enb_array[35]));
   image_map_coe_blk_mem_gen_prim_width__parameterized35 \ramloop[36].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[295:288]),
-        .ena_array(ena_array[36]));
+        .doutb_array(doutb_array[295:288]),
+        .ena_array(ena_array[36]),
+        .enb_array(enb_array[36]));
   image_map_coe_blk_mem_gen_prim_width__parameterized36 \ramloop[37].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[303:296]),
-        .ena_array(ena_array[37]));
+        .doutb_array(doutb_array[303:296]),
+        .ena_array(ena_array[37]),
+        .enb_array(enb_array[37]));
   image_map_coe_blk_mem_gen_prim_width__parameterized37 \ramloop[38].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[311:304]),
-        .ena_array(ena_array[38]));
+        .doutb_array(doutb_array[311:304]),
+        .ena_array(ena_array[38]),
+        .enb_array(enb_array[38]));
   image_map_coe_blk_mem_gen_prim_width__parameterized38 \ramloop[39].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[319:312]),
-        .ena_array(ena_array[39]));
+        .doutb_array(doutb_array[319:312]),
+        .ena_array(ena_array[39]),
+        .enb_array(enb_array[39]));
   image_map_coe_blk_mem_gen_prim_width__parameterized2 \ramloop[3].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[31:24]),
-        .ena_array(ena_array[3]));
+        .doutb_array(doutb_array[31:24]),
+        .ena_array(ena_array[3]),
+        .enb_array(enb_array[3]));
   image_map_coe_blk_mem_gen_prim_width__parameterized39 \ramloop[40].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[327:320]),
-        .ena_array(ena_array[40]));
+        .doutb_array(doutb_array[327:320]),
+        .ena_array(ena_array[40]),
+        .enb_array(enb_array[40]));
   image_map_coe_blk_mem_gen_prim_width__parameterized40 \ramloop[41].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[335:328]),
-        .ena_array(ena_array[41]));
+        .doutb_array(doutb_array[335:328]),
+        .ena_array(ena_array[41]),
+        .enb_array(enb_array[41]));
   image_map_coe_blk_mem_gen_prim_width__parameterized41 \ramloop[42].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[343:336]),
-        .ena_array(ena_array[42]));
+        .doutb_array(doutb_array[343:336]),
+        .ena_array(ena_array[42]),
+        .enb_array(enb_array[42]));
   image_map_coe_blk_mem_gen_prim_width__parameterized42 \ramloop[43].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[351:344]),
-        .ena_array(ena_array[43]));
+        .doutb_array(doutb_array[351:344]),
+        .ena_array(ena_array[43]),
+        .enb_array(enb_array[43]));
   image_map_coe_blk_mem_gen_prim_width__parameterized43 \ramloop[44].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[359:352]),
-        .ena_array(ena_array[44]));
+        .doutb_array(doutb_array[359:352]),
+        .ena_array(ena_array[44]),
+        .enb_array(enb_array[44]));
   image_map_coe_blk_mem_gen_prim_width__parameterized44 \ramloop[45].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[367:360]),
-        .ena_array(ena_array[45]));
+        .doutb_array(doutb_array[367:360]),
+        .ena_array(ena_array[45]),
+        .enb_array(enb_array[45]));
   image_map_coe_blk_mem_gen_prim_width__parameterized45 \ramloop[46].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[375:368]),
-        .ena_array(ena_array[46]));
+        .doutb_array(doutb_array[375:368]),
+        .ena_array(ena_array[46]),
+        .enb_array(enb_array[46]));
   image_map_coe_blk_mem_gen_prim_width__parameterized46 \ramloop[47].ram.r 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
-        .douta_array(douta_array[383:376]));
+        .clkb(clkb),
+        .douta_array(douta_array[383:376]),
+        .doutb_array(doutb_array[383:376]));
   image_map_coe_blk_mem_gen_prim_width__parameterized47 \ramloop[48].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[391:384]),
-        .ena_array(ena_array[48]));
+        .doutb_array(doutb_array[391:384]),
+        .ena_array(ena_array[48]),
+        .enb_array(enb_array[48]));
   image_map_coe_blk_mem_gen_prim_width__parameterized48 \ramloop[49].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[399:392]),
-        .ena_array(ena_array[49]));
+        .doutb_array(doutb_array[399:392]),
+        .ena_array(ena_array[49]),
+        .enb_array(enb_array[49]));
   image_map_coe_blk_mem_gen_prim_width__parameterized3 \ramloop[4].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[39:32]),
-        .ena_array(ena_array[4]));
+        .doutb_array(doutb_array[39:32]),
+        .ena_array(ena_array[4]),
+        .enb_array(enb_array[4]));
   image_map_coe_blk_mem_gen_prim_width__parameterized4 \ramloop[5].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[47:40]),
-        .ena_array(ena_array[5]));
+        .doutb_array(doutb_array[47:40]),
+        .ena_array(ena_array[5]),
+        .enb_array(enb_array[5]));
   image_map_coe_blk_mem_gen_prim_width__parameterized5 \ramloop[6].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[55:48]),
-        .ena_array(ena_array[6]));
+        .doutb_array(doutb_array[55:48]),
+        .ena_array(ena_array[6]),
+        .enb_array(enb_array[6]));
   image_map_coe_blk_mem_gen_prim_width__parameterized6 \ramloop[7].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[63:56]),
-        .ena_array(ena_array[7]));
+        .doutb_array(doutb_array[63:56]),
+        .ena_array(ena_array[7]),
+        .enb_array(enb_array[7]));
   image_map_coe_blk_mem_gen_prim_width__parameterized7 \ramloop[8].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[71:64]),
-        .ena_array(ena_array[8]));
+        .doutb_array(doutb_array[71:64]),
+        .ena_array(ena_array[8]),
+        .enb_array(enb_array[8]));
   image_map_coe_blk_mem_gen_prim_width__parameterized8 \ramloop[9].ram.r 
        (.addra(addra[11:0]),
+        .addrb(addrb[11:0]),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array[79:72]),
-        .ena_array(ena_array[9]));
+        .doutb_array(doutb_array[79:72]),
+        .ena_array(ena_array[9]),
+        .enb_array(enb_array[9]));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_mux" *) 
 module image_map_coe_blk_mem_gen_mux
    (douta,
     douta_array,
@@ -2711,1173 +3420,3758 @@ module image_map_coe_blk_mem_gen_mux
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_mux" *) 
+module image_map_coe_blk_mem_gen_mux__parameterized0
+   (doutb,
+    doutb_array,
+    addrb,
+    clkb);
+  output [7:0]doutb;
+  input [399:0]doutb_array;
+  input [5:0]addrb;
+  input clkb;
+
+  wire [5:0]addrb;
+  wire clkb;
+  wire [7:0]doutb;
+  wire \doutb[0]_INST_0_i_10_n_0 ;
+  wire \doutb[0]_INST_0_i_11_n_0 ;
+  wire \doutb[0]_INST_0_i_12_n_0 ;
+  wire \doutb[0]_INST_0_i_13_n_0 ;
+  wire \doutb[0]_INST_0_i_14_n_0 ;
+  wire \doutb[0]_INST_0_i_15_n_0 ;
+  wire \doutb[0]_INST_0_i_16_n_0 ;
+  wire \doutb[0]_INST_0_i_17_n_0 ;
+  wire \doutb[0]_INST_0_i_18_n_0 ;
+  wire \doutb[0]_INST_0_i_19_n_0 ;
+  wire \doutb[0]_INST_0_i_1_n_0 ;
+  wire \doutb[0]_INST_0_i_20_n_0 ;
+  wire \doutb[0]_INST_0_i_21_n_0 ;
+  wire \doutb[0]_INST_0_i_22_n_0 ;
+  wire \doutb[0]_INST_0_i_2_n_0 ;
+  wire \doutb[0]_INST_0_i_3_n_0 ;
+  wire \doutb[0]_INST_0_i_4_n_0 ;
+  wire \doutb[0]_INST_0_i_5_n_0 ;
+  wire \doutb[0]_INST_0_i_6_n_0 ;
+  wire \doutb[0]_INST_0_i_7_n_0 ;
+  wire \doutb[0]_INST_0_i_8_n_0 ;
+  wire \doutb[0]_INST_0_i_9_n_0 ;
+  wire \doutb[1]_INST_0_i_10_n_0 ;
+  wire \doutb[1]_INST_0_i_11_n_0 ;
+  wire \doutb[1]_INST_0_i_12_n_0 ;
+  wire \doutb[1]_INST_0_i_13_n_0 ;
+  wire \doutb[1]_INST_0_i_14_n_0 ;
+  wire \doutb[1]_INST_0_i_15_n_0 ;
+  wire \doutb[1]_INST_0_i_16_n_0 ;
+  wire \doutb[1]_INST_0_i_17_n_0 ;
+  wire \doutb[1]_INST_0_i_18_n_0 ;
+  wire \doutb[1]_INST_0_i_19_n_0 ;
+  wire \doutb[1]_INST_0_i_1_n_0 ;
+  wire \doutb[1]_INST_0_i_20_n_0 ;
+  wire \doutb[1]_INST_0_i_21_n_0 ;
+  wire \doutb[1]_INST_0_i_22_n_0 ;
+  wire \doutb[1]_INST_0_i_2_n_0 ;
+  wire \doutb[1]_INST_0_i_3_n_0 ;
+  wire \doutb[1]_INST_0_i_4_n_0 ;
+  wire \doutb[1]_INST_0_i_5_n_0 ;
+  wire \doutb[1]_INST_0_i_6_n_0 ;
+  wire \doutb[1]_INST_0_i_7_n_0 ;
+  wire \doutb[1]_INST_0_i_8_n_0 ;
+  wire \doutb[1]_INST_0_i_9_n_0 ;
+  wire \doutb[2]_INST_0_i_10_n_0 ;
+  wire \doutb[2]_INST_0_i_11_n_0 ;
+  wire \doutb[2]_INST_0_i_12_n_0 ;
+  wire \doutb[2]_INST_0_i_13_n_0 ;
+  wire \doutb[2]_INST_0_i_14_n_0 ;
+  wire \doutb[2]_INST_0_i_15_n_0 ;
+  wire \doutb[2]_INST_0_i_16_n_0 ;
+  wire \doutb[2]_INST_0_i_17_n_0 ;
+  wire \doutb[2]_INST_0_i_18_n_0 ;
+  wire \doutb[2]_INST_0_i_19_n_0 ;
+  wire \doutb[2]_INST_0_i_1_n_0 ;
+  wire \doutb[2]_INST_0_i_20_n_0 ;
+  wire \doutb[2]_INST_0_i_21_n_0 ;
+  wire \doutb[2]_INST_0_i_22_n_0 ;
+  wire \doutb[2]_INST_0_i_2_n_0 ;
+  wire \doutb[2]_INST_0_i_3_n_0 ;
+  wire \doutb[2]_INST_0_i_4_n_0 ;
+  wire \doutb[2]_INST_0_i_5_n_0 ;
+  wire \doutb[2]_INST_0_i_6_n_0 ;
+  wire \doutb[2]_INST_0_i_7_n_0 ;
+  wire \doutb[2]_INST_0_i_8_n_0 ;
+  wire \doutb[2]_INST_0_i_9_n_0 ;
+  wire \doutb[3]_INST_0_i_10_n_0 ;
+  wire \doutb[3]_INST_0_i_11_n_0 ;
+  wire \doutb[3]_INST_0_i_12_n_0 ;
+  wire \doutb[3]_INST_0_i_13_n_0 ;
+  wire \doutb[3]_INST_0_i_14_n_0 ;
+  wire \doutb[3]_INST_0_i_15_n_0 ;
+  wire \doutb[3]_INST_0_i_16_n_0 ;
+  wire \doutb[3]_INST_0_i_17_n_0 ;
+  wire \doutb[3]_INST_0_i_18_n_0 ;
+  wire \doutb[3]_INST_0_i_19_n_0 ;
+  wire \doutb[3]_INST_0_i_1_n_0 ;
+  wire \doutb[3]_INST_0_i_20_n_0 ;
+  wire \doutb[3]_INST_0_i_21_n_0 ;
+  wire \doutb[3]_INST_0_i_22_n_0 ;
+  wire \doutb[3]_INST_0_i_2_n_0 ;
+  wire \doutb[3]_INST_0_i_3_n_0 ;
+  wire \doutb[3]_INST_0_i_4_n_0 ;
+  wire \doutb[3]_INST_0_i_5_n_0 ;
+  wire \doutb[3]_INST_0_i_6_n_0 ;
+  wire \doutb[3]_INST_0_i_7_n_0 ;
+  wire \doutb[3]_INST_0_i_8_n_0 ;
+  wire \doutb[3]_INST_0_i_9_n_0 ;
+  wire \doutb[4]_INST_0_i_10_n_0 ;
+  wire \doutb[4]_INST_0_i_11_n_0 ;
+  wire \doutb[4]_INST_0_i_12_n_0 ;
+  wire \doutb[4]_INST_0_i_13_n_0 ;
+  wire \doutb[4]_INST_0_i_14_n_0 ;
+  wire \doutb[4]_INST_0_i_15_n_0 ;
+  wire \doutb[4]_INST_0_i_16_n_0 ;
+  wire \doutb[4]_INST_0_i_17_n_0 ;
+  wire \doutb[4]_INST_0_i_18_n_0 ;
+  wire \doutb[4]_INST_0_i_19_n_0 ;
+  wire \doutb[4]_INST_0_i_1_n_0 ;
+  wire \doutb[4]_INST_0_i_20_n_0 ;
+  wire \doutb[4]_INST_0_i_21_n_0 ;
+  wire \doutb[4]_INST_0_i_22_n_0 ;
+  wire \doutb[4]_INST_0_i_2_n_0 ;
+  wire \doutb[4]_INST_0_i_3_n_0 ;
+  wire \doutb[4]_INST_0_i_4_n_0 ;
+  wire \doutb[4]_INST_0_i_5_n_0 ;
+  wire \doutb[4]_INST_0_i_6_n_0 ;
+  wire \doutb[4]_INST_0_i_7_n_0 ;
+  wire \doutb[4]_INST_0_i_8_n_0 ;
+  wire \doutb[4]_INST_0_i_9_n_0 ;
+  wire \doutb[5]_INST_0_i_10_n_0 ;
+  wire \doutb[5]_INST_0_i_11_n_0 ;
+  wire \doutb[5]_INST_0_i_12_n_0 ;
+  wire \doutb[5]_INST_0_i_13_n_0 ;
+  wire \doutb[5]_INST_0_i_14_n_0 ;
+  wire \doutb[5]_INST_0_i_15_n_0 ;
+  wire \doutb[5]_INST_0_i_16_n_0 ;
+  wire \doutb[5]_INST_0_i_17_n_0 ;
+  wire \doutb[5]_INST_0_i_18_n_0 ;
+  wire \doutb[5]_INST_0_i_19_n_0 ;
+  wire \doutb[5]_INST_0_i_1_n_0 ;
+  wire \doutb[5]_INST_0_i_20_n_0 ;
+  wire \doutb[5]_INST_0_i_21_n_0 ;
+  wire \doutb[5]_INST_0_i_22_n_0 ;
+  wire \doutb[5]_INST_0_i_2_n_0 ;
+  wire \doutb[5]_INST_0_i_3_n_0 ;
+  wire \doutb[5]_INST_0_i_4_n_0 ;
+  wire \doutb[5]_INST_0_i_5_n_0 ;
+  wire \doutb[5]_INST_0_i_6_n_0 ;
+  wire \doutb[5]_INST_0_i_7_n_0 ;
+  wire \doutb[5]_INST_0_i_8_n_0 ;
+  wire \doutb[5]_INST_0_i_9_n_0 ;
+  wire \doutb[6]_INST_0_i_10_n_0 ;
+  wire \doutb[6]_INST_0_i_11_n_0 ;
+  wire \doutb[6]_INST_0_i_12_n_0 ;
+  wire \doutb[6]_INST_0_i_13_n_0 ;
+  wire \doutb[6]_INST_0_i_14_n_0 ;
+  wire \doutb[6]_INST_0_i_15_n_0 ;
+  wire \doutb[6]_INST_0_i_16_n_0 ;
+  wire \doutb[6]_INST_0_i_17_n_0 ;
+  wire \doutb[6]_INST_0_i_18_n_0 ;
+  wire \doutb[6]_INST_0_i_19_n_0 ;
+  wire \doutb[6]_INST_0_i_1_n_0 ;
+  wire \doutb[6]_INST_0_i_20_n_0 ;
+  wire \doutb[6]_INST_0_i_21_n_0 ;
+  wire \doutb[6]_INST_0_i_22_n_0 ;
+  wire \doutb[6]_INST_0_i_2_n_0 ;
+  wire \doutb[6]_INST_0_i_3_n_0 ;
+  wire \doutb[6]_INST_0_i_4_n_0 ;
+  wire \doutb[6]_INST_0_i_5_n_0 ;
+  wire \doutb[6]_INST_0_i_6_n_0 ;
+  wire \doutb[6]_INST_0_i_7_n_0 ;
+  wire \doutb[6]_INST_0_i_8_n_0 ;
+  wire \doutb[6]_INST_0_i_9_n_0 ;
+  wire \doutb[7]_INST_0_i_10_n_0 ;
+  wire \doutb[7]_INST_0_i_11_n_0 ;
+  wire \doutb[7]_INST_0_i_12_n_0 ;
+  wire \doutb[7]_INST_0_i_13_n_0 ;
+  wire \doutb[7]_INST_0_i_14_n_0 ;
+  wire \doutb[7]_INST_0_i_15_n_0 ;
+  wire \doutb[7]_INST_0_i_16_n_0 ;
+  wire \doutb[7]_INST_0_i_17_n_0 ;
+  wire \doutb[7]_INST_0_i_18_n_0 ;
+  wire \doutb[7]_INST_0_i_19_n_0 ;
+  wire \doutb[7]_INST_0_i_1_n_0 ;
+  wire \doutb[7]_INST_0_i_20_n_0 ;
+  wire \doutb[7]_INST_0_i_21_n_0 ;
+  wire \doutb[7]_INST_0_i_22_n_0 ;
+  wire \doutb[7]_INST_0_i_2_n_0 ;
+  wire \doutb[7]_INST_0_i_3_n_0 ;
+  wire \doutb[7]_INST_0_i_4_n_0 ;
+  wire \doutb[7]_INST_0_i_5_n_0 ;
+  wire \doutb[7]_INST_0_i_6_n_0 ;
+  wire \doutb[7]_INST_0_i_7_n_0 ;
+  wire \doutb[7]_INST_0_i_8_n_0 ;
+  wire \doutb[7]_INST_0_i_9_n_0 ;
+  wire [399:0]doutb_array;
+  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ;
+  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ;
+  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ;
+  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ;
+  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[4] ;
+  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[5] ;
+  wire \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ;
+  wire \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ;
+  wire \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ;
+  wire \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[3] ;
+  wire \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[4] ;
+  wire \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[5] ;
+
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0 
+       (.I0(\doutb[0]_INST_0_i_1_n_0 ),
+        .I1(\doutb[0]_INST_0_i_2_n_0 ),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[5] ),
+        .I3(\doutb[0]_INST_0_i_3_n_0 ),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[4] ),
+        .I5(\doutb[0]_INST_0_i_4_n_0 ),
+        .O(doutb[0]));
+  LUT6 #(
+    .INIT(64'h0000000000005404)) 
+    \doutb[0]_INST_0_i_1 
+       (.I0(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
+        .I1(doutb_array[384]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I3(doutb_array[392]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I5(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ),
+        .O(\doutb[0]_INST_0_i_1_n_0 ));
+  MUXF7 \doutb[0]_INST_0_i_10 
+       (.I0(\doutb[0]_INST_0_i_21_n_0 ),
+        .I1(\doutb[0]_INST_0_i_22_n_0 ),
+        .O(\doutb[0]_INST_0_i_10_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_11 
+       (.I0(doutb_array[280]),
+        .I1(doutb_array[272]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[264]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[256]),
+        .O(\doutb[0]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_12 
+       (.I0(doutb_array[312]),
+        .I1(doutb_array[304]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[296]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[288]),
+        .O(\doutb[0]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_13 
+       (.I0(doutb_array[344]),
+        .I1(doutb_array[336]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[328]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[320]),
+        .O(\doutb[0]_INST_0_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_14 
+       (.I0(doutb_array[376]),
+        .I1(doutb_array[368]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[360]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[352]),
+        .O(\doutb[0]_INST_0_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_15 
+       (.I0(doutb_array[152]),
+        .I1(doutb_array[144]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[136]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[128]),
+        .O(\doutb[0]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_16 
+       (.I0(doutb_array[184]),
+        .I1(doutb_array[176]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[168]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[160]),
+        .O(\doutb[0]_INST_0_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_17 
+       (.I0(doutb_array[216]),
+        .I1(doutb_array[208]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[200]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[192]),
+        .O(\doutb[0]_INST_0_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_18 
+       (.I0(doutb_array[248]),
+        .I1(doutb_array[240]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[232]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[224]),
+        .O(\doutb[0]_INST_0_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_19 
+       (.I0(doutb_array[24]),
+        .I1(doutb_array[16]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[8]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[0]),
+        .O(\doutb[0]_INST_0_i_19_n_0 ));
+  MUXF8 \doutb[0]_INST_0_i_2 
+       (.I0(\doutb[0]_INST_0_i_5_n_0 ),
+        .I1(\doutb[0]_INST_0_i_6_n_0 ),
+        .O(\doutb[0]_INST_0_i_2_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_20 
+       (.I0(doutb_array[56]),
+        .I1(doutb_array[48]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[40]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[32]),
+        .O(\doutb[0]_INST_0_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_21 
+       (.I0(doutb_array[88]),
+        .I1(doutb_array[80]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[72]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[64]),
+        .O(\doutb[0]_INST_0_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[0]_INST_0_i_22 
+       (.I0(doutb_array[120]),
+        .I1(doutb_array[112]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[104]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[96]),
+        .O(\doutb[0]_INST_0_i_22_n_0 ));
+  MUXF8 \doutb[0]_INST_0_i_3 
+       (.I0(\doutb[0]_INST_0_i_7_n_0 ),
+        .I1(\doutb[0]_INST_0_i_8_n_0 ),
+        .O(\doutb[0]_INST_0_i_3_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF8 \doutb[0]_INST_0_i_4 
+       (.I0(\doutb[0]_INST_0_i_9_n_0 ),
+        .I1(\doutb[0]_INST_0_i_10_n_0 ),
+        .O(\doutb[0]_INST_0_i_4_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF7 \doutb[0]_INST_0_i_5 
+       (.I0(\doutb[0]_INST_0_i_11_n_0 ),
+        .I1(\doutb[0]_INST_0_i_12_n_0 ),
+        .O(\doutb[0]_INST_0_i_5_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[0]_INST_0_i_6 
+       (.I0(\doutb[0]_INST_0_i_13_n_0 ),
+        .I1(\doutb[0]_INST_0_i_14_n_0 ),
+        .O(\doutb[0]_INST_0_i_6_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[0]_INST_0_i_7 
+       (.I0(\doutb[0]_INST_0_i_15_n_0 ),
+        .I1(\doutb[0]_INST_0_i_16_n_0 ),
+        .O(\doutb[0]_INST_0_i_7_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[0]_INST_0_i_8 
+       (.I0(\doutb[0]_INST_0_i_17_n_0 ),
+        .I1(\doutb[0]_INST_0_i_18_n_0 ),
+        .O(\doutb[0]_INST_0_i_8_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[0]_INST_0_i_9 
+       (.I0(\doutb[0]_INST_0_i_19_n_0 ),
+        .I1(\doutb[0]_INST_0_i_20_n_0 ),
+        .O(\doutb[0]_INST_0_i_9_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0 
+       (.I0(\doutb[1]_INST_0_i_1_n_0 ),
+        .I1(\doutb[1]_INST_0_i_2_n_0 ),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[5] ),
+        .I3(\doutb[1]_INST_0_i_3_n_0 ),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[4] ),
+        .I5(\doutb[1]_INST_0_i_4_n_0 ),
+        .O(doutb[1]));
+  LUT6 #(
+    .INIT(64'h0000000000005404)) 
+    \doutb[1]_INST_0_i_1 
+       (.I0(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
+        .I1(doutb_array[385]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I3(doutb_array[393]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I5(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ),
+        .O(\doutb[1]_INST_0_i_1_n_0 ));
+  MUXF7 \doutb[1]_INST_0_i_10 
+       (.I0(\doutb[1]_INST_0_i_21_n_0 ),
+        .I1(\doutb[1]_INST_0_i_22_n_0 ),
+        .O(\doutb[1]_INST_0_i_10_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_11 
+       (.I0(doutb_array[281]),
+        .I1(doutb_array[273]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[265]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[257]),
+        .O(\doutb[1]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_12 
+       (.I0(doutb_array[313]),
+        .I1(doutb_array[305]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[297]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[289]),
+        .O(\doutb[1]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_13 
+       (.I0(doutb_array[345]),
+        .I1(doutb_array[337]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[329]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[321]),
+        .O(\doutb[1]_INST_0_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_14 
+       (.I0(doutb_array[377]),
+        .I1(doutb_array[369]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[361]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[353]),
+        .O(\doutb[1]_INST_0_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_15 
+       (.I0(doutb_array[153]),
+        .I1(doutb_array[145]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[137]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[129]),
+        .O(\doutb[1]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_16 
+       (.I0(doutb_array[185]),
+        .I1(doutb_array[177]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[169]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[161]),
+        .O(\doutb[1]_INST_0_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_17 
+       (.I0(doutb_array[217]),
+        .I1(doutb_array[209]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[201]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[193]),
+        .O(\doutb[1]_INST_0_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_18 
+       (.I0(doutb_array[249]),
+        .I1(doutb_array[241]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[233]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[225]),
+        .O(\doutb[1]_INST_0_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_19 
+       (.I0(doutb_array[25]),
+        .I1(doutb_array[17]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[9]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[1]),
+        .O(\doutb[1]_INST_0_i_19_n_0 ));
+  MUXF8 \doutb[1]_INST_0_i_2 
+       (.I0(\doutb[1]_INST_0_i_5_n_0 ),
+        .I1(\doutb[1]_INST_0_i_6_n_0 ),
+        .O(\doutb[1]_INST_0_i_2_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_20 
+       (.I0(doutb_array[57]),
+        .I1(doutb_array[49]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[41]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[33]),
+        .O(\doutb[1]_INST_0_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_21 
+       (.I0(doutb_array[89]),
+        .I1(doutb_array[81]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[73]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[65]),
+        .O(\doutb[1]_INST_0_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[1]_INST_0_i_22 
+       (.I0(doutb_array[121]),
+        .I1(doutb_array[113]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[105]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[97]),
+        .O(\doutb[1]_INST_0_i_22_n_0 ));
+  MUXF8 \doutb[1]_INST_0_i_3 
+       (.I0(\doutb[1]_INST_0_i_7_n_0 ),
+        .I1(\doutb[1]_INST_0_i_8_n_0 ),
+        .O(\doutb[1]_INST_0_i_3_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF8 \doutb[1]_INST_0_i_4 
+       (.I0(\doutb[1]_INST_0_i_9_n_0 ),
+        .I1(\doutb[1]_INST_0_i_10_n_0 ),
+        .O(\doutb[1]_INST_0_i_4_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF7 \doutb[1]_INST_0_i_5 
+       (.I0(\doutb[1]_INST_0_i_11_n_0 ),
+        .I1(\doutb[1]_INST_0_i_12_n_0 ),
+        .O(\doutb[1]_INST_0_i_5_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[1]_INST_0_i_6 
+       (.I0(\doutb[1]_INST_0_i_13_n_0 ),
+        .I1(\doutb[1]_INST_0_i_14_n_0 ),
+        .O(\doutb[1]_INST_0_i_6_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[1]_INST_0_i_7 
+       (.I0(\doutb[1]_INST_0_i_15_n_0 ),
+        .I1(\doutb[1]_INST_0_i_16_n_0 ),
+        .O(\doutb[1]_INST_0_i_7_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[1]_INST_0_i_8 
+       (.I0(\doutb[1]_INST_0_i_17_n_0 ),
+        .I1(\doutb[1]_INST_0_i_18_n_0 ),
+        .O(\doutb[1]_INST_0_i_8_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[1]_INST_0_i_9 
+       (.I0(\doutb[1]_INST_0_i_19_n_0 ),
+        .I1(\doutb[1]_INST_0_i_20_n_0 ),
+        .O(\doutb[1]_INST_0_i_9_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0 
+       (.I0(\doutb[2]_INST_0_i_1_n_0 ),
+        .I1(\doutb[2]_INST_0_i_2_n_0 ),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[5] ),
+        .I3(\doutb[2]_INST_0_i_3_n_0 ),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[4] ),
+        .I5(\doutb[2]_INST_0_i_4_n_0 ),
+        .O(doutb[2]));
+  LUT6 #(
+    .INIT(64'h0000000000005404)) 
+    \doutb[2]_INST_0_i_1 
+       (.I0(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
+        .I1(doutb_array[386]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I3(doutb_array[394]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I5(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ),
+        .O(\doutb[2]_INST_0_i_1_n_0 ));
+  MUXF7 \doutb[2]_INST_0_i_10 
+       (.I0(\doutb[2]_INST_0_i_21_n_0 ),
+        .I1(\doutb[2]_INST_0_i_22_n_0 ),
+        .O(\doutb[2]_INST_0_i_10_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_11 
+       (.I0(doutb_array[282]),
+        .I1(doutb_array[274]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[266]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[258]),
+        .O(\doutb[2]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_12 
+       (.I0(doutb_array[314]),
+        .I1(doutb_array[306]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[298]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[290]),
+        .O(\doutb[2]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_13 
+       (.I0(doutb_array[346]),
+        .I1(doutb_array[338]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[330]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[322]),
+        .O(\doutb[2]_INST_0_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_14 
+       (.I0(doutb_array[378]),
+        .I1(doutb_array[370]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[362]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[354]),
+        .O(\doutb[2]_INST_0_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_15 
+       (.I0(doutb_array[154]),
+        .I1(doutb_array[146]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[138]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[130]),
+        .O(\doutb[2]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_16 
+       (.I0(doutb_array[186]),
+        .I1(doutb_array[178]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[170]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[162]),
+        .O(\doutb[2]_INST_0_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_17 
+       (.I0(doutb_array[218]),
+        .I1(doutb_array[210]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[202]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[194]),
+        .O(\doutb[2]_INST_0_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_18 
+       (.I0(doutb_array[250]),
+        .I1(doutb_array[242]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[234]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[226]),
+        .O(\doutb[2]_INST_0_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_19 
+       (.I0(doutb_array[26]),
+        .I1(doutb_array[18]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[10]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[2]),
+        .O(\doutb[2]_INST_0_i_19_n_0 ));
+  MUXF8 \doutb[2]_INST_0_i_2 
+       (.I0(\doutb[2]_INST_0_i_5_n_0 ),
+        .I1(\doutb[2]_INST_0_i_6_n_0 ),
+        .O(\doutb[2]_INST_0_i_2_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_20 
+       (.I0(doutb_array[58]),
+        .I1(doutb_array[50]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[42]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[34]),
+        .O(\doutb[2]_INST_0_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_21 
+       (.I0(doutb_array[90]),
+        .I1(doutb_array[82]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[74]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[66]),
+        .O(\doutb[2]_INST_0_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[2]_INST_0_i_22 
+       (.I0(doutb_array[122]),
+        .I1(doutb_array[114]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[106]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[98]),
+        .O(\doutb[2]_INST_0_i_22_n_0 ));
+  MUXF8 \doutb[2]_INST_0_i_3 
+       (.I0(\doutb[2]_INST_0_i_7_n_0 ),
+        .I1(\doutb[2]_INST_0_i_8_n_0 ),
+        .O(\doutb[2]_INST_0_i_3_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF8 \doutb[2]_INST_0_i_4 
+       (.I0(\doutb[2]_INST_0_i_9_n_0 ),
+        .I1(\doutb[2]_INST_0_i_10_n_0 ),
+        .O(\doutb[2]_INST_0_i_4_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF7 \doutb[2]_INST_0_i_5 
+       (.I0(\doutb[2]_INST_0_i_11_n_0 ),
+        .I1(\doutb[2]_INST_0_i_12_n_0 ),
+        .O(\doutb[2]_INST_0_i_5_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[2]_INST_0_i_6 
+       (.I0(\doutb[2]_INST_0_i_13_n_0 ),
+        .I1(\doutb[2]_INST_0_i_14_n_0 ),
+        .O(\doutb[2]_INST_0_i_6_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[2]_INST_0_i_7 
+       (.I0(\doutb[2]_INST_0_i_15_n_0 ),
+        .I1(\doutb[2]_INST_0_i_16_n_0 ),
+        .O(\doutb[2]_INST_0_i_7_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[2]_INST_0_i_8 
+       (.I0(\doutb[2]_INST_0_i_17_n_0 ),
+        .I1(\doutb[2]_INST_0_i_18_n_0 ),
+        .O(\doutb[2]_INST_0_i_8_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[2]_INST_0_i_9 
+       (.I0(\doutb[2]_INST_0_i_19_n_0 ),
+        .I1(\doutb[2]_INST_0_i_20_n_0 ),
+        .O(\doutb[2]_INST_0_i_9_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0 
+       (.I0(\doutb[3]_INST_0_i_1_n_0 ),
+        .I1(\doutb[3]_INST_0_i_2_n_0 ),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[5] ),
+        .I3(\doutb[3]_INST_0_i_3_n_0 ),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[4] ),
+        .I5(\doutb[3]_INST_0_i_4_n_0 ),
+        .O(doutb[3]));
+  LUT6 #(
+    .INIT(64'h0000000000005404)) 
+    \doutb[3]_INST_0_i_1 
+       (.I0(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
+        .I1(doutb_array[387]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I3(doutb_array[395]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I5(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ),
+        .O(\doutb[3]_INST_0_i_1_n_0 ));
+  MUXF7 \doutb[3]_INST_0_i_10 
+       (.I0(\doutb[3]_INST_0_i_21_n_0 ),
+        .I1(\doutb[3]_INST_0_i_22_n_0 ),
+        .O(\doutb[3]_INST_0_i_10_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_11 
+       (.I0(doutb_array[283]),
+        .I1(doutb_array[275]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[267]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[259]),
+        .O(\doutb[3]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_12 
+       (.I0(doutb_array[315]),
+        .I1(doutb_array[307]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[299]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[291]),
+        .O(\doutb[3]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_13 
+       (.I0(doutb_array[347]),
+        .I1(doutb_array[339]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[331]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[323]),
+        .O(\doutb[3]_INST_0_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_14 
+       (.I0(doutb_array[379]),
+        .I1(doutb_array[371]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[363]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[355]),
+        .O(\doutb[3]_INST_0_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_15 
+       (.I0(doutb_array[155]),
+        .I1(doutb_array[147]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[139]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[131]),
+        .O(\doutb[3]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_16 
+       (.I0(doutb_array[187]),
+        .I1(doutb_array[179]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[171]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[163]),
+        .O(\doutb[3]_INST_0_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_17 
+       (.I0(doutb_array[219]),
+        .I1(doutb_array[211]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[203]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[195]),
+        .O(\doutb[3]_INST_0_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_18 
+       (.I0(doutb_array[251]),
+        .I1(doutb_array[243]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[235]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[227]),
+        .O(\doutb[3]_INST_0_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_19 
+       (.I0(doutb_array[27]),
+        .I1(doutb_array[19]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[11]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[3]),
+        .O(\doutb[3]_INST_0_i_19_n_0 ));
+  MUXF8 \doutb[3]_INST_0_i_2 
+       (.I0(\doutb[3]_INST_0_i_5_n_0 ),
+        .I1(\doutb[3]_INST_0_i_6_n_0 ),
+        .O(\doutb[3]_INST_0_i_2_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_20 
+       (.I0(doutb_array[59]),
+        .I1(doutb_array[51]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[43]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[35]),
+        .O(\doutb[3]_INST_0_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_21 
+       (.I0(doutb_array[91]),
+        .I1(doutb_array[83]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[75]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[67]),
+        .O(\doutb[3]_INST_0_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[3]_INST_0_i_22 
+       (.I0(doutb_array[123]),
+        .I1(doutb_array[115]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[107]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[99]),
+        .O(\doutb[3]_INST_0_i_22_n_0 ));
+  MUXF8 \doutb[3]_INST_0_i_3 
+       (.I0(\doutb[3]_INST_0_i_7_n_0 ),
+        .I1(\doutb[3]_INST_0_i_8_n_0 ),
+        .O(\doutb[3]_INST_0_i_3_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF8 \doutb[3]_INST_0_i_4 
+       (.I0(\doutb[3]_INST_0_i_9_n_0 ),
+        .I1(\doutb[3]_INST_0_i_10_n_0 ),
+        .O(\doutb[3]_INST_0_i_4_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF7 \doutb[3]_INST_0_i_5 
+       (.I0(\doutb[3]_INST_0_i_11_n_0 ),
+        .I1(\doutb[3]_INST_0_i_12_n_0 ),
+        .O(\doutb[3]_INST_0_i_5_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[3]_INST_0_i_6 
+       (.I0(\doutb[3]_INST_0_i_13_n_0 ),
+        .I1(\doutb[3]_INST_0_i_14_n_0 ),
+        .O(\doutb[3]_INST_0_i_6_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[3]_INST_0_i_7 
+       (.I0(\doutb[3]_INST_0_i_15_n_0 ),
+        .I1(\doutb[3]_INST_0_i_16_n_0 ),
+        .O(\doutb[3]_INST_0_i_7_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[3]_INST_0_i_8 
+       (.I0(\doutb[3]_INST_0_i_17_n_0 ),
+        .I1(\doutb[3]_INST_0_i_18_n_0 ),
+        .O(\doutb[3]_INST_0_i_8_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[3]_INST_0_i_9 
+       (.I0(\doutb[3]_INST_0_i_19_n_0 ),
+        .I1(\doutb[3]_INST_0_i_20_n_0 ),
+        .O(\doutb[3]_INST_0_i_9_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0 
+       (.I0(\doutb[4]_INST_0_i_1_n_0 ),
+        .I1(\doutb[4]_INST_0_i_2_n_0 ),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[5] ),
+        .I3(\doutb[4]_INST_0_i_3_n_0 ),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[4] ),
+        .I5(\doutb[4]_INST_0_i_4_n_0 ),
+        .O(doutb[4]));
+  LUT6 #(
+    .INIT(64'h0000000000005404)) 
+    \doutb[4]_INST_0_i_1 
+       (.I0(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
+        .I1(doutb_array[388]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I3(doutb_array[396]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I5(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ),
+        .O(\doutb[4]_INST_0_i_1_n_0 ));
+  MUXF7 \doutb[4]_INST_0_i_10 
+       (.I0(\doutb[4]_INST_0_i_21_n_0 ),
+        .I1(\doutb[4]_INST_0_i_22_n_0 ),
+        .O(\doutb[4]_INST_0_i_10_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_11 
+       (.I0(doutb_array[284]),
+        .I1(doutb_array[276]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[268]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[260]),
+        .O(\doutb[4]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_12 
+       (.I0(doutb_array[316]),
+        .I1(doutb_array[308]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[300]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[292]),
+        .O(\doutb[4]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_13 
+       (.I0(doutb_array[348]),
+        .I1(doutb_array[340]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[332]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[324]),
+        .O(\doutb[4]_INST_0_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_14 
+       (.I0(doutb_array[380]),
+        .I1(doutb_array[372]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[364]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[356]),
+        .O(\doutb[4]_INST_0_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_15 
+       (.I0(doutb_array[156]),
+        .I1(doutb_array[148]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[140]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[132]),
+        .O(\doutb[4]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_16 
+       (.I0(doutb_array[188]),
+        .I1(doutb_array[180]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[172]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[164]),
+        .O(\doutb[4]_INST_0_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_17 
+       (.I0(doutb_array[220]),
+        .I1(doutb_array[212]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[204]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[196]),
+        .O(\doutb[4]_INST_0_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_18 
+       (.I0(doutb_array[252]),
+        .I1(doutb_array[244]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[236]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[228]),
+        .O(\doutb[4]_INST_0_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_19 
+       (.I0(doutb_array[28]),
+        .I1(doutb_array[20]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[12]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[4]),
+        .O(\doutb[4]_INST_0_i_19_n_0 ));
+  MUXF8 \doutb[4]_INST_0_i_2 
+       (.I0(\doutb[4]_INST_0_i_5_n_0 ),
+        .I1(\doutb[4]_INST_0_i_6_n_0 ),
+        .O(\doutb[4]_INST_0_i_2_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_20 
+       (.I0(doutb_array[60]),
+        .I1(doutb_array[52]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[44]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[36]),
+        .O(\doutb[4]_INST_0_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_21 
+       (.I0(doutb_array[92]),
+        .I1(doutb_array[84]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[76]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[68]),
+        .O(\doutb[4]_INST_0_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[4]_INST_0_i_22 
+       (.I0(doutb_array[124]),
+        .I1(doutb_array[116]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[108]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[100]),
+        .O(\doutb[4]_INST_0_i_22_n_0 ));
+  MUXF8 \doutb[4]_INST_0_i_3 
+       (.I0(\doutb[4]_INST_0_i_7_n_0 ),
+        .I1(\doutb[4]_INST_0_i_8_n_0 ),
+        .O(\doutb[4]_INST_0_i_3_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF8 \doutb[4]_INST_0_i_4 
+       (.I0(\doutb[4]_INST_0_i_9_n_0 ),
+        .I1(\doutb[4]_INST_0_i_10_n_0 ),
+        .O(\doutb[4]_INST_0_i_4_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF7 \doutb[4]_INST_0_i_5 
+       (.I0(\doutb[4]_INST_0_i_11_n_0 ),
+        .I1(\doutb[4]_INST_0_i_12_n_0 ),
+        .O(\doutb[4]_INST_0_i_5_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[4]_INST_0_i_6 
+       (.I0(\doutb[4]_INST_0_i_13_n_0 ),
+        .I1(\doutb[4]_INST_0_i_14_n_0 ),
+        .O(\doutb[4]_INST_0_i_6_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[4]_INST_0_i_7 
+       (.I0(\doutb[4]_INST_0_i_15_n_0 ),
+        .I1(\doutb[4]_INST_0_i_16_n_0 ),
+        .O(\doutb[4]_INST_0_i_7_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[4]_INST_0_i_8 
+       (.I0(\doutb[4]_INST_0_i_17_n_0 ),
+        .I1(\doutb[4]_INST_0_i_18_n_0 ),
+        .O(\doutb[4]_INST_0_i_8_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[4]_INST_0_i_9 
+       (.I0(\doutb[4]_INST_0_i_19_n_0 ),
+        .I1(\doutb[4]_INST_0_i_20_n_0 ),
+        .O(\doutb[4]_INST_0_i_9_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0 
+       (.I0(\doutb[5]_INST_0_i_1_n_0 ),
+        .I1(\doutb[5]_INST_0_i_2_n_0 ),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[5] ),
+        .I3(\doutb[5]_INST_0_i_3_n_0 ),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[4] ),
+        .I5(\doutb[5]_INST_0_i_4_n_0 ),
+        .O(doutb[5]));
+  LUT6 #(
+    .INIT(64'h0000000000005404)) 
+    \doutb[5]_INST_0_i_1 
+       (.I0(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
+        .I1(doutb_array[389]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I3(doutb_array[397]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I5(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ),
+        .O(\doutb[5]_INST_0_i_1_n_0 ));
+  MUXF7 \doutb[5]_INST_0_i_10 
+       (.I0(\doutb[5]_INST_0_i_21_n_0 ),
+        .I1(\doutb[5]_INST_0_i_22_n_0 ),
+        .O(\doutb[5]_INST_0_i_10_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_11 
+       (.I0(doutb_array[285]),
+        .I1(doutb_array[277]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[269]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[261]),
+        .O(\doutb[5]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_12 
+       (.I0(doutb_array[317]),
+        .I1(doutb_array[309]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[301]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[293]),
+        .O(\doutb[5]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_13 
+       (.I0(doutb_array[349]),
+        .I1(doutb_array[341]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[333]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[325]),
+        .O(\doutb[5]_INST_0_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_14 
+       (.I0(doutb_array[381]),
+        .I1(doutb_array[373]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[365]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[357]),
+        .O(\doutb[5]_INST_0_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_15 
+       (.I0(doutb_array[157]),
+        .I1(doutb_array[149]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[141]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[133]),
+        .O(\doutb[5]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_16 
+       (.I0(doutb_array[189]),
+        .I1(doutb_array[181]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[173]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[165]),
+        .O(\doutb[5]_INST_0_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_17 
+       (.I0(doutb_array[221]),
+        .I1(doutb_array[213]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[205]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[197]),
+        .O(\doutb[5]_INST_0_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_18 
+       (.I0(doutb_array[253]),
+        .I1(doutb_array[245]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[237]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[229]),
+        .O(\doutb[5]_INST_0_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_19 
+       (.I0(doutb_array[29]),
+        .I1(doutb_array[21]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[13]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[5]),
+        .O(\doutb[5]_INST_0_i_19_n_0 ));
+  MUXF8 \doutb[5]_INST_0_i_2 
+       (.I0(\doutb[5]_INST_0_i_5_n_0 ),
+        .I1(\doutb[5]_INST_0_i_6_n_0 ),
+        .O(\doutb[5]_INST_0_i_2_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_20 
+       (.I0(doutb_array[61]),
+        .I1(doutb_array[53]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[45]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[37]),
+        .O(\doutb[5]_INST_0_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_21 
+       (.I0(doutb_array[93]),
+        .I1(doutb_array[85]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[77]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[69]),
+        .O(\doutb[5]_INST_0_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[5]_INST_0_i_22 
+       (.I0(doutb_array[125]),
+        .I1(doutb_array[117]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[109]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[101]),
+        .O(\doutb[5]_INST_0_i_22_n_0 ));
+  MUXF8 \doutb[5]_INST_0_i_3 
+       (.I0(\doutb[5]_INST_0_i_7_n_0 ),
+        .I1(\doutb[5]_INST_0_i_8_n_0 ),
+        .O(\doutb[5]_INST_0_i_3_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF8 \doutb[5]_INST_0_i_4 
+       (.I0(\doutb[5]_INST_0_i_9_n_0 ),
+        .I1(\doutb[5]_INST_0_i_10_n_0 ),
+        .O(\doutb[5]_INST_0_i_4_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF7 \doutb[5]_INST_0_i_5 
+       (.I0(\doutb[5]_INST_0_i_11_n_0 ),
+        .I1(\doutb[5]_INST_0_i_12_n_0 ),
+        .O(\doutb[5]_INST_0_i_5_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[5]_INST_0_i_6 
+       (.I0(\doutb[5]_INST_0_i_13_n_0 ),
+        .I1(\doutb[5]_INST_0_i_14_n_0 ),
+        .O(\doutb[5]_INST_0_i_6_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[5]_INST_0_i_7 
+       (.I0(\doutb[5]_INST_0_i_15_n_0 ),
+        .I1(\doutb[5]_INST_0_i_16_n_0 ),
+        .O(\doutb[5]_INST_0_i_7_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[5]_INST_0_i_8 
+       (.I0(\doutb[5]_INST_0_i_17_n_0 ),
+        .I1(\doutb[5]_INST_0_i_18_n_0 ),
+        .O(\doutb[5]_INST_0_i_8_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[5]_INST_0_i_9 
+       (.I0(\doutb[5]_INST_0_i_19_n_0 ),
+        .I1(\doutb[5]_INST_0_i_20_n_0 ),
+        .O(\doutb[5]_INST_0_i_9_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0 
+       (.I0(\doutb[6]_INST_0_i_1_n_0 ),
+        .I1(\doutb[6]_INST_0_i_2_n_0 ),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[5] ),
+        .I3(\doutb[6]_INST_0_i_3_n_0 ),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[4] ),
+        .I5(\doutb[6]_INST_0_i_4_n_0 ),
+        .O(doutb[6]));
+  LUT6 #(
+    .INIT(64'h0000000000005404)) 
+    \doutb[6]_INST_0_i_1 
+       (.I0(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
+        .I1(doutb_array[390]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I3(doutb_array[398]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I5(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ),
+        .O(\doutb[6]_INST_0_i_1_n_0 ));
+  MUXF7 \doutb[6]_INST_0_i_10 
+       (.I0(\doutb[6]_INST_0_i_21_n_0 ),
+        .I1(\doutb[6]_INST_0_i_22_n_0 ),
+        .O(\doutb[6]_INST_0_i_10_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_11 
+       (.I0(doutb_array[286]),
+        .I1(doutb_array[278]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[270]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[262]),
+        .O(\doutb[6]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_12 
+       (.I0(doutb_array[318]),
+        .I1(doutb_array[310]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[302]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[294]),
+        .O(\doutb[6]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_13 
+       (.I0(doutb_array[350]),
+        .I1(doutb_array[342]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[334]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[326]),
+        .O(\doutb[6]_INST_0_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_14 
+       (.I0(doutb_array[382]),
+        .I1(doutb_array[374]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[366]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[358]),
+        .O(\doutb[6]_INST_0_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_15 
+       (.I0(doutb_array[158]),
+        .I1(doutb_array[150]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[142]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[134]),
+        .O(\doutb[6]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_16 
+       (.I0(doutb_array[190]),
+        .I1(doutb_array[182]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[174]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[166]),
+        .O(\doutb[6]_INST_0_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_17 
+       (.I0(doutb_array[222]),
+        .I1(doutb_array[214]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[206]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[198]),
+        .O(\doutb[6]_INST_0_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_18 
+       (.I0(doutb_array[254]),
+        .I1(doutb_array[246]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[238]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[230]),
+        .O(\doutb[6]_INST_0_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_19 
+       (.I0(doutb_array[30]),
+        .I1(doutb_array[22]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[14]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[6]),
+        .O(\doutb[6]_INST_0_i_19_n_0 ));
+  MUXF8 \doutb[6]_INST_0_i_2 
+       (.I0(\doutb[6]_INST_0_i_5_n_0 ),
+        .I1(\doutb[6]_INST_0_i_6_n_0 ),
+        .O(\doutb[6]_INST_0_i_2_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_20 
+       (.I0(doutb_array[62]),
+        .I1(doutb_array[54]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[46]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[38]),
+        .O(\doutb[6]_INST_0_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_21 
+       (.I0(doutb_array[94]),
+        .I1(doutb_array[86]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[78]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[70]),
+        .O(\doutb[6]_INST_0_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[6]_INST_0_i_22 
+       (.I0(doutb_array[126]),
+        .I1(doutb_array[118]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[110]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[102]),
+        .O(\doutb[6]_INST_0_i_22_n_0 ));
+  MUXF8 \doutb[6]_INST_0_i_3 
+       (.I0(\doutb[6]_INST_0_i_7_n_0 ),
+        .I1(\doutb[6]_INST_0_i_8_n_0 ),
+        .O(\doutb[6]_INST_0_i_3_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF8 \doutb[6]_INST_0_i_4 
+       (.I0(\doutb[6]_INST_0_i_9_n_0 ),
+        .I1(\doutb[6]_INST_0_i_10_n_0 ),
+        .O(\doutb[6]_INST_0_i_4_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF7 \doutb[6]_INST_0_i_5 
+       (.I0(\doutb[6]_INST_0_i_11_n_0 ),
+        .I1(\doutb[6]_INST_0_i_12_n_0 ),
+        .O(\doutb[6]_INST_0_i_5_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[6]_INST_0_i_6 
+       (.I0(\doutb[6]_INST_0_i_13_n_0 ),
+        .I1(\doutb[6]_INST_0_i_14_n_0 ),
+        .O(\doutb[6]_INST_0_i_6_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[6]_INST_0_i_7 
+       (.I0(\doutb[6]_INST_0_i_15_n_0 ),
+        .I1(\doutb[6]_INST_0_i_16_n_0 ),
+        .O(\doutb[6]_INST_0_i_7_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[6]_INST_0_i_8 
+       (.I0(\doutb[6]_INST_0_i_17_n_0 ),
+        .I1(\doutb[6]_INST_0_i_18_n_0 ),
+        .O(\doutb[6]_INST_0_i_8_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[6]_INST_0_i_9 
+       (.I0(\doutb[6]_INST_0_i_19_n_0 ),
+        .I1(\doutb[6]_INST_0_i_20_n_0 ),
+        .O(\doutb[6]_INST_0_i_9_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0 
+       (.I0(\doutb[7]_INST_0_i_1_n_0 ),
+        .I1(\doutb[7]_INST_0_i_2_n_0 ),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[5] ),
+        .I3(\doutb[7]_INST_0_i_3_n_0 ),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[4] ),
+        .I5(\doutb[7]_INST_0_i_4_n_0 ),
+        .O(doutb[7]));
+  LUT6 #(
+    .INIT(64'h0000000000005404)) 
+    \doutb[7]_INST_0_i_1 
+       (.I0(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
+        .I1(doutb_array[391]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I3(doutb_array[399]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I5(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ),
+        .O(\doutb[7]_INST_0_i_1_n_0 ));
+  MUXF7 \doutb[7]_INST_0_i_10 
+       (.I0(\doutb[7]_INST_0_i_21_n_0 ),
+        .I1(\doutb[7]_INST_0_i_22_n_0 ),
+        .O(\doutb[7]_INST_0_i_10_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_11 
+       (.I0(doutb_array[287]),
+        .I1(doutb_array[279]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[271]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[263]),
+        .O(\doutb[7]_INST_0_i_11_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_12 
+       (.I0(doutb_array[319]),
+        .I1(doutb_array[311]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[303]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[295]),
+        .O(\doutb[7]_INST_0_i_12_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_13 
+       (.I0(doutb_array[351]),
+        .I1(doutb_array[343]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[335]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[327]),
+        .O(\doutb[7]_INST_0_i_13_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_14 
+       (.I0(doutb_array[383]),
+        .I1(doutb_array[375]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[367]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[359]),
+        .O(\doutb[7]_INST_0_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_15 
+       (.I0(doutb_array[159]),
+        .I1(doutb_array[151]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[143]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[135]),
+        .O(\doutb[7]_INST_0_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_16 
+       (.I0(doutb_array[191]),
+        .I1(doutb_array[183]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[175]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[167]),
+        .O(\doutb[7]_INST_0_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_17 
+       (.I0(doutb_array[223]),
+        .I1(doutb_array[215]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[207]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[199]),
+        .O(\doutb[7]_INST_0_i_17_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_18 
+       (.I0(doutb_array[255]),
+        .I1(doutb_array[247]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[239]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[231]),
+        .O(\doutb[7]_INST_0_i_18_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_19 
+       (.I0(doutb_array[31]),
+        .I1(doutb_array[23]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[15]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[7]),
+        .O(\doutb[7]_INST_0_i_19_n_0 ));
+  MUXF8 \doutb[7]_INST_0_i_2 
+       (.I0(\doutb[7]_INST_0_i_5_n_0 ),
+        .I1(\doutb[7]_INST_0_i_6_n_0 ),
+        .O(\doutb[7]_INST_0_i_2_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_20 
+       (.I0(doutb_array[63]),
+        .I1(doutb_array[55]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[47]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[39]),
+        .O(\doutb[7]_INST_0_i_20_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_21 
+       (.I0(doutb_array[95]),
+        .I1(doutb_array[87]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[79]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[71]),
+        .O(\doutb[7]_INST_0_i_21_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \doutb[7]_INST_0_i_22 
+       (.I0(doutb_array[127]),
+        .I1(doutb_array[119]),
+        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I3(doutb_array[111]),
+        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I5(doutb_array[103]),
+        .O(\doutb[7]_INST_0_i_22_n_0 ));
+  MUXF8 \doutb[7]_INST_0_i_3 
+       (.I0(\doutb[7]_INST_0_i_7_n_0 ),
+        .I1(\doutb[7]_INST_0_i_8_n_0 ),
+        .O(\doutb[7]_INST_0_i_3_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF8 \doutb[7]_INST_0_i_4 
+       (.I0(\doutb[7]_INST_0_i_9_n_0 ),
+        .I1(\doutb[7]_INST_0_i_10_n_0 ),
+        .O(\doutb[7]_INST_0_i_4_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ));
+  MUXF7 \doutb[7]_INST_0_i_5 
+       (.I0(\doutb[7]_INST_0_i_11_n_0 ),
+        .I1(\doutb[7]_INST_0_i_12_n_0 ),
+        .O(\doutb[7]_INST_0_i_5_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[7]_INST_0_i_6 
+       (.I0(\doutb[7]_INST_0_i_13_n_0 ),
+        .I1(\doutb[7]_INST_0_i_14_n_0 ),
+        .O(\doutb[7]_INST_0_i_6_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[7]_INST_0_i_7 
+       (.I0(\doutb[7]_INST_0_i_15_n_0 ),
+        .I1(\doutb[7]_INST_0_i_16_n_0 ),
+        .O(\doutb[7]_INST_0_i_7_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[7]_INST_0_i_8 
+       (.I0(\doutb[7]_INST_0_i_17_n_0 ),
+        .I1(\doutb[7]_INST_0_i_18_n_0 ),
+        .O(\doutb[7]_INST_0_i_8_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  MUXF7 \doutb[7]_INST_0_i_9 
+       (.I0(\doutb[7]_INST_0_i_19_n_0 ),
+        .I1(\doutb[7]_INST_0_i_20_n_0 ),
+        .O(\doutb[7]_INST_0_i_9_n_0 ),
+        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[0] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
+        .Q(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[1] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
+        .Q(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[2] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ),
+        .Q(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[3] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[3] ),
+        .Q(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[3] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[4] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[4] ),
+        .Q(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[4] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[5] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[5] ),
+        .Q(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[5] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_sel_reg.ce_pri.sel_pipe_reg[0] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(addrb[0]),
+        .Q(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_sel_reg.ce_pri.sel_pipe_reg[1] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(addrb[1]),
+        .Q(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_sel_reg.ce_pri.sel_pipe_reg[2] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(addrb[2]),
+        .Q(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_sel_reg.ce_pri.sel_pipe_reg[3] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(addrb[3]),
+        .Q(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[3] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_sel_reg.ce_pri.sel_pipe_reg[4] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(addrb[4]),
+        .Q(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[4] ),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \no_softecc_sel_reg.ce_pri.sel_pipe_reg[5] 
+       (.C(clkb),
+        .CE(1'b1),
+        .D(addrb[5]),
+        .Q(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[5] ),
+        .R(1'b0));
+endmodule
+
+(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized0
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized0 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized1
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized1 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized10
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized10 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized11
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized11 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized12
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized12 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized13
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized13 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized14
    (douta_array,
+    doutb_array,
     clka,
-    addra);
+    clkb,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [17:0]addra;
+  input [17:0]addrb;
 
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized14 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
-        .douta_array(douta_array));
+        .clkb(clkb),
+        .douta_array(douta_array),
+        .doutb_array(doutb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized15
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized15 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized16
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized16 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized17
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized17 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized18
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized18 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized19
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized19 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized2
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized2 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized20
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized20 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized21
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized21 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized22
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized22 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized23
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized23 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized24
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized24 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized25
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized25 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized26
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized26 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized27
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized27 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized28
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized28 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized29
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized29 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized3
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized3 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized30
    (douta_array,
+    doutb_array,
     clka,
-    addra);
+    clkb,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [17:0]addra;
+  input [17:0]addrb;
 
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized30 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
-        .douta_array(douta_array));
+        .clkb(clkb),
+        .douta_array(douta_array),
+        .doutb_array(doutb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized31
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized31 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized32
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized32 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized33
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized33 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized34
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized34 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized35
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized35 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized36
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized36 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized37
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized37 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized38
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized38 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized39
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized39 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized4
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized4 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized40
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized40 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized41
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized41 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized42
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized42 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized43
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized43 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized44
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized44 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized45
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized45 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized46
    (douta_array,
+    doutb_array,
     clka,
-    addra);
+    clkb,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [17:0]addra;
+  input [17:0]addrb;
 
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized46 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
-        .douta_array(douta_array));
+        .clkb(clkb),
+        .douta_array(douta_array),
+        .doutb_array(doutb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized47
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized47 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized48
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized48 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized5
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized5 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized6
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized6 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized7
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized7 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized8
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized8 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width__parameterized9
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
+  wire [0:0]enb_array;
 
   image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized9 \prim_init.ram 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
+        .clkb(clkb),
         .douta_array(douta_array),
-        .ena_array(ena_array));
+        .doutb_array(doutb_array),
+        .ena_array(ena_array),
+        .enb_array(enb_array));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -4038,7 +7332,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -4051,37 +7345,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -4089,34 +7383,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized0
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -4277,7 +7584,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized0
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -4290,37 +7597,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized0
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -4328,34 +7635,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized1
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -4516,7 +7836,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized1
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -4529,37 +7849,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized1
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -4567,34 +7887,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized10
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -4755,7 +8088,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized10
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -4768,37 +8101,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized10
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -4806,34 +8139,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized11
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -4994,7 +8340,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized11
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -5007,37 +8353,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized11
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -5045,34 +8391,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized12
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -5233,7 +8592,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized12
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -5246,37 +8605,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized12
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -5284,34 +8643,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized13
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -5472,7 +8844,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized13
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -5485,37 +8857,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized13
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -5523,32 +8895,43 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized14
    (douta_array,
+    doutb_array,
     clka,
-    addra);
+    clkb,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [17:0]addra;
+  input [17:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [15:15]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [15:15]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -5709,7 +9092,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized14
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -5722,42 +9105,42 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized14
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra[11:0],1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb[11:0],1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
   LUT6 #(
     .INIT(64'h1000000000000000)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1__1 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__1 
        (.I0(addra[17]),
         .I1(addra[16]),
         .I2(addra[13]),
@@ -5765,39 +9148,62 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized14
         .I4(addra[15]),
         .I5(addra[14]),
         .O(ena_array));
+  LUT6 #(
+    .INIT(64'h1000000000000000)) 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2__1 
+       (.I0(addrb[17]),
+        .I1(addrb[16]),
+        .I2(addrb[13]),
+        .I3(addrb[12]),
+        .I4(addrb[15]),
+        .I5(addrb[14]),
+        .O(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized15
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -5958,7 +9364,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized15
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -5971,37 +9377,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized15
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -6009,34 +9415,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized16
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -6197,7 +9616,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized16
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -6210,37 +9629,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized16
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -6248,34 +9667,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized17
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -6436,7 +9868,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized17
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -6449,37 +9881,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized17
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -6487,34 +9919,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized18
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -6675,7 +10120,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized18
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -6688,37 +10133,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized18
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -6726,34 +10171,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized19
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -6914,7 +10372,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized19
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -6927,37 +10385,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized19
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -6965,34 +10423,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized2
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -7153,7 +10624,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized2
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -7166,37 +10637,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized2
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -7204,34 +10675,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized20
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -7392,7 +10876,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized20
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -7405,37 +10889,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized20
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -7443,34 +10927,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized21
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -7631,7 +11128,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized21
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -7644,37 +11141,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized21
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -7682,34 +11179,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized22
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -7870,7 +11380,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized22
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -7883,37 +11393,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized22
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -7921,34 +11431,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized23
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -8109,7 +11632,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized23
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -8122,37 +11645,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized23
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -8160,34 +11683,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized24
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -8348,7 +11884,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized24
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -8361,37 +11897,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized24
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -8399,34 +11935,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized25
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -8587,7 +12136,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized25
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -8600,37 +12149,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized25
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -8638,34 +12187,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized26
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -8826,7 +12388,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized26
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -8839,37 +12401,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized26
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -8877,34 +12439,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized27
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -9065,7 +12640,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized27
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -9078,37 +12653,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized27
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -9116,34 +12691,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized28
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -9304,7 +12892,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized28
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -9317,37 +12905,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized28
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -9355,34 +12943,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized29
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -9543,7 +13144,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized29
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -9556,37 +13157,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized29
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -9594,34 +13195,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized3
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -9782,7 +13396,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized3
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -9795,37 +13409,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized3
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -9833,32 +13447,43 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized30
    (douta_array,
+    doutb_array,
     clka,
-    addra);
+    clkb,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [17:0]addra;
+  input [17:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [31:31]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [31:31]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -10019,7 +13644,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized30
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -10032,42 +13657,42 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized30
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra[11:0],1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb[11:0],1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
   LUT6 #(
     .INIT(64'h2000000000000000)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1 
        (.I0(addra[16]),
         .I1(addra[17]),
         .I2(addra[13]),
@@ -10075,39 +13700,62 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized30
         .I4(addra[15]),
         .I5(addra[14]),
         .O(ena_array));
+  LUT6 #(
+    .INIT(64'h2000000000000000)) 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2 
+       (.I0(addrb[16]),
+        .I1(addrb[17]),
+        .I2(addrb[13]),
+        .I3(addrb[12]),
+        .I4(addrb[15]),
+        .I5(addrb[14]),
+        .O(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized31
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -10268,7 +13916,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized31
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -10281,37 +13929,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized31
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -10319,34 +13967,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized32
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -10507,7 +14168,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized32
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -10520,37 +14181,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized32
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -10558,34 +14219,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized33
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -10746,7 +14420,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized33
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -10759,37 +14433,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized33
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -10797,34 +14471,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized34
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -10985,7 +14672,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized34
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -10998,37 +14685,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized34
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -11036,34 +14723,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized35
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -11224,7 +14924,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized35
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -11237,37 +14937,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized35
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -11275,34 +14975,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized36
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -11463,7 +15176,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized36
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -11476,37 +15189,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized36
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -11514,34 +15227,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized37
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -11702,7 +15428,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized37
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -11715,37 +15441,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized37
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -11753,34 +15479,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized38
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -11941,7 +15680,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized38
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -11954,37 +15693,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized38
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -11992,34 +15731,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized39
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -12180,7 +15932,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized39
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -12193,37 +15945,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized39
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -12231,34 +15983,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized4
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -12419,7 +16184,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized4
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -12432,37 +16197,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized4
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -12470,34 +16235,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized40
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -12658,7 +16436,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized40
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -12671,37 +16449,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized40
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -12709,34 +16487,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized41
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -12897,7 +16688,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized41
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -12910,37 +16701,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized41
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -12948,34 +16739,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized42
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -13136,7 +16940,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized42
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -13149,37 +16953,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized42
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -13187,34 +16991,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized43
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -13375,7 +17192,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized43
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -13388,37 +17205,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized43
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -13426,34 +17243,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized44
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -13614,7 +17444,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized44
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -13627,37 +17457,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized44
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -13665,34 +17495,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized45
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -13853,7 +17696,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized45
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -13866,37 +17709,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized45
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -13904,32 +17747,43 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized46
    (douta_array,
+    doutb_array,
     clka,
-    addra);
+    clkb,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [17:0]addra;
+  input [17:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [47:47]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [47:47]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -14090,7 +17944,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized46
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -14103,42 +17957,42 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized46
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra[11:0],1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb[11:0],1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
   LUT6 #(
     .INIT(64'h2000000000000000)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1__0 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__0 
        (.I0(addra[17]),
         .I1(addra[16]),
         .I2(addra[13]),
@@ -14146,39 +18000,62 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized46
         .I4(addra[15]),
         .I5(addra[14]),
         .O(ena_array));
+  LUT6 #(
+    .INIT(64'h2000000000000000)) 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2__0 
+       (.I0(addrb[17]),
+        .I1(addrb[16]),
+        .I2(addrb[13]),
+        .I3(addrb[12]),
+        .I4(addrb[15]),
+        .I5(addrb[14]),
+        .O(enb_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized47
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -14339,7 +18216,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized47
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -14352,37 +18229,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized47
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -14390,34 +18267,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized48
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -14578,7 +18468,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized48
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -14591,37 +18481,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized48
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -14629,34 +18519,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized5
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -14817,7 +18720,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized5
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -14830,37 +18733,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized5
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -14868,34 +18771,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized6
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -15056,7 +18972,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized6
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -15069,37 +18985,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized6
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -15107,34 +19023,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized7
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -15295,7 +19224,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized7
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -15308,37 +19237,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized7
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -15346,34 +19275,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized8
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -15534,7 +19476,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized8
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -15547,37 +19489,37 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized8
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
@@ -15585,34 +19527,47 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized9
    (douta_array,
+    doutb_array,
     clka,
+    clkb,
     ena_array,
-    addra);
+    enb_array,
+    addra,
+    addrb);
   output [7:0]douta_array;
+  output [7:0]doutb_array;
   input clka;
+  input clkb;
   input [0:0]ena_array;
+  input [0:0]enb_array;
   input [11:0]addra;
+  input [11:0]addrb;
 
-  wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
+  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 ;
   wire [11:0]addra;
+  wire [11:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta_array;
+  wire [7:0]doutb_array;
   wire [0:0]ena_array;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
-  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
-  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
-  wire [31:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
-  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
-  wire [3:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
-  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
-  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
+  wire [0:0]enb_array;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ;
+  wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED ;
+  wire [31:8]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED ;
+  wire [3:1]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED ;
+  wire [7:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED ;
+  wire [8:0]\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(0),
+    .DOB_REG(1),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -15773,7 +19728,7 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized9
     .RAM_EXTENSION_A("NONE"),
     .RAM_EXTENSION_B("NONE"),
     .RAM_MODE("TDP"),
-    .RDADDR_COLLISION_HWCONFIG("PERFORMANCE"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
     .READ_WIDTH_A(9),
     .READ_WIDTH_B(9),
     .RSTREG_PRIORITY_A("REGCE"),
@@ -15786,57 +19741,70 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized9
     .WRITE_MODE_B("WRITE_FIRST"),
     .WRITE_WIDTH_A(9),
     .WRITE_WIDTH_B(9)) 
-    \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
+    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram 
        (.ADDRARDADDR({1'b1,addra,1'b1,1'b1,1'b1}),
-        .ADDRBWRADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,addrb,1'b1,1'b1,1'b1}),
         .CASCADEINA(1'b0),
         .CASCADEINB(1'b0),
-        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
-        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
+        .CASCADEOUTA(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ),
+        .CASCADEOUTB(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ),
         .CLKARDCLK(clka),
-        .CLKBWRCLK(clka),
-        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
+        .CLKBWRCLK(clkb),
+        .DBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED ),
         .DIADI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIBDI({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .DIPADIP({1'b0,1'b0,1'b0,1'b0}),
         .DIPBDIP({1'b0,1'b0,1'b0,1'b0}),
-        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
-        .DOBDO(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:0]),
-        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_n_71 }),
-        .DOPBDOP(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:0]),
-        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
+        .DOADO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED [31:8],douta_array}),
+        .DOBDO({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOBDO_UNCONNECTED [31:8],doutb_array}),
+        .DOPADOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPADOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 }),
+        .DOPBDOP({\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOPBDOP_UNCONNECTED [3:1],\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75 }),
+        .ECCPARITY(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_ECCPARITY_UNCONNECTED [7:0]),
         .ENARDEN(ena_array),
-        .ENBWREN(1'b0),
+        .ENBWREN(enb_array),
         .INJECTDBITERR(1'b0),
         .INJECTSBITERR(1'b0),
-        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
+        .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(1'b1),
-        .REGCEB(1'b0),
+        .REGCEB(1'b1),
         .RSTRAMARSTRAM(1'b0),
         .RSTRAMB(1'b0),
         .RSTREGARSTREG(1'b0),
         .RSTREGB(1'b0),
-        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
+        .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({1'b0,1'b0,1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module image_map_coe_blk_mem_gen_top
    (douta,
+    doutb,
     clka,
-    addra);
+    clkb,
+    addra,
+    addrb);
   output [7:0]douta;
+  output [7:0]doutb;
   input clka;
+  input clkb;
   input [17:0]addra;
+  input [17:0]addrb;
 
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta;
+  wire [7:0]doutb;
 
   image_map_coe_blk_mem_gen_generic_cstr \valid.cstr 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
-        .douta(douta));
+        .clkb(clkb),
+        .douta(douta),
+        .doutb(doutb));
 endmodule
 
 (* C_ADDRA_WIDTH = "18" *) (* C_ADDRB_WIDTH = "18" *) (* C_ALGORITHM = "1" *) 
@@ -15846,15 +19814,15 @@ endmodule
 (* C_DISABLE_WARN_BHV_COLL = "0" *) (* C_DISABLE_WARN_BHV_RANGE = "0" *) (* C_ELABORATION_DIR = "./" *) 
 (* C_ENABLE_32BIT_ADDRESS = "0" *) (* C_EN_DEEPSLEEP_PIN = "0" *) (* C_EN_ECC_PIPE = "0" *) 
 (* C_EN_RDADDRA_CHG = "0" *) (* C_EN_RDADDRB_CHG = "0" *) (* C_EN_SAFETY_CKT = "0" *) 
-(* C_EN_SHUTDOWN_PIN = "0" *) (* C_EN_SLEEP_PIN = "0" *) (* C_EST_POWER_SUMMARY = "Estimated Power for IP     :     2.326398 mW" *) 
+(* C_EN_SHUTDOWN_PIN = "0" *) (* C_EN_SLEEP_PIN = "0" *) (* C_EST_POWER_SUMMARY = "Estimated Power for IP     :     4.652797 mW" *) 
 (* C_FAMILY = "artix7" *) (* C_HAS_AXI_ID = "0" *) (* C_HAS_ENA = "0" *) 
 (* C_HAS_ENB = "0" *) (* C_HAS_INJECTERR = "0" *) (* C_HAS_MEM_OUTPUT_REGS_A = "1" *) 
-(* C_HAS_MEM_OUTPUT_REGS_B = "0" *) (* C_HAS_MUX_OUTPUT_REGS_A = "0" *) (* C_HAS_MUX_OUTPUT_REGS_B = "0" *) 
+(* C_HAS_MEM_OUTPUT_REGS_B = "1" *) (* C_HAS_MUX_OUTPUT_REGS_A = "0" *) (* C_HAS_MUX_OUTPUT_REGS_B = "0" *) 
 (* C_HAS_REGCEA = "0" *) (* C_HAS_REGCEB = "0" *) (* C_HAS_RSTA = "0" *) 
 (* C_HAS_RSTB = "0" *) (* C_HAS_SOFTECC_INPUT_REGS_A = "0" *) (* C_HAS_SOFTECC_OUTPUT_REGS_B = "0" *) 
 (* C_INITA_VAL = "0" *) (* C_INITB_VAL = "0" *) (* C_INIT_FILE = "image_map_coe.mem" *) 
 (* C_INIT_FILE_NAME = "image_map_coe.mif" *) (* C_INTERFACE_TYPE = "0" *) (* C_LOAD_INIT_FILE = "1" *) 
-(* C_MEM_TYPE = "3" *) (* C_MUX_PIPELINE_STAGES = "0" *) (* C_PRIM_TYPE = "1" *) 
+(* C_MEM_TYPE = "4" *) (* C_MUX_PIPELINE_STAGES = "0" *) (* C_PRIM_TYPE = "1" *) 
 (* C_READ_DEPTH_A = "204800" *) (* C_READ_DEPTH_B = "204800" *) (* C_READ_LATENCY_A = "1" *) 
 (* C_READ_LATENCY_B = "1" *) (* C_READ_WIDTH_A = "8" *) (* C_READ_WIDTH_B = "8" *) 
 (* C_RSTRAM_A = "0" *) (* C_RSTRAM_B = "0" *) (* C_RST_PRIORITY_A = "CE" *) 
@@ -15864,7 +19832,7 @@ endmodule
 (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) (* C_WRITE_DEPTH_A = "204800" *) 
 (* C_WRITE_DEPTH_B = "204800" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "8" *) (* C_WRITE_WIDTH_B = "8" *) (* C_XDEVICEFAMILY = "artix7" *) 
-(* downgradeipidentifiedwarnings = "yes" *) 
+(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3" *) (* downgradeipidentifiedwarnings = "yes" *) 
 module image_map_coe_blk_mem_gen_v8_4_3
    (clka,
     rsta,
@@ -15995,18 +19963,13 @@ module image_map_coe_blk_mem_gen_v8_4_3
 
   wire \<const0> ;
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta;
+  wire [7:0]doutb;
 
   assign dbiterr = \<const0> ;
-  assign doutb[7] = \<const0> ;
-  assign doutb[6] = \<const0> ;
-  assign doutb[5] = \<const0> ;
-  assign doutb[4] = \<const0> ;
-  assign doutb[3] = \<const0> ;
-  assign doutb[2] = \<const0> ;
-  assign doutb[1] = \<const0> ;
-  assign doutb[0] = \<const0> ;
   assign rdaddrecc[17] = \<const0> ;
   assign rdaddrecc[16] = \<const0> ;
   assign rdaddrecc[15] = \<const0> ;
@@ -16078,26 +20041,42 @@ module image_map_coe_blk_mem_gen_v8_4_3
        (.G(\<const0> ));
   image_map_coe_blk_mem_gen_v8_4_3_synth inst_blk_mem_gen
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
-        .douta(douta));
+        .clkb(clkb),
+        .douta(douta),
+        .doutb(doutb));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3_synth" *) 
 module image_map_coe_blk_mem_gen_v8_4_3_synth
    (douta,
+    doutb,
     clka,
-    addra);
+    clkb,
+    addra,
+    addrb);
   output [7:0]douta;
+  output [7:0]doutb;
   input clka;
+  input clkb;
   input [17:0]addra;
+  input [17:0]addrb;
 
   wire [17:0]addra;
+  wire [17:0]addrb;
   wire clka;
+  wire clkb;
   wire [7:0]douta;
+  wire [7:0]doutb;
 
   image_map_coe_blk_mem_gen_top \gnbram.gnativebmg.native_blk_mem_gen 
        (.addra(addra),
+        .addrb(addrb),
         .clka(clka),
-        .douta(douta));
+        .clkb(clkb),
+        .douta(douta),
+        .doutb(doutb));
 endmodule
 `ifndef GLBL
 `define GLBL

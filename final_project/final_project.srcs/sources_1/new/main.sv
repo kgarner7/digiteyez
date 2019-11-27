@@ -12,8 +12,9 @@ module main(
     input wire jb,          //  uart input
     input wire [3:0] filt,
     output logic ca, cb, cc, cd, ce, cf, cg, dp,  // segments a-g, dp
-    output logic [3:0]  jd,    // sck, mosi,cs, d/c in that order
-    output logic [7:0]  an    // Display location 0-7
+    output logic [3:0]  jd,     // sck, mosi,cs, d/c in that order
+    output logic [3:0]  jc,     // sck, mosi,cs, d/c in that order
+    output logic [7:0]  an       // Display location 0-7
 );
 
     localparam WIDTH_SCALING = 13 / 16;
@@ -24,7 +25,8 @@ module main(
     test_image_feeder feeder (
         .clk_100mhz(clk_100mhz), .rst(reset), 
         .start_x(horiz_position),
-        .spi_out(jd), .pixel_out(pixel)
+        .spi_out_0(jd), .spi_out_1(jc),
+        .pixel_out(pixel)
     );
     
     wire clk_65mhz; 
