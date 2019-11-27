@@ -34,15 +34,19 @@ module position_manager#(
     output logic [$clog2(img_width):0] horiz_position
 );
 
-    logic [17:0] width_scaling;
+    logic [17:0] width_scaling_temp, width_scaling;
 
     // divide image width by 360, get 4-bit fraction
     div_gen_0 divider(
         .s_axis_dividend_tdata(img_width),
         .s_axis_divisor_tdata(360),
-        .m_axis_dout_tdata(width_scaling),
+        .m_axis_dout_tdata(width_scaling_temp),
         .aclk(clock)
     );
+    
+    always_comb begin
+        width_scaling = { width_scaling_temp * 13 } >> 4;
+    end
     
     logic uart_sync;
     logic [47:0] uart_data;
@@ -116,7 +120,7 @@ module position_manager#(
         end
     end
     
-    clock_divider #(.FREQUENCY(FREQUENCY), .TARGET_FREQUENCY(10)) button_divider(
+    clock_divider #(.FREQUENCY(FREQUENCY), .TARGET_FREQUENCY(30)) button_divider(
         .clock(clock), .reset(reset),
         .divided_clock(button_enabled)
     );

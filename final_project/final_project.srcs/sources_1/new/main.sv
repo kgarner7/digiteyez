@@ -15,10 +15,13 @@ module main(
     output logic [3:0]  jd,    // sck, mosi,cs, d/c in that order
     output logic [7:0]  an    // Display location 0-7
 );
+
+    localparam WIDTH_SCALING = 13 / 16;
+
     
     logic [7:0] pixel;
     
-    test_image_feeder(
+    test_image_feeder feeder (
         .clk_100mhz(clk_100mhz), .rst(reset), 
         .start_x(horiz_position),
         .spi_out(jd), .pixel_out(pixel)
@@ -38,7 +41,7 @@ module main(
     logic [15:0] vert_angle;
     logic [9:0] horiz_position;
     
-    position_manager(
+    position_manager manager (
         .clock(clk_65mhz), .reset(reset),
         .left_button(btnl), .right_button(btnr),
         .uart_in(jb), .filter(filt),

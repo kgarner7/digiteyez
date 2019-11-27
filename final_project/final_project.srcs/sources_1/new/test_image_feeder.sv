@@ -33,6 +33,8 @@ module test_image_feeder#(
     output logic [3:0] spi_out, //four bits wide, connected to jd,
     output logic [7:0] pixel_out
 );
+
+    integer scaled_width = img_width * 13 >> 4;
     
     reg image_done = 0;
     logic [7:0] pixel_in;
@@ -64,7 +66,7 @@ module test_image_feeder#(
     
     always_comb begin
         if (start_x + col_count >= img_width) begin
-            next_x = col_count + start_x - (img_width * 3/4);
+            next_x = col_count + start_x - scaled_width;
         end else begin
             next_x = col_count + start_x;
         end
