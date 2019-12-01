@@ -21,8 +21,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 module screen_interfacer#(
     parameter ms10 = 26'd1000000, 
-    parameter img_width = 640, 
-    parameter img_height = 320, 
     parameter screen_width = 240, 
     parameter screen_height = 320) //10 cycle delay for testing without gaps, 1000000 for real life when we want ms, 200 for testing with gaps
 (

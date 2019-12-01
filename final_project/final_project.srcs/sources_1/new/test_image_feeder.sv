@@ -21,8 +21,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module test_image_feeder#(
-    parameter img_width = 640, 
-    parameter img_height = 320,
+    parameter img_width = 830, 
+    parameter img_height = 415,
     parameter screen_width = 240, 
     parameter screen_height = 320,
     parameter ms10 = 26'd1000000
@@ -53,8 +53,6 @@ module test_image_feeder#(
 
     screen_interfacer#(
         .ms10(ms10),
-        .img_width(img_width),
-        .img_height(img_height),
         .screen_width(screen_width),
         .screen_height(screen_height)
     ) left(
@@ -66,8 +64,6 @@ module test_image_feeder#(
     
     screen_interfacer#(
         .ms10(ms10),
-        .img_width(img_width),
-        .img_height(img_height),
         .screen_width(screen_width),
         .screen_height(screen_height)
     ) right (

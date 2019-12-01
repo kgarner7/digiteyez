@@ -55,10 +55,10 @@
 COMPONENT image_map_coe
   PORT (
     clka : IN STD_LOGIC;
-    addra : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+    addra : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
     douta : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     clkb : IN STD_LOGIC;
-    addrb : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+    addrb : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
     doutb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
   );
 END COMPONENT;
