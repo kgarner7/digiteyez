@@ -16,15 +16,12 @@ module main(
     output logic [3:0]  jc,     // sck, mosi,cs, d/c in that order
     output logic [7:0]  an       // Display location 0-7
 );
-
-    localparam WIDTH_SCALING = 13 / 16;
-
     
     logic [7:0] pixel;
     
     test_image_feeder feeder (
         .clk_100mhz(clk_100mhz), .rst(reset), 
-        .start_x(horiz_position),
+        .start_x(horz_angle),
         .spi_out_0(jd), .spi_out_1(jc),
         .pixel_out(pixel)
     );
@@ -40,22 +37,22 @@ module main(
         .bounce(btnc), .clean(reset)
     );
 
-    logic [15:0] vert_angle;
-    logic [9:0] horiz_position;
+    logic [7:0] vert_angle;
+    logic [8:0] horz_angle;
     
     position_manager manager (
         .clock(clk_65mhz), .reset(reset),
         .left_button(btnl), .right_button(btnr),
         .uart_in(jb), .filter(filt),
         .vert_angle(vert_angle),
-        .horiz_position(horiz_position)
+        .horz_angle(horz_angle)
     );
     
     wire [31:0] data;      //  instantiate 7-segment display; display (8) 4-bit hex
     wire [6:0] segments;
     
-    assign  dp = 1'b1;  // turn off the period
-    assign data = { horiz_position, vert_angle };
+    assign dp = 1'b1;  // turn off the period
+    assign data = { horz_angle, 8'b0, vert_angle };
     assign {cg, cf, ce, cd, cc, cb, ca} = segments[6:0];
     
     display_8hex display(

@@ -31,22 +31,8 @@ module position_manager#(
     input wire uart_in,
     input wire [3:0] filter,
     output logic [7:0] vert_angle,
-    output logic [$clog2(img_width):0] horiz_position
+    output logic [8:0] horz_angle
 );
-
-    logic [17:0] width_scaling_temp, width_scaling;
-
-    // divide image width by 360, get 4-bit fraction
-    div_gen_0 divider(
-        .s_axis_dividend_tdata(img_width),
-        .s_axis_divisor_tdata(360),
-        .m_axis_dout_tdata(width_scaling_temp),
-        .aclk(clock)
-    );
-    
-    always_comb begin
-        width_scaling = { width_scaling_temp * 13 } >> 4;
-    end
     
     logic uart_sync;
     logic [47:0] uart_data;
@@ -86,7 +72,6 @@ module position_manager#(
     logic button_enabled;
     reg [8:0] current_horz = 180;
     logic [8:0] next_horz; 
-    logic [17:0] next_horiz_position, next_vert_position;
     logic [15:0] y_shifted, y_unsigned, next_vert;
     
     always_comb begin
@@ -99,15 +84,12 @@ module position_manager#(
         end else begin
             next_horz = current_horz;
         end
-        
-        // attempt to scale; does not quite work
-        next_horiz_position = { next_horz } * width_scaling;
     end
     
     
     always_comb begin
         y_unsigned = y_accel_filtered[15] ? ~y_accel_filtered + 1 : y_accel_filtered;
-        y_shifted = (y_accel_filtered[15:8] * 3 >> 1);
+        y_shifted = (y_unsigned[15:8] * 3 >> 1);
         
         if (y_shifted >= 90) begin
             y_shifted = 90;
@@ -130,7 +112,7 @@ module position_manager#(
             current_horz    <= 180;
         end else begin
             if (button_enabled) begin
-                horiz_position  <= next_horiz_position[17:8];
+                horz_angle      <= next_horz;
                 current_horz    <= next_horz;
             end
             
