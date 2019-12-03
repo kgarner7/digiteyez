@@ -21,7 +21,7 @@
 
 
 module divider_test;
-    logic clock;
+    logic clock, out_bit;
     logic [17:0] out;
     logic [19:0] result;
     logic [19:0] shifted;
@@ -32,22 +32,26 @@ module divider_test;
         .s_axis_dividend_tdata(dividend),
         .s_axis_divisor_tdata(360),
         .m_axis_dout_tdata(out),
+        .m_axis_dout_tvalid(out_bit),
         .aclk(clock)
     );
     
     always #5 clock = !clock;
     
+    logic [5:0] test;
+    
     initial begin
+        test = -2;
         clock = 0;
         dividend = 640;
-        $display("Starting sim");
+        $display("Starting sim: %d", test);
         
-        #100; dividend = 720;
+        #20; dividend = 720;
         
-        #(10 * 27);
+        #(10 * 19);
         $display("640 / 360 = %d.%b", out[17:8], out[7:0]);
-        result = 359 * out;
-        shifted = result[19:8];
+        #20;
+        $display("720 / 360 = %d.%b", out[17:8], out[7:0]);
         $finish();
     end
 endmodule
