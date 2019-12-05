@@ -1,0 +1,91 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+| Date         : Wed Dec  4 20:42:25 2019
+| Host         : LAPTOP-CO0VMFOQ running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file main_control_sets_placed.rpt
+| Design       : main
+| Device       : xc7a100t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    13 |
+|    Minimum number of control sets                        |    13 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    49 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    13 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |     3 |
+| >= 6 to < 8        |     4 |
+| >= 8 to < 10       |     1 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     2 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               9 |            5 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              66 |           15 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              52 |           17 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------------+----------------------------+----------------------------+------------------+----------------+
+|      Clock Signal      |        Enable Signal       |      Set/Reset Signal      | Slice Load Count | Bel Load Count |
++------------------------+----------------------------+----------------------------+------------------+----------------+
+|  clk_wiz/inst/clk_out1 | sd/cs10_out                |                            |                1 |              1 |
+|  clk_wiz/inst/clk_out1 | sd/recv_data[0]_i_1_n_0    |                            |                1 |              1 |
+|  clk_100mhz_IBUF       |                            |                            |                1 |              3 |
+|  clk_wiz/inst/clk_out1 | sd/bit_counter[7]_i_1_n_0  | sd/bit_counter[9]_i_1_n_0  |                2 |              4 |
+|  clk_wiz/inst/clk_out1 | sd/return_state[4]_i_1_n_0 |                            |                2 |              5 |
+|  clk_wiz/inst/clk_out1 | sd/state[4]_i_1_n_0        | btnc_IBUF                  |                2 |              5 |
+|  clk_wiz/inst/clk_out1 |                            |                            |                4 |              6 |
+|  clk_wiz/inst/clk_out1 | sd/bit_counter[7]_i_1_n_0  |                            |                2 |              6 |
+|  clk_wiz/inst/clk_out1 | sd/byte_counter[8]_i_2_n_0 | sd/byte_counter[8]_i_1_n_0 |                4 |              7 |
+|  clk_wiz/inst/clk_out1 | sd/data_sig[7]_i_1_n_0     |                            |                2 |              7 |
+|  clk_wiz/inst/clk_out1 | sd/cmd_out[45]_i_1_n_0     | sd/cmd_out[55]_i_1_n_0     |                2 |              9 |
+|  clk_wiz/inst/clk_out1 | sd/boot_counter[0]_i_1_n_0 | btnc_IBUF                  |                7 |             27 |
+|  clk_wiz/inst/clk_out1 | sd/cmd_out[45]_i_1_n_0     |                            |                7 |             46 |
++------------------------+----------------------------+----------------------------+------------------+----------------+
+
+
