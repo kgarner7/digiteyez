@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1.2 (lin64) Build 2615518 Fri Aug  9 15:53:29 MDT 2019
-// Date        : Sun Dec  1 18:30:48 2019
+// Date        : Mon Dec  2 12:41:36 2019
 // Host        : eecs-digital-18 running 64-bit Ubuntu 14.04.6 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /afs/athena.mit.edu/user/c/t/ctraweek/digiteyez/final_project/final_project.srcs/sources_1/ip/image_map_coe/image_map_coe_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top image_map_coe -prefix
+//               image_map_coe_ image_map_coe_sim_netlist.v
 // Design      : image_map_coe
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -196,7 +196,6 @@ module image_map_coe
         .web(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module image_map_coe_blk_mem_gen_generic_cstr
    (douta,
     doutb,
@@ -2543,7 +2542,6 @@ module image_map_coe_blk_mem_gen_generic_cstr
         .clkb(clkb));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_mux" *) 
 module image_map_coe_blk_mem_gen_mux
    (douta,
     addra,
@@ -9069,7 +9067,6 @@ module image_map_coe_blk_mem_gen_mux__parameterized0
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module image_map_coe_blk_mem_gen_prim_width
    (\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ,
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 ,
@@ -12418,7 +12415,6 @@ module image_map_coe_blk_mem_gen_prim_width__parameterized9
         .clkb(clkb));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module image_map_coe_blk_mem_gen_prim_wrapper_init
    (\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 ,
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 ,
@@ -35612,7 +35608,6 @@ module image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized9
         .O(\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2__59_n_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module image_map_coe_blk_mem_gen_top
    (douta,
     doutb,
@@ -35668,7 +35663,7 @@ endmodule
 (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) (* C_WRITE_DEPTH_A = "344450" *) 
 (* C_WRITE_DEPTH_B = "344450" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "8" *) (* C_WRITE_WIDTH_B = "8" *) (* C_XDEVICEFAMILY = "artix7" *) 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3" *) (* downgradeipidentifiedwarnings = "yes" *) 
+(* downgradeipidentifiedwarnings = "yes" *) 
 module image_map_coe_blk_mem_gen_v8_4_3
    (clka,
     rsta,
@@ -35886,7 +35881,6 @@ module image_map_coe_blk_mem_gen_v8_4_3
         .doutb(doutb));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3_synth" *) 
 module image_map_coe_blk_mem_gen_v8_4_3_synth
    (douta,
     doutb,

@@ -16,19 +16,17 @@ module main(
     output logic [3:0]  jc,     // sck, mosi,cs, d/c in that order
     output logic [7:0]  an       // Display location 0-7
 );
-    
-    logic [7:0] pixel;
-    
+        
     test_image_feeder feeder (
         .clk_100mhz(clk_100mhz), .rst(reset), 
-        .start_x(horz_angle),
-        .spi_out_0(jd), .spi_out_1(jc),
-        .pixel_out(pixel)
+        .horiz_angle(horz_angle), .vert_angle(vert_angle),
+        .spi_out_0(jd), .spi_out_1(jc)
     );
     
     wire clk_65mhz; 
     clk_wiz_0 clkdivider(
-        .clk_in1(clk_100mhz), .clk_out1(clk_65mhz)
+        .clk_in1(clk_100mhz), 
+        .clk_out1(clk_65mhz)
     );
     
     wire reset;

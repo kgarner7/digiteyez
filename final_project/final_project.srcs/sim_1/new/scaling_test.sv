@@ -43,17 +43,19 @@ module scaling_test#(
     logic [17:0] height_count;
     logic [21:0] multiplied;
     logic [7:0] start_x;
+    logic [$clog2(img_height):0] row_count;
     
     initial begin
-        start_x         = 30;
+        start_x         = 114;
         clock           = 0;
         height_count    = -480;
         
         #500;
         for (integer i = 0; i <= 320; i = i + 1) begin
             height_count = height_count + 3;            
-            multiplied = ({{4 {height_count[12]}}, height_count } + { start_x, 4'b0 }) * { 4'b0, height_scaling };
-            $display("multiplied: %d",multiplied[21:12]);
+            multiplied = ({{4 {height_count[17]}}, height_count } + { start_x, 4'b0 }) * { 4'b0, height_scaling };
+            row_count = multiplied[21:12];
+            $display("multiplied: %d",row_count);
         end
         $finish;
     end

@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1.2 (lin64) Build 2615518 Fri Aug  9 15:53:29 MDT 2019
--- Date        : Sun Dec  1 18:30:48 2019
+-- Date        : Mon Dec  2 12:41:36 2019
 -- Host        : eecs-digital-18 running 64-bit Ubuntu 14.04.6 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /afs/athena.mit.edu/user/c/t/ctraweek/digiteyez/final_project/final_project.srcs/sources_1/ip/image_map_coe/image_map_coe_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top image_map_coe -prefix
+--               image_map_coe_ image_map_coe_stub.vhdl
 -- Design      : image_map_coe
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a100tcsg324-1

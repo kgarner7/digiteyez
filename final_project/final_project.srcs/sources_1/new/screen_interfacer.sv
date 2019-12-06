@@ -19,11 +19,12 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-module screen_interfacer#(
-    parameter ms10 = 26'd1000000, 
-    parameter screen_width = 240, 
-    parameter screen_height = 320) //10 cycle delay for testing without gaps, 1000000 for real life when we want ms, 200 for testing with gaps
-(
+module screen_interfacer#(parameter
+    ms10 = 26'd1000000,  //10 cycle delay for testing without gaps, 1000000 for real life when we want ms, 200 for testing with gaps
+    screen_width = 240, 
+    screen_height = 320,
+    INITIAL_IMAGE_WAIT = 5
+) (
     input wire clk_100mhz,
     input wire rst,
     input wire image_done,
@@ -32,8 +33,7 @@ module screen_interfacer#(
     output logic [5:0] state_out, //for debugging
     output logic pixel_ready, // whether should start read for next chunk
     output logic image_ready,
-    output wire led,
-    output wire stalled
+    output wire led
 );
 
     logic [30:0] timer; //has to count to 100,000,000 for the second long invert delay thing
@@ -361,7 +361,7 @@ module screen_interfacer#(
                 IMAGE_SEND: begin //send an image hopefully
                     image_ready <= 0;
                     
-                    if (ready_to_send && timer > 2) begin
+                    if (ready_to_send && timer > INITIAL_IMAGE_WAIT) begin
                         isdata_out <= 1'b1;
                         
                         if (gray_count == 0) begin
@@ -377,7 +377,7 @@ module screen_interfacer#(
                         read_ready  <= 0;
                         send_now    <= 0;
                         
-                        if (timer <= 2) begin
+                        if (timer <= INITIAL_IMAGE_WAIT) begin
                             timer <= timer + 1;
                         end
                     end else begin
