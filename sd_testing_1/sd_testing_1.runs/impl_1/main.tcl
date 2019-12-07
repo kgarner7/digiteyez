@@ -60,12 +60,14 @@ proc step_failed { step } {
   close $ch
 }
 
+set_msg_config -id {Common 17-41} -limit 10000000
 
 start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 2
+  set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7a100tcsg324-1
   set_property board_part_repo_paths {C:/Users/user/AppData/Roaming/Xilinx/Vivado/2019.1/xhub/board_store} [current_project]
   set_property board_part digilentinc.com:nexys4_ddr:part0:1.1 [current_project]
@@ -75,9 +77,10 @@ set rc [catch {
   set_property parent.project_path D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.xpr [current_project]
   set_property ip_output_repo D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-  set_property XPM_LIBRARIES XPM_CDC [current_project]
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
   add_files -quiet D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.runs/synth_1/main.dcp
-  read_ip -quiet d:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+  read_ip -quiet D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+  read_ip -quiet D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
   read_xdc D:/_Senior/Semester_1/6.111/nexys4_ddr_default.xdc
   link_design -top main -part xc7a100tcsg324-1
   close_msg_db -file init_design.pb
@@ -158,7 +161,7 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  set_property XPM_LIBRARIES XPM_CDC [current_project]
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
   catch { write_mem_info -force main.mmi }
   write_bitstream -force main.bit 
   catch {write_debug_probes -quiet -force main}

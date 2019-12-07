@@ -55,7 +55,7 @@ module sd_controller(
     parameter WRITE_BLOCK_WAIT = 18;
     
     parameter WRITE_DATA_SIZE = 515;
-    
+    parameter BOOT_COUNTER_WAIT = 27'd100_000_000;
     reg [4:0] state = RST;
     assign status = state;
     reg [4:0] return_state;
@@ -68,12 +68,12 @@ module sd_controller(
     reg [9:0] byte_counter;
     reg [9:0] bit_counter;
     
-    reg [26:0] boot_counter = 27'd100_000_000;
+    reg [26:0] boot_counter = BOOT_COUNTER_WAIT;
     always @(posedge clk) begin
         if(reset == 1) begin
             state <= RST;
             sclk_sig <= 0;
-            boot_counter <= 27'd100_000_000;
+            boot_counter <= BOOT_COUNTER_WAIT; //change back to 
         end
         else begin
             case(state)
