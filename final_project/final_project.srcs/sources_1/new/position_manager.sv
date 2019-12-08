@@ -24,8 +24,7 @@
 module position_manager#(parameter
     FREQUENCY = 65_000_000,
     GYRO_BITS = 3,
-    GYRO_FREQUENCY = 30,
-    BUFFER = 4'd2
+    GYRO_FREQUENCY = 30
 )(
     input wire clock, reset, calibrate,
     input wire [3:0] vert_padding,
@@ -106,13 +105,13 @@ module position_manager#(parameter
             
             if (x_gyro_top[GYRO_BITS]) begin
                 if (-x_gyro_top[GYRO_BITS - 1: 0] >= horz_padding) begin
-                    next_horz = current_horz == 0 ? 359 : current_horz - 2;
+                    next_horz = current_horz == 359 ? 0 : current_horz + 2;
                 end else begin
                     x_accel_signed = 0;
                     next_horz = current_horz;
                 end
             end else if (x_gyro_top >= horz_padding) begin
-                next_horz = current_horz == 359 ? 0 : current_horz + 2;
+                next_horz = current_horz == 0 ? 359 : current_horz - 2;
             end else begin
                 x_accel_signed = 0;
                 next_horz = current_horz;

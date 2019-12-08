@@ -199,7 +199,7 @@ module test_image_feeder#(parameter
             next_horiz_angle = scaled_horiz_angle;
         end  
         
-        multiplied_horz_pos = next_horiz_angle * { 2'b0, width_scaling };    
+        multiplied_horz_pos <= next_horiz_angle * { 2'b0, width_scaling };    
         
         if (multiplied_horz_pos[19:10] >= current_width) begin
             col_count <= multiplied_horz_pos[19:10] - current_width;
@@ -213,7 +213,7 @@ module test_image_feeder#(parameter
 
     always_ff @(posedge clk_100mhz) begin
         scaled_vert_angle   = {{4{vert_index[17]}}, vert_index } + { vert_angle, 4'b0 };
-        multiplied_vert_pos = scaled_vert_angle * { 4'b0, height_scaling };
+        multiplied_vert_pos <= scaled_vert_angle * { 4'b0, height_scaling };
         row_count           <= multiplied_vert_pos[21:12];
     end    
         
@@ -258,23 +258,23 @@ module test_image_feeder#(parameter
     reg [0:7][31:0] pano_start = '{
         32'h77800,
         32'hCBA00,
-        32'h11FC00,
-        32'h0,
-        32'h0,
-        32'h0,
-        32'h0,
-        32'h0
+        32'h11FC00, // end of actual images
+        32'h77800,
+        32'h77800,
+        32'h77800,
+        32'h77800,
+        32'h77800
     };
     
     reg [0:7][16:0] pano_sectors = '{
         10'd673,
         10'd673,
+        10'd673, // end of actual images
         10'd673,
-        10'd0,
-        10'd0,
-        10'd0,
-        10'd0,
-        10'd0
+        10'd673,
+        10'd673,
+        10'd673,
+        10'd673
     };
     
     always_ff @(posedge clk_100mhz) begin
@@ -368,7 +368,12 @@ module test_image_feeder#(parameter
             image_done  <= 0;
         end else if (read_ready && vert_count < screen_height) begin
             addr_left   <= (row_count * current_width) + col_count;
-            addr_right  <= (row_count * current_width) + col_count;    
+            
+            if (current_state == STEREO) begin
+                addr_right  <= (row_count * current_width) + col_count + STEREO_WIDTH * STEREO_HEIGHT;   
+            end else begin
+                addr_right  <= (row_count * current_width) + col_count;   
+            end
             
             if (horiz_count == (screen_width-1)) begin //begin a new row    
                 horiz_count <= 0;

@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1.2 (lin64) Build 2615518 Fri Aug  9 15:53:29 MDT 2019
-// Date        : Tue Nov 26 14:53:01 2019
-// Host        : eecs-digital-18 running 64-bit Ubuntu 14.04.6 LTS
+// Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+// Date        : Sun Dec  8 14:35:43 2019
+// Host        : not-trash running 64-bit Arch Linux
 // Command     : write_verilog -force -mode synth_stub
-//               /afs/athena.mit.edu/user/k/g/kgarner/Private/6.111/digiteyez/final_project/final_project.srcs/sources_1/ip/div_gen_0/div_gen_0_stub.v
+//               /home/mainuser/Sync/MIT/2019/fall/6.111/digiteyez/final_project/final_project.srcs/sources_1/ip/div_gen_0/div_gen_0_stub.v
 // Design      : div_gen_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

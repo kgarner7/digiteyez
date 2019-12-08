@@ -31,8 +31,7 @@ module main(
     output logic sd_dat_2,
     output logic sd_dat_3
 );
-        
-    
+
     wire clk_65mhz, clk_25mhz;
     clk_wiz_0 clkdivider(
         .clk_in1(clk_100mhz), 
@@ -106,7 +105,7 @@ module main(
     wire [6:0] segments;
     
     assign dp = 1'b1;  // turn off the period
-    assign data = { 1'b0, horz_padding, vert_padding, vert_angle };
+    assign data = { filt, vert_padding, 1'b0, horz_padding, 3'b0, horz_angle, vert_angle };
     assign {cg, cf, ce, cd, cc, cb, ca} = segments[6:0];
 
     display_8hex display(
