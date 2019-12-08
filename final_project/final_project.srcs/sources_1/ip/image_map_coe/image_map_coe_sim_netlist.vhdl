@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1.2 (lin64) Build 2615518 Fri Aug  9 15:53:29 MDT 2019
--- Date        : Mon Dec  2 12:41:36 2019
--- Host        : eecs-digital-18 running 64-bit Ubuntu 14.04.6 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top image_map_coe -prefix
---               image_map_coe_ image_map_coe_sim_netlist.vhdl
+-- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+-- Date        : Sat Dec  7 18:40:56 2019
+-- Host        : LAPTOP-CO0VMFOQ running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim
+--               D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.srcs/sources_1/ip/image_map_coe/image_map_coe_sim_netlist.vhdl
 -- Design      : image_map_coe
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -7970,6 +7970,10 @@ entity image_map_coe_blk_mem_gen_prim_wrapper_init is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -8185,8 +8189,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -8210,8 +8216,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1\: unisim.vcomponents.LUT4
     generic map(
@@ -8248,6 +8261,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized0\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -8465,8 +8482,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -8490,8 +8509,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__51\: unisim.vcomponents.LUT4
     generic map(
@@ -8528,6 +8554,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized1\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -8745,8 +8775,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -8770,8 +8802,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__55\: unisim.vcomponents.LUT4
     generic map(
@@ -8808,6 +8847,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized10\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -9025,8 +9068,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -9050,8 +9095,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__43\: unisim.vcomponents.LUT4
     generic map(
@@ -9088,6 +9140,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized11\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -9305,8 +9361,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -9330,8 +9388,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__8\: unisim.vcomponents.LUT4
     generic map(
@@ -9368,6 +9433,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized12\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -9585,8 +9654,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -9610,8 +9681,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__71\: unisim.vcomponents.LUT4
     generic map(
@@ -9648,6 +9726,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized13\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -9865,8 +9947,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -9890,8 +9974,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__63\: unisim.vcomponents.LUT4
     generic map(
@@ -9928,6 +10019,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized14\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -10145,8 +10240,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -10170,8 +10267,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__47\: unisim.vcomponents.LUT4
     generic map(
@@ -10208,6 +10312,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized15\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -10425,8 +10533,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -10450,8 +10560,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__76\: unisim.vcomponents.LUT6
     generic map(
@@ -10493,7 +10610,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized16\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized16\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -10713,8 +10834,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -10738,8 +10861,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__82\: unisim.vcomponents.LUT6
     generic map(
@@ -10798,6 +10928,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized17\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -11015,8 +11149,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -11040,8 +11176,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__80\: unisim.vcomponents.LUT6
     generic map(
@@ -11082,6 +11225,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized18\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -11299,8 +11446,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -11324,8 +11473,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__78\: unisim.vcomponents.LUT6
     generic map(
@@ -11366,6 +11522,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized19\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -11583,8 +11743,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -11608,8 +11770,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__14\: unisim.vcomponents.LUT4
     generic map(
@@ -11646,6 +11815,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized2\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -11863,8 +12036,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -11888,8 +12063,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__39\: unisim.vcomponents.LUT4
     generic map(
@@ -11926,6 +12108,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized20\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -12143,8 +12329,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -12168,8 +12356,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__19\: unisim.vcomponents.LUT4
     generic map(
@@ -12206,6 +12401,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized21\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -12423,8 +12622,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -12448,8 +12649,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__24\: unisim.vcomponents.LUT4
     generic map(
@@ -12486,6 +12694,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized22\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -12703,8 +12915,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -12728,8 +12942,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__29\: unisim.vcomponents.LUT4
     generic map(
@@ -12766,6 +12987,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized23\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -12983,8 +13208,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -13008,8 +13235,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__4\: unisim.vcomponents.LUT4
     generic map(
@@ -13046,6 +13280,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized24\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -13263,8 +13501,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -13288,8 +13528,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__33\: unisim.vcomponents.LUT4
     generic map(
@@ -13326,6 +13573,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized25\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -13543,8 +13794,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -13568,8 +13821,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__34\: unisim.vcomponents.LUT4
     generic map(
@@ -13606,6 +13866,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized26\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -13823,8 +14087,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -13848,8 +14114,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__35\: unisim.vcomponents.LUT4
     generic map(
@@ -13886,6 +14159,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized27\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -14103,8 +14380,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -14128,8 +14407,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__9\: unisim.vcomponents.LUT4
     generic map(
@@ -14166,6 +14452,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized28\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -14383,8 +14673,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -14408,8 +14700,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__36\: unisim.vcomponents.LUT4
     generic map(
@@ -14446,6 +14745,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized29\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -14663,8 +14966,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -14688,8 +14993,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__37\: unisim.vcomponents.LUT4
     generic map(
@@ -14726,6 +15038,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized3\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -14943,8 +15259,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -14968,8 +15286,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__13\: unisim.vcomponents.LUT4
     generic map(
@@ -15006,6 +15331,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized30\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -15223,8 +15552,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -15248,8 +15579,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__38\: unisim.vcomponents.LUT4
     generic map(
@@ -15286,6 +15624,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized31\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -15503,8 +15845,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -15528,8 +15872,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__0\: unisim.vcomponents.LUT4
     generic map(
@@ -15566,6 +15917,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized32\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -15783,8 +16138,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -15808,8 +16165,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__52\: unisim.vcomponents.LUT4
     generic map(
@@ -15846,6 +16210,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized33\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -16063,8 +16431,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -16088,8 +16458,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__56\: unisim.vcomponents.LUT4
     generic map(
@@ -16126,6 +16503,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized34\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -16343,8 +16724,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -16368,8 +16751,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__40\: unisim.vcomponents.LUT4
     generic map(
@@ -16406,6 +16796,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized35\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -16623,8 +17017,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -16648,8 +17044,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__15\: unisim.vcomponents.LUT4
     generic map(
@@ -16686,6 +17089,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized36\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -16903,8 +17310,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -16928,8 +17337,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__20\: unisim.vcomponents.LUT4
     generic map(
@@ -16966,6 +17382,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized37\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -17183,8 +17603,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -17208,8 +17630,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__25\: unisim.vcomponents.LUT4
     generic map(
@@ -17246,6 +17675,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized38\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -17463,8 +17896,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -17488,8 +17923,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__30\: unisim.vcomponents.LUT4
     generic map(
@@ -17526,6 +17968,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized39\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -17743,8 +18189,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -17768,8 +18216,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__5\: unisim.vcomponents.LUT4
     generic map(
@@ -17806,6 +18261,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized4\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -18023,8 +18482,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -18048,8 +18509,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__18\: unisim.vcomponents.LUT4
     generic map(
@@ -18086,6 +18554,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized40\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -18303,8 +18775,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -18328,8 +18802,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__68\: unisim.vcomponents.LUT4
     generic map(
@@ -18366,6 +18847,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized41\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -18583,8 +19068,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -18608,8 +19095,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__60\: unisim.vcomponents.LUT4
     generic map(
@@ -18646,6 +19140,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized42\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -18863,8 +19361,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -18888,8 +19388,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__44\: unisim.vcomponents.LUT4
     generic map(
@@ -18926,6 +19433,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized43\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -19143,8 +19654,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -19168,8 +19681,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__10\: unisim.vcomponents.LUT4
     generic map(
@@ -19206,6 +19726,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized44\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -19423,8 +19947,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -19448,8 +19974,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__72\: unisim.vcomponents.LUT4
     generic map(
@@ -19486,6 +20019,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized45\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -19703,8 +20240,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -19728,8 +20267,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__64\: unisim.vcomponents.LUT4
     generic map(
@@ -19766,6 +20312,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized46\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -19983,8 +20533,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -20008,8 +20560,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__48\: unisim.vcomponents.LUT4
     generic map(
@@ -20046,6 +20605,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized47\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -20263,8 +20826,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -20288,8 +20853,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__1\: unisim.vcomponents.LUT4
     generic map(
@@ -20326,6 +20898,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized48\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -20543,8 +21119,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -20568,8 +21146,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__53\: unisim.vcomponents.LUT4
     generic map(
@@ -20606,6 +21191,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized49\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -20823,8 +21412,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -20848,8 +21439,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__57\: unisim.vcomponents.LUT4
     generic map(
@@ -20886,6 +21484,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized5\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -21103,8 +21705,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -21128,8 +21732,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__23\: unisim.vcomponents.LUT4
     generic map(
@@ -21166,6 +21777,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized50\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -21383,8 +21998,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -21408,8 +22025,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__41\: unisim.vcomponents.LUT4
     generic map(
@@ -21446,6 +22070,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized51\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -21663,8 +22291,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -21688,8 +22318,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__16\: unisim.vcomponents.LUT4
     generic map(
@@ -21726,6 +22363,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized52\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -21943,8 +22584,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -21968,8 +22611,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__21\: unisim.vcomponents.LUT4
     generic map(
@@ -22006,6 +22656,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized53\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -22223,8 +22877,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -22248,8 +22904,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__26\: unisim.vcomponents.LUT4
     generic map(
@@ -22286,6 +22949,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized54\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -22503,8 +23170,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -22528,8 +23197,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__31\: unisim.vcomponents.LUT4
     generic map(
@@ -22566,6 +23242,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized55\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -22783,8 +23463,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -22808,8 +23490,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__6\: unisim.vcomponents.LUT4
     generic map(
@@ -22846,6 +23535,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized56\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -23063,8 +23756,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -23088,8 +23783,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__69\: unisim.vcomponents.LUT4
     generic map(
@@ -23126,6 +23828,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized57\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -23343,8 +24049,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -23368,8 +24076,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__61\: unisim.vcomponents.LUT4
     generic map(
@@ -23406,6 +24121,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized58\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -23623,8 +24342,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -23648,8 +24369,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__45\: unisim.vcomponents.LUT4
     generic map(
@@ -23686,6 +24414,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized59\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -23903,8 +24635,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -23928,8 +24662,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__11\: unisim.vcomponents.LUT4
     generic map(
@@ -23966,6 +24707,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized6\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -24183,8 +24928,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -24208,8 +24955,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__28\: unisim.vcomponents.LUT4
     generic map(
@@ -24246,6 +25000,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized60\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -24463,8 +25221,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -24488,8 +25248,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__73\: unisim.vcomponents.LUT4
     generic map(
@@ -24526,6 +25293,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized61\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -24743,8 +25514,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -24768,8 +25541,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__65\: unisim.vcomponents.LUT4
     generic map(
@@ -24806,6 +25586,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized62\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -25023,8 +25807,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -25048,8 +25834,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__49\: unisim.vcomponents.LUT4
     generic map(
@@ -25087,7 +25880,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized63\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized63\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -25307,8 +26104,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -25332,8 +26131,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__2\: unisim.vcomponents.LUT4
     generic map(
@@ -25393,7 +26199,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized64\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized64\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -25613,8 +26423,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -25638,8 +26450,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__54\: unisim.vcomponents.LUT4
     generic map(
@@ -25699,7 +26518,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized65\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized65\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -25919,8 +26742,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -25944,8 +26769,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__58\: unisim.vcomponents.LUT4
     generic map(
@@ -26005,7 +26837,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized66\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized66\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -26225,8 +27061,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -26250,8 +27088,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__42\: unisim.vcomponents.LUT4
     generic map(
@@ -26311,7 +27156,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized67\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized67\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -26531,8 +27380,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -26556,8 +27407,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__17\: unisim.vcomponents.LUT4
     generic map(
@@ -26617,7 +27475,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized68\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized68\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -26837,8 +27699,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -26862,8 +27726,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__22\: unisim.vcomponents.LUT4
     generic map(
@@ -26923,7 +27794,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized69\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized69\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -27143,8 +28018,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -27168,8 +28045,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__27\: unisim.vcomponents.LUT4
     generic map(
@@ -27228,6 +28112,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized7\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -27445,8 +28333,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -27470,8 +28360,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__3\: unisim.vcomponents.LUT4
     generic map(
@@ -27509,7 +28406,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized70\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized70\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -27729,8 +28630,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -27754,8 +28657,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__32\: unisim.vcomponents.LUT4
     generic map(
@@ -27815,7 +28725,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized71\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized71\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -28035,8 +28949,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -28060,8 +28976,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__7\: unisim.vcomponents.LUT4
     generic map(
@@ -28121,7 +29044,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized72\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized72\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -28341,8 +29268,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -28366,8 +29295,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__70\: unisim.vcomponents.LUT4
     generic map(
@@ -28427,7 +29363,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized73\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized73\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -28647,8 +29587,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -28672,8 +29614,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__62\: unisim.vcomponents.LUT4
     generic map(
@@ -28733,7 +29682,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized74\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized74\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -28953,8 +29906,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -28978,8 +29933,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__46\: unisim.vcomponents.LUT4
     generic map(
@@ -29039,7 +30001,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized75\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized75\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -29259,8 +30225,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -29284,8 +30252,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__12\: unisim.vcomponents.LUT4
     generic map(
@@ -29345,7 +30320,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized76\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized76\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -29565,8 +30544,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -29590,8 +30571,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__74\: unisim.vcomponents.LUT4
     generic map(
@@ -29651,7 +30639,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized77\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized77\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -29871,8 +30863,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -29896,8 +30890,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__66\: unisim.vcomponents.LUT4
     generic map(
@@ -29957,7 +30958,11 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized78\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized78\ : entity is "blk_mem_gen_prim_wrapper_init";
@@ -30177,8 +31182,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -30202,8 +31209,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__50\: unisim.vcomponents.LUT4
     generic map(
@@ -30262,6 +31276,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized79\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -30479,8 +31497,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -30504,8 +31524,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__75\: unisim.vcomponents.LUT6
     generic map(
@@ -30546,6 +31573,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized8\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -30763,8 +31794,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -30788,8 +31821,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__67\: unisim.vcomponents.LUT4
     generic map(
@@ -30826,6 +31866,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized80\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -31043,8 +32087,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -31068,8 +32114,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__81\: unisim.vcomponents.LUT6
     generic map(
@@ -31110,6 +32163,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized81\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -31327,8 +32384,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -31352,8 +32411,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__79\: unisim.vcomponents.LUT6
     generic map(
@@ -31394,6 +32460,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized82\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -31611,8 +32681,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -31636,8 +32708,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__77\: unisim.vcomponents.LUT6
     generic map(
@@ -31678,6 +32757,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized83\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM18.ram_0\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM18.ram_1\ : in STD_LOGIC
   );
@@ -31806,8 +32889,10 @@ begin
       ADDRBWRADDR(2 downto 0) => B"000",
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
-      DIADI(15 downto 0) => B"0000000000000000",
-      DIBDI(15 downto 0) => B"0000000000000000",
+      DIADI(15 downto 8) => B"00000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(15 downto 8) => B"00000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(1 downto 0) => B"00",
       DIPBDIP(1 downto 0) => B"00",
       DOADO(15 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM18.ram_DOADO_UNCONNECTED\(15 downto 8),
@@ -31826,8 +32911,11 @@ begin
       RSTRAMB => '0',
       RSTREGARSTREG => '0',
       RSTREGB => '0',
-      WEA(1 downto 0) => B"00",
-      WEBWE(3 downto 0) => B"0000"
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(3 downto 2) => B"00",
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM18.ram_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -31866,6 +32954,10 @@ entity \image_map_coe_blk_mem_gen_prim_wrapper_init__parameterized9\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_3\ : in STD_LOGIC
   );
@@ -32083,8 +33175,10 @@ begin
       CLKARDCLK => clka,
       CLKBWRCLK => clkb,
       DBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\,
-      DIADI(31 downto 0) => B"00000000000000000000000000000000",
-      DIBDI(31 downto 0) => B"00000000000000000000000000000000",
+      DIADI(31 downto 8) => B"000000000000000000000000",
+      DIADI(7 downto 0) => dina(7 downto 0),
+      DIBDI(31 downto 8) => B"000000000000000000000000",
+      DIBDI(7 downto 0) => dinb(7 downto 0),
       DIPADIP(3 downto 0) => B"0000",
       DIPBDIP(3 downto 0) => B"0000",
       DOADO(31 downto 8) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DOADO_UNCONNECTED\(31 downto 8),
@@ -32108,8 +33202,15 @@ begin
       RSTREGARSTREG => '0',
       RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
-      WEA(3 downto 0) => B"0000",
-      WEBWE(7 downto 0) => B"00000000"
+      WEA(3) => wea(0),
+      WEA(2) => wea(0),
+      WEA(1) => wea(0),
+      WEA(0) => wea(0),
+      WEBWE(7 downto 4) => B"0000",
+      WEBWE(3) => web(0),
+      WEBWE(2) => web(0),
+      WEBWE(1) => web(0),
+      WEBWE(0) => web(0)
     );
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_1__59\: unisim.vcomponents.LUT4
     generic map(
@@ -32146,6 +33247,10 @@ entity image_map_coe_blk_mem_gen_prim_width is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32162,7 +33267,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32177,6 +33286,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized0\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32195,7 +33308,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32210,6 +33327,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized1\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32228,7 +33349,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32243,6 +33368,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized10\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32261,7 +33390,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32276,6 +33409,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized11\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32294,7 +33431,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32309,6 +33450,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized12\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32327,7 +33472,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32342,6 +33491,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized13\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32360,7 +33513,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32375,6 +33532,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized14\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32393,7 +33554,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32408,6 +33573,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized15\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32426,7 +33595,11 @@ begin
       addra(16 downto 0) => addra(16 downto 0),
       addrb(16 downto 0) => addrb(16 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32442,7 +33615,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized16\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized16\ : entity is "blk_mem_gen_prim_width";
@@ -32463,7 +33640,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_14_sp_1 => addrb_14_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32478,6 +33659,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized17\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32496,7 +33681,11 @@ begin
       addra(16 downto 0) => addra(16 downto 0),
       addrb(16 downto 0) => addrb(16 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32511,6 +33700,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized18\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32529,7 +33722,11 @@ begin
       addra(16 downto 0) => addra(16 downto 0),
       addrb(16 downto 0) => addrb(16 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32544,6 +33741,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized19\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32562,7 +33763,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32577,6 +33782,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized2\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32595,7 +33804,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32610,6 +33823,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized20\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32628,7 +33845,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32643,6 +33864,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized21\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32661,7 +33886,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32676,6 +33905,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized22\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32694,7 +33927,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32709,6 +33946,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized23\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32727,7 +33968,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32742,6 +33987,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized24\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32760,7 +34009,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32775,6 +34028,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized25\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32793,7 +34050,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32808,6 +34069,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized26\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32826,7 +34091,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32841,6 +34110,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized27\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32859,7 +34132,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32874,6 +34151,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized28\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32892,7 +34173,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32907,6 +34192,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized29\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32925,7 +34214,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32940,6 +34233,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized3\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32958,7 +34255,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -32973,6 +34274,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized30\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -32991,7 +34296,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33006,6 +34315,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized31\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33024,7 +34337,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33039,6 +34356,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized32\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33057,7 +34378,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33072,6 +34397,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized33\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33090,7 +34419,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33105,6 +34438,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized34\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33123,7 +34460,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33138,6 +34479,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized35\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33156,7 +34501,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33171,6 +34520,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized36\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33189,7 +34542,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33204,6 +34561,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized37\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33222,7 +34583,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33237,6 +34602,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized38\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33255,7 +34624,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33270,6 +34643,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized39\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33288,7 +34665,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33303,6 +34684,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized4\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33321,7 +34706,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33336,6 +34725,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized40\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33354,7 +34747,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33369,6 +34766,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized41\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33387,7 +34788,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33402,6 +34807,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized42\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33420,7 +34829,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33435,6 +34848,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized43\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33453,7 +34870,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33468,6 +34889,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized44\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33486,7 +34911,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33501,6 +34930,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized45\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33519,7 +34952,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33534,6 +34971,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized46\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33552,7 +34993,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33567,6 +35012,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized47\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33585,7 +35034,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33600,6 +35053,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized48\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33618,7 +35075,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33633,6 +35094,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized49\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33651,7 +35116,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33666,6 +35135,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized5\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33684,7 +35157,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33699,6 +35176,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized50\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33717,7 +35198,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33732,6 +35217,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized51\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33750,7 +35239,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33765,6 +35258,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized52\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33783,7 +35280,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33798,6 +35299,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized53\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33816,7 +35321,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33831,6 +35340,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized54\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33849,7 +35362,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33864,6 +35381,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized55\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33882,7 +35403,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33897,6 +35422,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized56\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33915,7 +35444,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33930,6 +35463,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized57\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33948,7 +35485,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33963,6 +35504,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized58\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -33981,7 +35526,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -33996,6 +35545,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized59\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34014,7 +35567,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34029,6 +35586,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized6\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34047,7 +35608,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34062,6 +35627,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized60\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34080,7 +35649,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34095,6 +35668,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized61\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34113,7 +35690,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34128,6 +35709,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized62\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34146,7 +35731,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34162,7 +35751,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized63\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized63\ : entity is "blk_mem_gen_prim_width";
@@ -34183,7 +35776,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_13_sp_1 => addrb_13_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34199,7 +35796,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized64\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized64\ : entity is "blk_mem_gen_prim_width";
@@ -34220,7 +35821,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_13_sp_1 => addrb_13_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34236,7 +35841,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized65\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized65\ : entity is "blk_mem_gen_prim_width";
@@ -34257,7 +35866,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_12_sp_1 => addrb_12_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34273,7 +35886,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized66\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized66\ : entity is "blk_mem_gen_prim_width";
@@ -34294,7 +35911,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_13_sp_1 => addrb_13_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34310,7 +35931,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized67\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized67\ : entity is "blk_mem_gen_prim_width";
@@ -34331,7 +35956,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => addrb_15_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34347,7 +35976,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized68\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized68\ : entity is "blk_mem_gen_prim_width";
@@ -34368,7 +36001,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => addrb_15_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34384,7 +36021,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized69\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized69\ : entity is "blk_mem_gen_prim_width";
@@ -34405,7 +36046,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => addrb_15_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34420,6 +36065,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized7\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34438,7 +36087,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34454,7 +36107,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized70\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized70\ : entity is "blk_mem_gen_prim_width";
@@ -34475,7 +36132,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => addrb_15_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34491,7 +36152,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized71\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized71\ : entity is "blk_mem_gen_prim_width";
@@ -34512,7 +36177,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_14_sp_1 => addrb_14_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34528,7 +36197,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized72\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized72\ : entity is "blk_mem_gen_prim_width";
@@ -34549,7 +36222,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_14_sp_1 => addrb_14_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34565,7 +36242,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized73\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized73\ : entity is "blk_mem_gen_prim_width";
@@ -34586,7 +36267,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_14_sp_1 => addrb_14_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34602,7 +36287,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized74\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized74\ : entity is "blk_mem_gen_prim_width";
@@ -34623,7 +36312,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_14_sp_1 => addrb_14_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34639,7 +36332,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized75\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized75\ : entity is "blk_mem_gen_prim_width";
@@ -34660,7 +36357,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => addrb_15_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34676,7 +36377,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized76\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized76\ : entity is "blk_mem_gen_prim_width";
@@ -34697,7 +36402,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => addrb_15_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34713,7 +36422,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized77\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized77\ : entity is "blk_mem_gen_prim_width";
@@ -34734,7 +36447,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => addrb_15_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34750,7 +36467,11 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized78\ is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \image_map_coe_blk_mem_gen_prim_width__parameterized78\ : entity is "blk_mem_gen_prim_width";
@@ -34771,7 +36492,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => addrb_15_sn_1,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34786,6 +36511,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized79\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34804,7 +36533,11 @@ begin
       addra(16 downto 0) => addra(16 downto 0),
       addrb(16 downto 0) => addrb(16 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34819,6 +36552,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized8\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34837,7 +36574,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34852,6 +36593,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized80\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34870,7 +36615,11 @@ begin
       addra(16 downto 0) => addra(16 downto 0),
       addrb(16 downto 0) => addrb(16 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34885,6 +36634,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized81\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34903,7 +36656,11 @@ begin
       addra(16 downto 0) => addra(16 downto 0),
       addrb(16 downto 0) => addrb(16 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34918,6 +36675,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized82\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -34936,7 +36697,11 @@ begin
       addra(16 downto 0) => addra(16 downto 0),
       addrb(16 downto 0) => addrb(16 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34951,6 +36716,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized83\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM18.ram\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM18.ram_0\ : in STD_LOGIC
   );
@@ -34969,7 +36738,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -34984,6 +36757,10 @@ entity \image_map_coe_blk_mem_gen_prim_width__parameterized9\ is
     clkb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC
   );
@@ -35002,7 +36779,11 @@ begin
       addra(14 downto 0) => addra(14 downto 0),
       addrb(14 downto 0) => addrb(14 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -35016,7 +36797,11 @@ entity image_map_coe_blk_mem_gen_generic_cstr is
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
     clka : in STD_LOGIC;
-    clkb : in STD_LOGIC
+    clkb : in STD_LOGIC;
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
 end image_map_coe_blk_mem_gen_generic_cstr;
 
@@ -37771,7 +39556,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[10].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized9\
      port map (
@@ -37798,7 +39587,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[11].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized10\
      port map (
@@ -37825,7 +39618,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[12].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized11\
      port map (
@@ -37852,7 +39649,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[13].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized12\
      port map (
@@ -37879,7 +39680,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[14].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized13\
      port map (
@@ -37906,7 +39711,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[15].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized14\
      port map (
@@ -37933,7 +39742,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[16].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized15\
      port map (
@@ -37960,7 +39773,11 @@ begin
       addrb(16 downto 14) => addrb(18 downto 16),
       addrb(13 downto 0) => addrb(13 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[17].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized16\
      port map (
@@ -37985,7 +39802,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_14_sp_1 => \ramloop[17].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[18].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized17\
      port map (
@@ -38012,7 +39833,11 @@ begin
       addrb(16 downto 14) => addrb(18 downto 16),
       addrb(13 downto 0) => addrb(13 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[19].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized18\
      port map (
@@ -38039,7 +39864,11 @@ begin
       addrb(16 downto 14) => addrb(18 downto 16),
       addrb(13 downto 0) => addrb(13 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[1].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized0\
      port map (
@@ -38066,7 +39895,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[20].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized19\
      port map (
@@ -38093,7 +39926,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[21].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized20\
      port map (
@@ -38120,7 +39957,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[22].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized21\
      port map (
@@ -38147,7 +39988,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[23].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized22\
      port map (
@@ -38174,7 +40019,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[24].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized23\
      port map (
@@ -38201,7 +40050,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[25].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized24\
      port map (
@@ -38228,7 +40081,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[26].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized25\
      port map (
@@ -38255,7 +40112,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[27].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized26\
      port map (
@@ -38282,7 +40143,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[28].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized27\
      port map (
@@ -38309,7 +40174,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[29].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized28\
      port map (
@@ -38336,7 +40205,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[2].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized1\
      port map (
@@ -38363,7 +40236,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[30].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized29\
      port map (
@@ -38390,7 +40267,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[31].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized30\
      port map (
@@ -38417,7 +40298,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[32].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized31\
      port map (
@@ -38444,7 +40329,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[33].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized32\
      port map (
@@ -38471,7 +40360,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[34].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized33\
      port map (
@@ -38498,7 +40391,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[35].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized34\
      port map (
@@ -38525,7 +40422,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[36].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized35\
      port map (
@@ -38552,7 +40453,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[37].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized36\
      port map (
@@ -38579,7 +40484,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[38].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized37\
      port map (
@@ -38606,7 +40515,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[39].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized38\
      port map (
@@ -38633,7 +40546,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[3].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized2\
      port map (
@@ -38660,7 +40577,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[40].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized39\
      port map (
@@ -38687,7 +40608,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[41].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized40\
      port map (
@@ -38714,7 +40639,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[42].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized41\
      port map (
@@ -38741,7 +40670,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[43].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized42\
      port map (
@@ -38768,7 +40701,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[44].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized43\
      port map (
@@ -38795,7 +40732,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[45].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized44\
      port map (
@@ -38822,7 +40763,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[46].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized45\
      port map (
@@ -38849,7 +40794,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[47].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized46\
      port map (
@@ -38876,7 +40825,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[48].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized47\
      port map (
@@ -38903,7 +40856,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[49].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized48\
      port map (
@@ -38930,7 +40887,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[4].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized3\
      port map (
@@ -38957,7 +40918,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[50].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized49\
      port map (
@@ -38984,7 +40949,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[51].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized50\
      port map (
@@ -39011,7 +40980,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[52].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized51\
      port map (
@@ -39038,7 +41011,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[53].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized52\
      port map (
@@ -39065,7 +41042,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[54].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized53\
      port map (
@@ -39092,7 +41073,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[55].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized54\
      port map (
@@ -39119,7 +41104,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[56].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized55\
      port map (
@@ -39146,7 +41135,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[57].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized56\
      port map (
@@ -39173,7 +41166,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[58].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized57\
      port map (
@@ -39200,7 +41197,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[59].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized58\
      port map (
@@ -39227,7 +41228,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[5].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized4\
      port map (
@@ -39254,7 +41259,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[60].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized59\
      port map (
@@ -39281,7 +41290,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[61].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized60\
      port map (
@@ -39308,7 +41321,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[62].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized61\
      port map (
@@ -39335,7 +41352,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[63].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized62\
      port map (
@@ -39362,7 +41383,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[64].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized63\
      port map (
@@ -39387,7 +41412,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_13_sp_1 => \ramloop[64].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[65].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized64\
      port map (
@@ -39412,7 +41441,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_13_sp_1 => \ramloop[65].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[66].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized65\
      port map (
@@ -39437,7 +41470,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_12_sp_1 => \ramloop[66].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[67].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized66\
      port map (
@@ -39462,7 +41499,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_13_sp_1 => \ramloop[67].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[68].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized67\
      port map (
@@ -39487,7 +41528,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => \ramloop[68].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[69].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized68\
      port map (
@@ -39512,7 +41557,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => \ramloop[69].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[6].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized5\
      port map (
@@ -39539,7 +41588,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[70].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized69\
      port map (
@@ -39564,7 +41617,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => \ramloop[70].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[71].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized70\
      port map (
@@ -39589,7 +41646,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => \ramloop[71].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[72].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized71\
      port map (
@@ -39614,7 +41675,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_14_sp_1 => \ramloop[72].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[73].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized72\
      port map (
@@ -39639,7 +41704,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_14_sp_1 => \ramloop[73].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[74].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized73\
      port map (
@@ -39664,7 +41733,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_14_sp_1 => \ramloop[74].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[75].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized74\
      port map (
@@ -39689,7 +41762,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_14_sp_1 => \ramloop[75].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[76].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized75\
      port map (
@@ -39714,7 +41791,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => \ramloop[76].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[77].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized76\
      port map (
@@ -39739,7 +41820,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => \ramloop[77].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[78].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized77\
      port map (
@@ -39764,7 +41849,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => \ramloop[78].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[79].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized78\
      port map (
@@ -39789,7 +41878,11 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       addrb_15_sp_1 => \ramloop[79].ram.r_n_17\,
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[7].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized6\
      port map (
@@ -39816,7 +41909,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[80].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized79\
      port map (
@@ -39843,7 +41940,11 @@ begin
       addrb(16 downto 14) => addrb(18 downto 16),
       addrb(13 downto 0) => addrb(13 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[81].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized80\
      port map (
@@ -39870,7 +41971,11 @@ begin
       addrb(16 downto 14) => addrb(18 downto 16),
       addrb(13 downto 0) => addrb(13 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[82].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized81\
      port map (
@@ -39897,7 +42002,11 @@ begin
       addrb(16 downto 14) => addrb(18 downto 16),
       addrb(13 downto 0) => addrb(13 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[83].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized82\
      port map (
@@ -39924,7 +42033,11 @@ begin
       addrb(16 downto 14) => addrb(18 downto 16),
       addrb(13 downto 0) => addrb(13 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[84].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized83\
      port map (
@@ -39951,7 +42064,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[8].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized7\
      port map (
@@ -39978,7 +42095,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 \ramloop[9].ram.r\: entity work.\image_map_coe_blk_mem_gen_prim_width__parameterized8\
      port map (
@@ -40005,7 +42126,11 @@ begin
       addrb(14 downto 12) => addrb(18 downto 16),
       addrb(11 downto 0) => addrb(11 downto 0),
       clka => clka,
-      clkb => clkb
+      clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -40019,7 +42144,11 @@ entity image_map_coe_blk_mem_gen_top is
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
     clka : in STD_LOGIC;
-    clkb : in STD_LOGIC
+    clkb : in STD_LOGIC;
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
 end image_map_coe_blk_mem_gen_top;
 
@@ -40031,8 +42160,12 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       clka => clka,
       clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
       douta(7 downto 0) => douta(7 downto 0),
-      doutb(7 downto 0) => doutb(7 downto 0)
+      doutb(7 downto 0) => doutb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -40046,7 +42179,11 @@ entity image_map_coe_blk_mem_gen_v8_4_3_synth is
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
     clka : in STD_LOGIC;
-    clkb : in STD_LOGIC
+    clkb : in STD_LOGIC;
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
 end image_map_coe_blk_mem_gen_v8_4_3_synth;
 
@@ -40058,8 +42195,12 @@ begin
       addrb(18 downto 0) => addrb(18 downto 0),
       clka => clka,
       clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
       douta(7 downto 0) => douta(7 downto 0),
-      doutb(7 downto 0) => doutb(7 downto 0)
+      doutb(7 downto 0) => doutb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -40179,7 +42320,7 @@ entity image_map_coe_blk_mem_gen_v8_4_3 is
   attribute C_EN_SLEEP_PIN : integer;
   attribute C_EN_SLEEP_PIN of image_map_coe_blk_mem_gen_v8_4_3 : entity is 0;
   attribute C_EST_POWER_SUMMARY : string;
-  attribute C_EST_POWER_SUMMARY of image_map_coe_blk_mem_gen_v8_4_3 : entity is "Estimated Power for IP     :     4.650322 mW";
+  attribute C_EST_POWER_SUMMARY of image_map_coe_blk_mem_gen_v8_4_3 : entity is "Estimated Power for IP     :     5.068715 mW";
   attribute C_FAMILY : string;
   attribute C_FAMILY of image_map_coe_blk_mem_gen_v8_4_3 : entity is "artix7";
   attribute C_HAS_AXI_ID : integer;
@@ -40223,7 +42364,7 @@ entity image_map_coe_blk_mem_gen_v8_4_3 is
   attribute C_LOAD_INIT_FILE : integer;
   attribute C_LOAD_INIT_FILE of image_map_coe_blk_mem_gen_v8_4_3 : entity is 1;
   attribute C_MEM_TYPE : integer;
-  attribute C_MEM_TYPE of image_map_coe_blk_mem_gen_v8_4_3 : entity is 4;
+  attribute C_MEM_TYPE of image_map_coe_blk_mem_gen_v8_4_3 : entity is 2;
   attribute C_MUX_PIPELINE_STAGES : integer;
   attribute C_MUX_PIPELINE_STAGES of image_map_coe_blk_mem_gen_v8_4_3 : entity is 0;
   attribute C_PRIM_TYPE : integer;
@@ -40369,8 +42510,12 @@ inst_blk_mem_gen: entity work.image_map_coe_blk_mem_gen_v8_4_3_synth
       addrb(18 downto 0) => addrb(18 downto 0),
       clka => clka,
       clkb => clkb,
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
       douta(7 downto 0) => douta(7 downto 0),
-      doutb(7 downto 0) => doutb(7 downto 0)
+      doutb(7 downto 0) => doutb(7 downto 0),
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -40380,10 +42525,14 @@ use UNISIM.VCOMPONENTS.ALL;
 entity image_map_coe is
   port (
     clka : in STD_LOGIC;
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
     douta : out STD_LOGIC_VECTOR ( 7 downto 0 );
     clkb : in STD_LOGIC;
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
     addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 7 downto 0 );
     doutb : out STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   attribute NotValidForBitStream : boolean;
@@ -40393,7 +42542,7 @@ entity image_map_coe is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of image_map_coe : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of image_map_coe : entity is "blk_mem_gen_v8_4_3,Vivado 2019.1.2";
+  attribute x_core_info of image_map_coe : entity is "blk_mem_gen_v8_4_3,Vivado 2019.1";
 end image_map_coe;
 
 architecture STRUCTURE of image_map_coe is
@@ -40463,7 +42612,7 @@ architecture STRUCTURE of image_map_coe is
   attribute C_EN_SLEEP_PIN : integer;
   attribute C_EN_SLEEP_PIN of U0 : label is 0;
   attribute C_EST_POWER_SUMMARY : string;
-  attribute C_EST_POWER_SUMMARY of U0 : label is "Estimated Power for IP     :     4.650322 mW";
+  attribute C_EST_POWER_SUMMARY of U0 : label is "Estimated Power for IP     :     5.068715 mW";
   attribute C_FAMILY : string;
   attribute C_FAMILY of U0 : label is "artix7";
   attribute C_HAS_AXI_ID : integer;
@@ -40507,7 +42656,7 @@ architecture STRUCTURE of image_map_coe is
   attribute C_LOAD_INIT_FILE : integer;
   attribute C_LOAD_INIT_FILE of U0 : label is 1;
   attribute C_MEM_TYPE : integer;
-  attribute C_MEM_TYPE of U0 : label is 4;
+  attribute C_MEM_TYPE of U0 : label is 2;
   attribute C_MUX_PIPELINE_STAGES : integer;
   attribute C_MUX_PIPELINE_STAGES of U0 : label is 0;
   attribute C_PRIM_TYPE : integer;
@@ -40575,8 +42724,12 @@ architecture STRUCTURE of image_map_coe is
   attribute x_interface_parameter of clkb : signal is "XIL_INTERFACENAME BRAM_PORTB, MEM_SIZE 8192, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE OTHER, READ_LATENCY 1";
   attribute x_interface_info of addra : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA ADDR";
   attribute x_interface_info of addrb : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTB ADDR";
+  attribute x_interface_info of dina : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA DIN";
+  attribute x_interface_info of dinb : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTB DIN";
   attribute x_interface_info of douta : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA DOUT";
   attribute x_interface_info of doutb : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTB DOUT";
+  attribute x_interface_info of wea : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA WE";
+  attribute x_interface_info of web : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTB WE";
 begin
 U0: entity work.image_map_coe_blk_mem_gen_v8_4_3
      port map (
@@ -40586,8 +42739,8 @@ U0: entity work.image_map_coe_blk_mem_gen_v8_4_3
       clkb => clkb,
       dbiterr => NLW_U0_dbiterr_UNCONNECTED,
       deepsleep => '0',
-      dina(7 downto 0) => B"00000000",
-      dinb(7 downto 0) => B"00000000",
+      dina(7 downto 0) => dina(7 downto 0),
+      dinb(7 downto 0) => dinb(7 downto 0),
       douta(7 downto 0) => douta(7 downto 0),
       doutb(7 downto 0) => doutb(7 downto 0),
       eccpipece => '0',
@@ -40641,7 +42794,7 @@ U0: entity work.image_map_coe_blk_mem_gen_v8_4_3
       sbiterr => NLW_U0_sbiterr_UNCONNECTED,
       shutdown => '0',
       sleep => '0',
-      wea(0) => '0',
-      web(0) => '0'
+      wea(0) => wea(0),
+      web(0) => web(0)
     );
 end STRUCTURE;

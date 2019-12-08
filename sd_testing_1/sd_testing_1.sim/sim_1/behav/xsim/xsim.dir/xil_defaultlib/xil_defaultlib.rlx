@@ -1,0 +1,12 @@
+0.6
+2019.1
+May 24 2019
+15:06:07
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/final_project/final_project.srcs/sources_1/new/display_8hex.sv,1575600374,systemVerilog,,D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sources_1/new/main.sv,,display_8hex,,,../../../../sd_testing_1.srcs/sources_1/ip/clk_wiz_0,,,,,
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_files/sd_controller.v,1575698463,verilog,,,,sd_controller,,,../../../../sd_testing_1.srcs/sources_1/ip/clk_wiz_0,,,,,
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.sim/sim_1/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sim_1/new/main_sim.sv,1575575155,systemVerilog,,,,main_sim,,,../../../../sd_testing_1.srcs/sources_1/ip/clk_wiz_0,,,,,
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v,1575605009,verilog,,D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v,,blk_mem_gen_0,,,../../../../sd_testing_1.srcs/sources_1/ip/clk_wiz_0,,,,,
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.v,1575472332,verilog,,D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_files/sd_controller.v,,clk_wiz_0,,,../../../../sd_testing_1.srcs/sources_1/ip/clk_wiz_0,,,,,
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v,1575472332,verilog,,D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.v,,clk_wiz_0_clk_wiz,,,../../../../sd_testing_1.srcs/sources_1/ip/clk_wiz_0,,,,,
+D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sources_1/new/main.sv,1575697419,systemVerilog,,D:/_Senior/Semester_1/6.111/final_project/digiteyez/sd_testing_1/sd_testing_1.srcs/sim_1/new/main_sim.sv,,main,,,../../../../sd_testing_1.srcs/sources_1/ip/clk_wiz_0,,,,,

@@ -361,7 +361,7 @@ module screen_interfacer#(parameter
                 IMAGE_SEND: begin //send an image hopefully
                     image_ready <= 0;
                     
-                    if (ready_to_send && timer > INITIAL_IMAGE_WAIT) begin
+                    if (ready_to_send && timer > 5) begin
                         isdata_out <= 1'b1;
                         
                         if (gray_count == 0) begin
@@ -377,7 +377,7 @@ module screen_interfacer#(parameter
                         read_ready  <= 0;
                         send_now    <= 0;
                         
-                        if (timer <= INITIAL_IMAGE_WAIT) begin
+                        if (timer <= 5) begin
                             timer <= timer + 1;
                         end
                     end else begin
