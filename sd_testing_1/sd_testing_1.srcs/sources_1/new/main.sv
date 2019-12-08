@@ -164,10 +164,11 @@ module main#(
                     //save things to ram    
                     im_pos_counter <= im_pos_counter + 1;
                     inner_sector_counter <= inner_sector_counter + 1;
-                    addr_left <= addr_left + 1;
+                    
                     byte_available_debounce <= 1;
                 end 
-            end else if (!byte_available) begin
+            end else if (!byte_available && byte_available_debounce) begin
+                addr_left <= addr_left + 1;
                 byte_available_debounce <= 0;
             end 
         end

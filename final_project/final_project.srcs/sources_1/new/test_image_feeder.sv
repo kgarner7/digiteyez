@@ -25,7 +25,7 @@ module test_image_feeder#(
     parameter img_height = 415,
     parameter screen_width = 240, 
     parameter screen_height = 320,
-    parameter ms10 = 26'd1000000,
+    parameter ms10 = 26'd1000000
     //sd params
    
 )(
@@ -37,7 +37,7 @@ module test_image_feeder#(
     output logic sd_dat_1,
     output logic sd_dat_2,
     output logic sd_dat_3,
-    input wire sw, //controls where we read from in mem
+    input wire [15:0] sw, //controls where we read from in mem
     //other stuff
     input wire clk_100mhz,
     input wire rst,
@@ -132,12 +132,12 @@ module test_image_feeder#(
     logic [19:0] multiplied_pos;
     
     //controls where we start with the sd card
-    logic large_pano_start [32:0]//= 32'h77800,//32'h57800,//9 //32'h400
-    logic large_pano_number_of_sectors [16:0]//= 10'd673 //10'd672
+    logic [32:0] large_pano_start;//= 32'h77800,//32'h57800,//9 //32'h400
+    logic [16:0] large_pano_number_of_sectors;//= 10'd673 //10'd672
     always_comb begin
         if (sw[1]) begin //check switch one first, large pano coe 
-            large_pano_start <= 32'h577800;
-            large_pano_number_of_sectors <= 10'd673;
+            large_pano_start = 32'h577800;
+            large_pano_number_of_sectors = 10'd673;
         end else if (sw[2]) begin
         
         end
@@ -238,7 +238,7 @@ module test_image_feeder#(
                         inner_sector_counter <= inner_sector_counter + 1;
                         byte_available_debounce <= 1;
                     end 
-                end else if (!byte_available) begin
+                end else if (!byte_available && byte_available_debounce) begin
                     //must happen every time
                     addr_left <= addr_left + 1;
                     byte_available_debounce <= 0;
