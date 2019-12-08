@@ -47,6 +47,8 @@ module test_image_feeder#(
     output logic [7:0] pixel_out
 );
     //------sd vars------//
+    logic [15:0] sw_debounce;
+    logic check_sw;
     logic sd_initialization_state; //true if the sd card is setting itself up, basically a hacky way to divert into the sd state machine before the screen does anything 
     enum reg[4:0]{
         RESET, WAIT_FOR_READY, SEND, WAIT_FOR_SENT, UPDATE_ADDRESS, PLAYBACK
@@ -134,14 +136,6 @@ module test_image_feeder#(
     //controls where we start with the sd card
     logic [32:0] large_pano_start;//= 32'h77800,//32'h57800,//9 //32'h400
     logic [16:0] large_pano_number_of_sectors;//= 10'd673 //10'd672
-    always_comb begin
-        if (sw[1]) begin //check switch one first, large pano coe 
-            large_pano_start = 32'h577800;
-            large_pano_number_of_sectors = 10'd673;
-        end else if (sw[2]) begin
-        
-        end
-    end
     
     //main loop area
     
@@ -196,7 +190,7 @@ module test_image_feeder#(
     assign image_ready = image_ready_left && image_ready_right;
     
     always_ff @(posedge clk_100mhz) begin
-        if (rst) begin
+        if (rst||(sw != sw_debounce)) begin
             addr_left           <= 0;
             addr_right          <= 0;
             horizontal_angle    <= 0;
@@ -205,6 +199,25 @@ module test_image_feeder#(
             //added for sd: load image into bram
             sd_initialization_state <= 1;
             state <= RESET;
+            sw_debounce <= sw; 
+            check_sw <= 1;
+            large_pano_start <= 32'h77800;
+            large_pano_number_of_sectors <= 10'd673;
+        //check for switch changes. If this is the case we'll want to jump back into sd initialization (after we've made the proper changes)
+        end else if ((check_sw)) begin
+            check_sw <= 0;
+            if (sw[1]) begin //check switch one first, large pano coe 
+                large_pano_start = 32'h77800;
+                large_pano_number_of_sectors = 10'd673;
+            end else if (sw[2]) begin //mit front thing
+                large_pano_start = 32'hCBA00;
+                large_pano_number_of_sectors = 10'd673;
+            end else if (sw[3]) begin
+                large_pano_start = 32'h11FC00;
+                large_pano_number_of_sectors = 10'd673;
+            end
+            state <= RESET; //go through the whole write to screen process again
+            //to do: rebalance the vertical bit by setting that one var kendall has to 0
         //diversion into sd state machine
         end else if (sd_initialization_state == 1) begin
             if (state == RESET) begin
@@ -227,7 +240,7 @@ module test_image_feeder#(
             end 
             if (state == WAIT_FOR_SENT) begin //waits for the byte to be available for reading
                 write_enable_a <= byte_available;
-                if (inner_sector_counter == 10'd511) begin
+                if (inner_sector_counter == 10'd512) begin
                     state <= UPDATE_ADDRESS; 
                     inner_sector_counter <= 0;
                 end 

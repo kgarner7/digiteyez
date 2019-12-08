@@ -14,7 +14,7 @@ module main(
     output logic sd_dat_1,
     output logic sd_dat_2,
     output logic sd_dat_3,
-    input wire [15:0] sw,
+    input wire [10:0] sw,
     //other stuff
     input wire clk_100mhz,
     input wire btnc,        //  to be the reset button

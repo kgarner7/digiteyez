@@ -21,9 +21,9 @@
 
 
 module main#(
-     parameter large_pano_start = 32'h77800,//32'h57800,//9 //32'h400
+     parameter large_pano_start = 32'h77400,//77800//32'h57800,//9 //32'h400
      parameter large_pano_end = 32'h578EE,//32'h54581,//not accurate, not ever used
-     parameter large_pano_number_of_sectors = 10'd673 //10'd672
+     parameter large_pano_number_of_sectors = 10'd2//673 //10'd672
     )(
     output [15:0] led,
     output logic ca, cb, cc, cd, ce, cf, cg, dp,
@@ -154,7 +154,7 @@ module main#(
         end 
         if (state == WAIT_FOR_SENT) begin //waits for the byte to be available for reading
             write_enable_a <= byte_available;
-            if (inner_sector_counter == 10'd511) begin
+            if (inner_sector_counter == 10'd51) begin
                 state <= UPDATE_ADDRESS; 
                 inner_sector_counter <= 0;
                 led_debug_out[12] <= 1;
@@ -182,7 +182,7 @@ module main#(
                 
             end else begin //otherwise its time to move on
                 state <= PLAYBACK;
-                addr_left <= 0;
+                addr_left <= 32'd512;
                 addr_right <= 0;
             end
         end
