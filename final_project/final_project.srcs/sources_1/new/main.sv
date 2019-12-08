@@ -14,11 +14,9 @@ module main(
     input wire btnu,
     input wire btnc,        //  to be the reset button
     input wire btnl, btnr,  //  control horizontal scrolling
-    input wire btnu,
     input wire jb,          //  uart input
     input wire gyro_enabled,
     input wire [3:0] filt,
-    input wire gyro_enabled,
     input wire mono_stereo,
     input wire [3:0] vert_padding,
     input wire [2:0] horz_padding,
@@ -48,7 +46,7 @@ module main(
         .bounce(btnc), .clean(reset)
     );
     
-        reg reset_buffer [2:0];
+    reg reset_buffer [2:0];
     
     always_ff @(posedge clk_100mhz) begin
         foreach (reset_buffer[i]) begin
@@ -108,8 +106,9 @@ module main(
     wire [6:0] segments;
     
     assign dp = 1'b1;  // turn off the period
-    assign data = { 1'b0, horz_padding, vert_padding, vert_angle };    assign {cg, cf, ce, cd, cc, cb, ca} = segments[6:0];
-    
+    assign data = { 1'b0, horz_padding, vert_padding, vert_angle };
+    assign {cg, cf, ce, cd, cc, cb, ca} = segments[6:0];
+
     display_8hex display(
         .clk_in(clk_65mhz),.data_in(data),
         .seg_out(segments),

@@ -219,10 +219,6 @@ module test_image_feeder#(parameter
         
     logic [7:0] pixel_left, pixel_right;
     logic [$clog2(MAX_SIZE):0] addr_left, addr_right;
-    
-    reg image_done = 0;
-    logic read_ready_left, read_ready_right;
-    logic image_ready_left, image_ready_right;
 
     reg image_done = 0;
     logic read_ready_left, read_ready_right;
@@ -302,16 +298,6 @@ module test_image_feeder#(parameter
             check_sw <= 0;
             large_pano_start <= pano_start[pano_control_buffer];
             large_pano_number_of_sectors <= pano_sectors[pano_control_buffer];
-//            if (pano_control_buffer[0]) begin //check switch one first, large pano coe 
-//                large_pano_start <= 32'h77800;
-//                large_pano_number_of_sectors <= 10'd673;
-//            end else if (pano_control_buffer[1]) begin //mit front thing
-//                large_pano_start <= 32'hCBA00;
-//                large_pano_number_of_sectors <= 10'd673;
-//            end else if (pano_control_buffer[2]) begin
-//                large_pano_start <= 32'h11FC00;
-//                large_pano_number_of_sectors <= 10'd673;
-//            end
             state <= RESET; //go through the whole write to screen process again
         end else if (sd_initialization_state == 1) begin 
             //diversion into sd state machine
