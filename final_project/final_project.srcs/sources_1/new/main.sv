@@ -6,6 +6,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module main(
+    //sd stuff 
+    output logic sd_cmd,
+    output logic sd_sck,
+    input wire sd_reset,
+    input wire sd_dat_0,
+    output logic sd_dat_1,
+    output logic sd_dat_2,
+    output logic sd_dat_3,
+    //other stuff
     input wire clk_100mhz,
     input wire btnc,        //  to be the reset button
     input wire btnl, btnr,  //  control horizontal scrolling
@@ -20,6 +29,9 @@ module main(
     logic [7:0] pixel;
     
     test_image_feeder feeder (
+        //sd stuff
+        .clk_25mhz(clk_25mhz), .sd_cmd(sd_cmd), .sd_sck(sd_sck), .sd_reset(sd_reset), .sd_dat_0(sd_dat_0), .sd_dat_1(sd_dat_1), .sd_dat_2(sd_dat_2), .sd_dat_3(sd_dat_3),
+        //other stuff
         .clk_100mhz(clk_100mhz), .rst(reset), 
         .start_x(horz_angle),
         .spi_out_0(jd), .spi_out_1(jc),
@@ -27,8 +39,9 @@ module main(
     );
     
     wire clk_65mhz; 
+    wire clk_25mhz;
     clk_wiz_0 clkdivider(
-        .clk_in1(clk_100mhz), .clk_out1(clk_65mhz)
+        .clk_in1(clk_100mhz), .clk_out1(clk_65mhz), .clk_25mhz(clk_25mhz)
     );
     
     wire reset;
