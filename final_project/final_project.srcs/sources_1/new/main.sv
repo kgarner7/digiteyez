@@ -14,6 +14,7 @@ module main(
     output logic sd_dat_1,
     output logic sd_dat_2,
     output logic sd_dat_3,
+    input wire [15:0] sw,
     //other stuff
     input wire clk_100mhz,
     input wire btnc,        //  to be the reset button
@@ -30,7 +31,7 @@ module main(
     
     test_image_feeder feeder (
         //sd stuff
-        .clk_25mhz(clk_25mhz), .sd_cmd(sd_cmd), .sd_sck(sd_sck), .sd_reset(sd_reset), .sd_dat_0(sd_dat_0), .sd_dat_1(sd_dat_1), .sd_dat_2(sd_dat_2), .sd_dat_3(sd_dat_3),
+        .clk_25mhz(clk_25mhz), .sd_cmd(sd_cmd), .sd_sck(sd_sck), .sd_reset(sd_reset), .sd_dat_0(sd_dat_0), .sd_dat_1(sd_dat_1), .sd_dat_2(sd_dat_2), .sd_dat_3(sd_dat_3), .sw(sw),
         //other stuff
         .clk_100mhz(clk_100mhz), .rst(reset), 
         .start_x(horz_angle),
