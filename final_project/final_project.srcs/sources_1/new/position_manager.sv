@@ -47,16 +47,24 @@ module position_manager#(parameter
         .out(uart_sync)
     );
     
+    reg reset_buffer [5:0];
+    
+    always_ff @(posedge clock) begin
+        foreach (reset_buffer[i]) begin
+            reset_buffer[i] <= reset;
+        end
+    end
+    
     uart_reciever #(.DATA_SIZE(48)) receiver(
         .clock(clock),
-        .reset(reset),
+        .reset(reset_buffer[0]),
         .data(uart_sync),
         .output_data(uart_data)
     );
     
     logic [15:0] x_accel_filtered;
     filter x_filter(
-        .clock(clock), .reset(reset),
+        .clock(clock), .reset(reset_buffer[1]),
         .filter(filter), .data(uart_data[15:0]),
         .filtered_data(x_accel_filtered)
     );
@@ -64,7 +72,7 @@ module position_manager#(parameter
     
     logic [15:0] y_accel_filtered;
     filter y_filter(
-        .clock(clock), .reset(reset),
+        .clock(clock), .reset(reset_buffer[2]),
         .filter(filter), .data(uart_data[31:16]),
         .filtered_data(y_accel_filtered)
     );
@@ -72,12 +80,12 @@ module position_manager#(parameter
     logic left_clean, right_clean;
     
     debounce left_button_debounce(
-        .clock(clock), .reset(reset),
+        .clock(clock), .reset(reset_buffer[3]),
         .bounce(left_button), .clean(left_clean)
     );
     
     debounce right_button_debounce(
-        .clock(clock), .reset(reset),
+        .clock(clock), .reset(reset_buffer[3]),
         .bounce(right_button), .clean(right_clean)
     );
     
@@ -140,12 +148,12 @@ module position_manager#(parameter
     end
     
     clock_divider #(.FREQUENCY(FREQUENCY), .TARGET_FREQUENCY(GYRO_FREQUENCY)) button_divider(
-        .clock(clock), .reset(reset),
+        .clock(clock), .reset(reset_buffer[4]),
         .divided_clock(button_enabled)
     );
     
     always_ff @(posedge clock) begin
-        if (reset) begin
+        if (reset_buffer[5]) begin
             current_horz    <= 180;
             x_calibrated    <= 0;
         end else begin
