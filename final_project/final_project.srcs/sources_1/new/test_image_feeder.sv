@@ -259,21 +259,21 @@ module test_image_feeder#(parameter
         32'h77800,
         32'hCBA00,
         32'h11FC00, // end of actual images
-        32'h77800,
-        32'h77800,
-        32'h77800,
-        32'h77800,
-        32'h77800
+        32'h177C00,
+        32'h1CBE00,
+        32'h223E00,
+        32'h27BE00,
+        32'h2D3E00
     };
     
     reg [0:7][16:0] pano_sectors = '{
         10'd673,
         10'd673,
-        10'd673, // end of actual images
+        10'd704, // end of actual images
         10'd673,
-        10'd673,
-        10'd673,
-        10'd673,
+        10'd704,
+        10'd704,
+        10'd704,
         10'd673
     };
     
