@@ -1,42 +1,23 @@
 `timescale 1ns / 1ps
 `default_nettype none
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 11/12/2019 04:47:12 PM
-// Design Name: 
-// Module Name: position_manager
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module position_manager#(parameter
-    FREQUENCY = 65_000_000,
-    GYRO_BITS = 3,
-    GYRO_FREQUENCY = 30
+    FREQUENCY = 65_000_000, // the frequency this module runs at
+    GYRO_BITS = 3,          // how many bits of gyroscope data to use
+    GYRO_FREQUENCY = 30     // how often to update gyroscope data
 )(
-    input wire clock, reset, calibrate,
-    input wire [3:0] vert_padding,
-    input wire [2:0] horz_padding,
-    input wire left_button, right_button,
-    input wire uart_in,
-    input wire gyro_enabled,
-    input wire [3:0] filter,
-    output logic [7:0] vert_angle,
-    output logic [8:0] horz_angle
+    input wire clock, reset, calibrate,     // control signals
+    input wire [3:0] vert_padding,          // vertical sensitivity
+    input wire [2:0] horz_padding,          // horizontal sensitivity
+    input wire left_button, right_button,   // left and right buttons for manual scroll
+    input wire uart_in,                     // uart data from teensy
+    input wire gyro_enabled,                // whether gyro is enabled
+    input wire [3:0] filter,                // low pass filter
+    output logic [7:0] vert_angle,          // output vertical angle [30, 150]
+    output logic [8:0] horz_angle           // output horizontal angle [0, 359]
 );
     
+    // synchronize input
     logic uart_sync;
     logic [47:0] uart_data;
 
@@ -54,6 +35,7 @@ module position_manager#(parameter
         end
     end
     
+    // process uart data and pass to low pass filters
     uart_reciever #(.DATA_SIZE(48)) receiver(
         .clock(clock),
         .reset(reset_buffer[0]),
@@ -98,8 +80,11 @@ module position_manager#(parameter
     logic [GYRO_BITS:0]  x_gyro_top;
     logic [8:0] x_accel_signed;
         
+    // calculate the next horizontal angle positions
     always_comb begin
         if (gyro_enabled) begin
+            // we look for if the gyroscope reading has exceeded a threshold value
+            // controleld by a switch, then move by fixed amount
             x_accel_rel = x_accel_filtered[15:0] - x_calibrated;
             x_gyro_top = x_accel_rel[15:15 - GYRO_BITS - 1];
             
@@ -117,6 +102,7 @@ module position_manager#(parameter
                 next_horz = current_horz;
             end
         end else begin
+            // gyro disabled; use buttons
             if (left_clean ^ right_clean) begin
                 if (left_clean) begin
                     next_horz = current_horz == 0 ? 359 : current_horz - 1;
@@ -131,6 +117,7 @@ module position_manager#(parameter
     
     logic [15:0] y_shifted, y_unsigned, next_vert;
     
+    // calculate y value. Luckily this can just be truncating the data
     always_comb begin
         y_unsigned = y_accel_filtered[15] ? ~y_accel_filtered + 1 : y_accel_filtered;
         y_shifted = y_unsigned[15:8];
@@ -160,6 +147,7 @@ module position_manager#(parameter
                 x_calibrated    <= uart_data[15:0];
             end
             
+            // only update horizontal every now and then; prevent drift
             if (button_enabled) begin
                 horz_angle      <= next_horz;
                 current_horz    <= next_horz;

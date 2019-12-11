@@ -1,28 +1,8 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 11/14/2019 12:21:37 PM
-// Design Name: 
-// Module Name: filter
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module filter#(
-    parameter   FILTER_PERIOD = 1_000_00,
-                FILTER_SIZE = 16
+    parameter   FILTER_PERIOD = 1_000_00,   // how long to wait before done
+               FILTER_SIZE = 16            // size of data to filter
  ) (
     input wire          clock, reset,   // control signal
     input wire [3:0]    filter,         // filter control
@@ -59,7 +39,6 @@ module filter#(
             end else begin
                 counter <= counter + 1;
             end
-            
         end
     end
  endmodule

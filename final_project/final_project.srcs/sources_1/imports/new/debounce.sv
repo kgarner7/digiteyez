@@ -6,8 +6,8 @@
  * stable for 0.01 seconds.
  */
 module debounce#(
-    parameter COUNT = 1_000_000, 
-                 SIZE = 1      // the size of the value to debounce
+    parameter COUNT = 1_000_000, // how long to debounce
+             SIZE = 1      // the size of the value to debounce
 )(    
     input wire                  clock,  //clock in
                                 reset,  //reset in

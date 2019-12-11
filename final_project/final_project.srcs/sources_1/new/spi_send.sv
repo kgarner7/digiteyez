@@ -1,24 +1,5 @@
 `default_nettype none
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 11/19/2019 06:42:36 PM
-// Design Name: 
-// Module Name: spi_send
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 module spi_send#(
     parameter SPI_CLOCK_WAIT = 1 )// gives us about 6 mhz, can maybe drop later for faster spi but remains to be seen  

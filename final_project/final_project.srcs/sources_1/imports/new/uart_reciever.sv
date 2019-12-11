@@ -6,7 +6,7 @@ module uart_reciever#(
     parameter   CLOCK_FREQUENCY = 65_000_000,   // the clock frequency in hz
                 TARGET_FREQUENCY = 153_600,     // our target frequency in hertz
                 WAIT_PERIOD = 428,               // how long to wait at target frequency for valid data
-                DATA_SIZE = 32
+                DATA_SIZE = 32  // the mistake that cost me many hours
 )(
     input wire clock, reset,            // control signals
     input wire data,                    // input data

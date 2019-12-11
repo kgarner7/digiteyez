@@ -21,27 +21,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module test_image_feeder#(parameter
-    MONO_WIDTH = 830,
-    MONO_HEIGHT = 415,
-    STEREO_WIDTH = 600,
-    STEREO_HEIGHT = 300,
-    screen_width = 240, 
-    screen_height = 320,
-    ms10 = 26'd1000000
+    MONO_WIDTH = 830,       // max width of a mon image
+    MONO_HEIGHT = 415,      // max height of a mono image
+    STEREO_WIDTH = 600,     // max width of a stereo image
+    STEREO_HEIGHT = 300,    // max height of a stereo image
+    screen_width = 240,     // the width of the screen
+    screen_height = 320,    // the height of the screen
+    ms10 = 26'd1000000      // how many cycles is 10ms
     //sd params
 )(
     //sd stuff
 
-    input wire sd_reset,
-    input wire sd_dat_0,
+    input wire sd_reset,    // sd reset signal
+    input wire sd_dat_0,    // sd data signal
     //other stuff
-    input wire clk_100mhz,
-    input wire rst,
-    input wire mono_stereo,
-    input wire [2:0] pano_control,
-    input wire [7:0] vert_angle,
-    input wire [8:0] horiz_angle,
-    input wire clk_25mhz,
+    input wire clk_100mhz,  // clock
+    input wire rst,         // reset
+    input wire mono_stereo, // toggle mono vs stereo
+    input wire [2:0] pano_control,  // select one of eight images
+    input wire [7:0] vert_angle,    // current vertical angle
+    input wire [8:0] horiz_angle,   // current horizontal angle
+    input wire clk_25mhz,           // sd clock
     output logic [3:0] spi_out_0, spi_out_1, //four bits wide, connected to jd,
     output logic sd_cmd,
     output logic sd_sck,
@@ -50,6 +50,7 @@ module test_image_feeder#(parameter
     output logic sd_dat_3
 );
 
+    // calcualte max width, height, and size for address indexing
     localparam MAX_WIDTH = MONO_WIDTH > STEREO_WIDTH ? MONO_WIDTH : STEREO_WIDTH; 
     localparam MAX_HEIGHT = MONO_HEIGHT > STEREO_HEIGHT ? MONO_HEIGHT : STEREO_HEIGHT;
     localparam MAX_SIZE = MONO_WIDTH * MONO_HEIGHT > 2 * STEREO_WIDTH * STEREO_HEIGHT ?
@@ -124,6 +125,7 @@ module test_image_feeder#(parameter
         NONE = 2
     } current_state = NONE; 
     
+    // determine current width of image
     logic [$clog2(MAX_WIDTH):0] current_width;
     assign current_width = current_state == STEREO ? STEREO_WIDTH : MONO_WIDTH;
     
@@ -144,6 +146,7 @@ module test_image_feeder#(parameter
         .aclk(clk_100mhz)
     );
     
+    // when triggered, calculate height and width as values with 8-bit fraction
     reg [4:0] divider_counter = 27;
     
     always_ff @(posedge clk_100mhz) begin
@@ -190,6 +193,7 @@ module test_image_feeder#(parameter
     logic [17:0] next_horiz_angle, scaled_horiz_angle;
     logic [19:0] multiplied_horz_pos;
 
+    // scale horizontal angle to image
     always_ff @(posedge clk_100mhz) begin
         scaled_horiz_angle = { 2'b0, horiz_count } + { horiz_angle, 2'b0 };
         
@@ -208,6 +212,7 @@ module test_image_feeder#(parameter
         end         
     end
     
+    // scale vertical angle to image
     logic [17:0] scaled_vert_angle;
     logic [21:0] multiplied_vert_pos;
 
@@ -216,7 +221,8 @@ module test_image_feeder#(parameter
         multiplied_vert_pos <= scaled_vert_angle * { 4'b0, height_scaling };
         row_count           <= multiplied_vert_pos[21:12];
     end    
-        
+    
+    // interface with screens
     logic [7:0] pixel_left, pixel_right;
     logic [$clog2(MAX_SIZE):0] addr_left, addr_right;
 
@@ -246,6 +252,7 @@ module test_image_feeder#(parameter
         .spi_out(spi_out_1)
     );
     
+    // image control signals
     logic image_ready, read_ready;
     assign read_ready = read_ready_left && read_ready_right;
     assign image_ready = image_ready_left && image_ready_right;
@@ -255,10 +262,11 @@ module test_image_feeder#(parameter
     
     logic [2:0] pano_control_buffer;
     
+    // store static offsets for images in sd
     reg [0:7][31:0] pano_start = '{
         32'h77800,
         32'hCBA00,
-        32'h11FC00, // end of actual images
+        32'h11FC00,
         32'h177C00,
         32'h1CBE00,
         32'h223E00,
@@ -269,7 +277,7 @@ module test_image_feeder#(parameter
     reg [0:7][16:0] pano_sectors = '{
         10'd673,
         10'd673,
-        10'd704, // end of actual images
+        10'd704,
         10'd673,
         10'd704,
         10'd704,
@@ -360,6 +368,7 @@ module test_image_feeder#(parameter
                 end
             endcase           
         end else if (image_ready) begin
+            // image is ready, fetch next bit
             addr_left   <= 0;
             addr_right  <= 0;
             horiz_count <= 1;
@@ -369,6 +378,7 @@ module test_image_feeder#(parameter
         end else if (read_ready && vert_count < screen_height) begin
             addr_left   <= (row_count * current_width) + col_count;
             
+            // calculate the right screen address
             if (current_state == STEREO) begin
                 addr_right  <= (row_count * current_width) + col_count + STEREO_WIDTH * STEREO_HEIGHT;   
             end else begin

@@ -7,31 +7,32 @@
 
 module main(
     //sd stuff 
-    input wire sd_reset,
-    input wire sd_dat_0,
+    input wire sd_reset,    //  sd reset signal
+    input wire sd_dat_0,    //  sd data signal
     //other stuff
-    input wire clk_100mhz,
-    input wire btnu,
+    input wire clk_100mhz,  //  clock signal
+    input wire btnu,        //  gyroscope calibration
     input wire btnc,        //  to be the reset button
     input wire btnl, btnr,  //  control horizontal scrolling
     input wire jb,          //  uart input
-    input wire gyro_enabled,
-    input wire [3:0] filt,
-    input wire mono_stereo,
-    input wire [3:0] vert_padding,
-    input wire [2:0] horz_padding,
-    input wire [2:0] pano_control,
+    input wire gyro_enabled,//  switch determining whether to use gyro or buttons
+    input wire [3:0] filt,  //  controls low pass filter values
+    input wire mono_stereo, //  controls whether to use mono/stereo for images
+    input wire [3:0] vert_padding,  //  vertical padding sensitivity (in degrees)
+    input wire [2:0] horz_padding,  //  horizontal gyro sensitivity (degrees)
+    input wire [2:0] pano_control,  //  selects one of the possible images to display
     output logic ca, cb, cc, cd, ce, cf, cg, dp,  // segments a-g, dp
     output logic [3:0]  jd,     // sck, mosi,cs, d/c in that order
     output logic [3:0]  jc,     // sck, mosi,cs, d/c in that order
-    output logic [7:0]  an,       // Display location 0-7
-    output logic sd_cmd,
-    output logic sd_sck,
-    output logic sd_dat_1,
-    output logic sd_dat_2,
-    output logic sd_dat_3
+    output logic [7:0]  an,     // Display location 0-7
+    output logic sd_cmd,        // sd command dbit
+    output logic sd_sck,        // sd sck bit    
+    output logic sd_dat_1,      // first sd data bit
+    output logic sd_dat_2,      // second sd data bit
+    output logic sd_dat_3       // third sd data bit
 );
 
+    // generate 65mhz clock for uart, 25mhz for sd
     wire clk_65mhz, clk_25mhz;
     clk_wiz_0 clkdivider(
         .clk_in1(clk_100mhz), 
@@ -39,6 +40,7 @@ module main(
         .clk_25mhz(clk_25mhz)
     );
     
+    // debounce reset, generate buffer
     wire reset;
     debounce reset_debouncer(
         .reset(1'b0), .clock(clk_100mhz),
@@ -53,6 +55,7 @@ module main(
         end
     end
     
+    // more debouncing
     wire calibrate;
     debounce calibrate_deouncer(
         .reset(reset_buffer[0]), .clock(clk_100mhz),
@@ -77,6 +80,7 @@ module main(
         .bounce(pano_control), .clean(pano_clean)
     );
 
+    // calculate vertical and horizontal angles
     logic [7:0] vert_angle;
     logic [8:0] horz_angle;
     
@@ -89,6 +93,7 @@ module main(
         .vert_angle(vert_angle), .horz_angle(horz_angle)
     );
     
+    // use coordinates to send an image
     test_image_feeder feeder (
         //sd stuff
         .clk_25mhz(clk_25mhz), 
@@ -101,6 +106,7 @@ module main(
         .spi_out_0(jd), .spi_out_1(jc)
     );
     
+    // display debug information on seven segment display
     wire [31:0] data;      //  instantiate 7-segment display; display (8) 4-bit hex
     wire [6:0] segments;
     
